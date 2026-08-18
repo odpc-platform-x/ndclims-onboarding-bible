@@ -1,17 +1,21 @@
 # HANDOFF — NDCLIMS Onboarding Bible
 
-อ่านไฟล์นี้ก่อนแก้ `ndclims-onboarding-bible.html` หรือ `ndclims-it-runbook.html` ในโฟลเดอร์นี้
+อ่านไฟล์นี้ก่อนแก้ `index.html` (= onboarding bible) หรือ `ndclims-it-runbook.html` ในโฟลเดอร์นี้
 
 ## นี่คืออะไร
 
 เอกสาร onboarding แบบ interactive HTML (self-contained, ไม่มี build step) สำหรับระบบ NDCLIMS (Thai national disease-control LIMS) แยก 2 เล่ม:
 
-| ไฟล์                            | อ่านโดย                             | เนื้อหา                                                                      |
-| ------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------- |
-| `ndclims-onboarding-bible.html` | เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | ขั้นตอน 0–7 ในการเริ่มใช้ระบบที่ deploy แล้ว, งานประจำวัน, เตรียมไฟล์ import |
-| `ndclims-it-runbook.html`       | IT / super admin                    | ตั้งค่า tenant ใหม่, หนุนงาน import, integration, ops ระบบ live              |
+| ไฟล์                      | อ่านโดย                             | เนื้อหา                                                                      |
+| ------------------------- | ----------------------------------- | ---------------------------------------------------------------------------- |
+| `index.html`              | เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | ขั้นตอน 0–7 ในการเริ่มใช้ระบบที่ deploy แล้ว, งานประจำวัน, เตรียมไฟล์ import |
+| `ndclims-it-runbook.html` | IT / super admin                    | ตั้งค่า tenant ใหม่, หนุนงาน import, integration, ops ระบบ live              |
 
-ไฟล์อยู่นอก repo `ndclims` โดยตั้งใจ (`~/Developer/bible/ncdlims/`) — ไม่ใช่ source code ของโปรเจกต์ เป็นเอกสาร แต่ **ทุก fact ในนี้ต้องตรงกับโค้ดจริงใน repo `ndclims`** เพราะ verify มาจากการอ่านโค้ดตรงๆ ไม่ใช่เดา
+`index.html` คือไฟล์เดียวกับ onboarding bible เดิม (เปลี่ยนชื่อเป็น `index.html` เพื่อให้ root path ของ GitHub Pages เปิดตรงเข้าเล่มนี้ — ดูหัวข้อ Hosting ด้านล่าง)
+
+Publish อยู่ที่: [odpc-platform-x.github.io/ndclims-onboarding-bible](https://odpc-platform-x.github.io/ndclims-onboarding-bible) (bible) และ `.../ndclims-it-runbook.html` (IT) — repo: `github.com/odpc-platform-x/ndclims-onboarding-bible`
+
+ไฟล์อยู่นอก repo `ndclims` โดยตั้งใจ (`~/Developer/bible/ndclims/` — คนละที่กับ repo โปรเจกต์จริงที่ `~/Developer/hybridge/ndclims/`) — ไม่ใช่ source code ของโปรเจกต์ เป็นเอกสาร แต่ **ทุก fact ในนี้ต้องตรงกับโค้ดจริงในโปรเจกต์ NDCLIMS** เพราะ verify มาจากการอ่านโค้ดตรงๆ ไม่ใช่เดา ดู [`README.md`](./README.md) สำหรับลิงก์ระบบจริงและ tech stack
 
 ## กฎเวลาแก้
 
@@ -50,5 +54,5 @@
 
 - ชื่อไฟล์ปัจจุบันเป็น lowercase-kebab-case อยู่แล้ว ใช้ได้ตรงกับ GH Pages (host case-sensitive) ไม่ต้องเปลี่ยน
 - ลิงก์ข้ามไฟล์เป็น relative อยู่แล้ว → ใช้ได้ทั้งบน user page (`username.github.io/`) และ project page (`username.github.io/repo/`) โดยไม่ต้องแก้อะไร
-- แนะนำเพิ่ม `index.html` แยก (redirect หรือ copy ของ `ndclims-onboarding-bible.html`) ให้ root path ของเว็บเปิดตรงเข้าเล่มผู้ใช้ทันที — ไม่บังคับ แต่ลดขั้นตอนให้คนเปิดลิงก์เปล่า
+- `index.html` (= copy ของ onboarding bible) ทำไว้แล้ว ให้ root path ของเว็บเปิดตรงเข้าเล่มผู้ใช้ทันที — ถ้าแก้เนื้อหา bible ต้องแก้ `index.html` โดยตรง (เป็นไฟล์เดียวกัน ไม่ใช่ symlink)
 - ถ้าจะผูก custom domain ต้องเพิ่มไฟล์ `CNAME` แยกต่างหาก ไม่กระทบไฟล์ 2 ไฟล์นี้เลย
