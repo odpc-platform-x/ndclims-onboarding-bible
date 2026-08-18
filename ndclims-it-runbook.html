@@ -1,6 +1,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NDCLIMS IT Runbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap"
+/>
 <style>
   :root {
     /* instrument-register palette — warm graphite panel + brass/rust indicator hues */
@@ -22,12 +28,17 @@
     --ok-soft: #dfeee5;
     --stop: #c81e1e;
     --stop-soft: #f9dcdc;
-    --mono:
-      "JetBrains Mono", "IBM Plex Mono", "Space Mono", ui-monospace, "SF Mono",
-      Menlo, "Cascadia Mono", "Roboto Mono", monospace;
+    /* nameplate/label register — engineered, not "AI-mono" */
+    --display:
+      "Chakra Petch", "Sukhumvit Set", "Noto Sans Thai", -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
     --sans:
       "IBM Plex Sans", "IBM Plex Sans Thai", "Sukhumvit Set", -apple-system,
       BlinkMacSystemFont, "Noto Sans Thai", "Segoe UI", Tahoma, sans-serif;
+    /* reserved for literal copy-pasteable text: endpoint paths, code, kbd */
+    --code:
+      "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, "Cascadia Mono",
+      "Roboto Mono", monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -107,7 +118,7 @@
   }
   code,
   kbd {
-    font-family: var(--mono);
+    font-family: var(--code);
     font-size: 0.87em;
   }
 
@@ -144,12 +155,12 @@
     box-shadow: 0 0 0 3px var(--accent-soft);
   }
   .brand b {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 14px;
     letter-spacing: -0.01em;
   }
   .brand span {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -201,7 +212,7 @@
     box-shadow: 0 0 0 3px var(--accent-soft);
   }
   .sibling-link {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12px;
     letter-spacing: 0.04em;
     padding: 6px 12px;
@@ -259,7 +270,7 @@
     background: var(--sunk);
   }
   .rail a .n {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     color: var(--ink-3);
     letter-spacing: 0.05em;
@@ -280,7 +291,7 @@
     border-color: var(--accent);
   }
   .rail-head {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 9.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -318,7 +329,7 @@
   }
 
   .eyebrow {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -336,7 +347,7 @@
     background: var(--accent);
   }
   .slide h2 {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-weight: 700;
     font-size: clamp(24px, 3.1vw, 33px);
     letter-spacing: -0.01em;
@@ -382,7 +393,7 @@
     margin: 0 0 30px;
   }
   section.blk > h3 {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -409,7 +420,7 @@
   }
 
   pre {
-    font-family: var(--mono);
+    font-family: var(--code);
     font-size: 13px;
     line-height: 1.65;
     background: var(--sunk);
@@ -423,7 +434,7 @@
     color: var(--ink-3);
   }
   .ep {
-    font-family: var(--mono);
+    font-family: var(--code);
     font-size: 12.5px;
     background: var(--sunk);
     border: 1px solid var(--line);
@@ -524,7 +535,7 @@
   }
   thead th {
     background: var(--sunk);
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -576,7 +587,7 @@
     );
   }
   .pipe {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 12.5px;
     line-height: 1.9;
     background: var(--sunk);
@@ -623,7 +634,7 @@
     margin: 0;
   }
   .card .n {
-    font-family: var(--mono);
+    font-family: var(--display);
     font-size: 10.5px;
     letter-spacing: 0.14em;
     color: var(--accent-ink);
@@ -704,9 +715,7 @@
       <b>NDCLIMS IT Runbook</b><span>สนับสนุนระบบ &amp; ดูแล production</span>
     </span>
   </div>
-  <a class="sibling-link" href="./index.html"
-    >← เล่มเจ้าหน้าที่/Lab Admin</a
-  >
+  <a class="sibling-link" href="./index.html">← เล่มเจ้าหน้าที่/Lab Admin</a>
 </div>
 
 <div class="shell">
@@ -719,15 +728,18 @@
     <!-- ══════════ COVER ══════════ -->
     <article class="slide cover on" id="s-0" data-title="เริ่มที่นี่">
       <div class="eyebrow">IT / Programmer</div>
-      <h2>Runbook สำหรับ IT ที่ดูแล NDCLIMS ตัวจริง</h2>
+      <h2>Runbook สำหรับ IT ที่ดูแล NDCLIMS แต่ละสคร.</h2>
       <div class="rule"></div>
       <p class="lede">
-        ระบบ deploy แล้ว มี tenant ใช้งานจริงแล้ว เอกสารนี้<strong
-          >ไม่ใช่คู่มือติดตั้ง</strong
-        >
-        — ไม่มี git clone, ไม่มี docker, ไม่มี pnpm.
-        เอกสารนี้บอกว่าต้องรันอะไรตอน ตั้งค่าแล็บใหม่, ช่วย user ตอน import พัง,
-        ต่อ integration ให้ partner, และดูระบบตอน live ให้รอด
+        ระบบนี้ติดตั้งและเปิดใช้งานจริงแล้ว มีหน่วยงาน (สคร.)
+        หลายแห่งใช้งานอยู่บนระบบเดียวกัน
+        โดยแต่ละหน่วยงานถูกแยกข้อมูลออกจากกันเป็นบัญชีของตัวเอง (เรียกว่า
+        tenant) เอกสารนี้<strong> ไม่ใช่คู่มือติดตั้งระบบ</strong>
+        — จึงไม่มีขั้นตอนดึงโค้ดโปรแกรม (git clone), ไม่มีการรันผ่าน container
+        (docker), ไม่มีการติดตั้ง package ของโปรเจกต์ (pnpm)
+        เอกสารนี้บอกแทนว่าต้องทำอะไรบ้างตอนตั้งค่าแล็บใหม่, ช่วยผู้ใช้งานเมื่อ
+        import ข้อมูลผิดพลาด, เชื่อมต่อระบบให้กับหน่วยงานภายนอก (integration
+        partner), และดูแลระบบขณะใช้งานจริง (live) ให้ทำงานต่อเนื่องไม่สะดุด
       </p>
       <section class="blk">
         <h3>4 section + ภาคผนวก</h3>
@@ -736,27 +748,33 @@
             <span class="n">1</span>
             <h4>ตั้งค่าแล็บใหม่</h4>
             <p>
-              ลำดับบังคับที่ระบบ enforce จริง ตั้งแต่ company จนถึง integration
+              ขั้นตอนที่ระบบบังคับให้ทำตามลำดับจริง ตั้งแต่ระดับหน่วยงาน (สคร.)
+              ไปจนถึงขั้นตอนเชื่อมต่อกับหน่วยงานภายนอก (integration)
             </p>
           </div>
           <div class="card">
             <span class="n">2</span>
-            <h4>หนุนงาน import</h4>
-            <p>endpoint, ข้อจำกัด, วิธีกู้ import ที่พังกลางทาง</p>
+            <h4>สนับสนุนงาน import</h4>
+            <p>
+              endpoint ที่ใช้, ข้อจำกัดของระบบ, และวิธีกู้ข้อมูลเมื่อ import
+              ล้มเหลวกลางทาง
+            </p>
           </div>
           <div class="card">
             <span class="n">3</span>
             <h4>Integration</h4>
             <p>
-              ลำดับต่อ referring org → external lab config → partner →
+              ลำดับการต่อ referring org → external lab config → partner →
               instrument → HL7 → webhook
             </p>
           </div>
           <div class="card">
             <span class="n">4</span>
-            <h4>Ops ระบบ live</h4>
+            <h4>Operations บน Production</h4>
             <p>
-              migration ตัวจริง, backup/restore, monitoring, troubleshooting
+              การรัน migration บน production, การสำรอง/กู้คืนข้อมูล
+              (backup/restore), การเฝ้าระวังระบบ (monitoring), และการแก้ปัญหา
+              (troubleshooting)
             </p>
           </div>
         </div>
@@ -776,30 +794,39 @@
     <article class="slide" id="s-1" data-title="ตั้งค่าแล็บใหม่">
       <div class="eyebrow">Section 1 · Super Admin</div>
       <h2>ตั้งค่าแล็บใหม่</h2>
-      <p class="lede">ลำดับบังคับที่ระบบ reject ถ้าข้ามขั้น</p>
+      <p class="lede">
+        ต้องทำตามลำดับขั้นตอนที่กำหนดไว้อย่างเคร่งครัด
+        ห้ามข้ามขั้นตอนใดขั้นตอนหนึ่งไป
+      </p>
 
       <section class="blk">
         <h3>ลำดับบังคับ</h3>
         <div class="pipe">
-          global roles (มากับ migration, company_id IS NULL) └→ company + สาขา
+          global roles (ที่มากับ migration, company_id IS NULL) > company + สาขา
           HQ + admin
-          <span style="opacity: 0.6">— transaction เดียว</span> └→ plan /
-          entitlements └→ test catalog └→ departments &amp; specimen types └→
-          referring orgs └→ users / patients └→ integrations
+          <span style="opacity: 0.6">— transaction เดียว</span> > plan /
+          entitlements > test catalog > departments &amp; specimen types >
+          referring orgs > users / patients > integrations
         </div>
       </section>
 
       <section class="blk">
         <h3>POST /api/super-admin/companies</h3>
         <p>
-          สร้าง
+          endpoint นี้สร้าง
           <strong
-            >company + branch code <code>HQ</code> (isMainBranch=true) + admin
-            user</strong
+            >company (หน่วยงาน/สคร.) + สาขารหัส
+            <code>HQ</code> (isMainBranch=true) + ผู้ใช้ admin</strong
           >
-          ใน<strong>transaction เดียว</strong>. ต้องมี role row code
-          <code>company_admin</code>,
-          <code>company_id IS NULL</code> อยู่ก่อนแล้ว ไม่งั้น fail
+          พร้อมกันทั้งหมดใน<strong
+            >ธุรกรรมฐานข้อมูลเดียว (transaction เดียว)</strong
+          >
+          หมายความว่าถ้าขั้นตอนใดขั้นตอนหนึ่งล้มเหลว ระบบจะยกเลิกทั้งหมด
+          ไม่สร้างข้อมูลค้างครึ่งๆ กลางๆ ทั้งนี้ต้องมี role ที่มีรหัส
+          <code>company_admin</code> และ <code>company_id IS NULL</code> (คือ
+          role ระดับ global ที่มากับ migration ไม่ใช่ role
+          เฉพาะบริษัทใดบริษัทหนึ่ง) อยู่ในฐานข้อมูลอยู่ก่อนแล้ว
+          ไม่งั้นคำขอนี้จะล้มเหลว
         </p>
         <div class="tw">
           <table>
@@ -825,9 +852,13 @@
           </table>
         </div>
         <div class="note stop">
-          <b>ไม่มีคำสั่งสร้าง super_admin คนแรก.</b> DB ที่ไม่ได้ seed มี
-          super_admin = 0 คน และไม่มี HTTP path สร้างได้เลย — ต้องมาจาก SQL seed
-          หรือ manual <code>INSERT</code>. อย่าลบ super_admin คนสุดท้ายทิ้ง
+          <b>ไม่มีคำสั่งใน API สำหรับสร้างผู้ใช้ super_admin คนแรก.</b>
+          ฐานข้อมูลที่ยังไม่เคย seed (ใส่ข้อมูลตั้งต้น) ข้อมูล จะมีผู้ใช้ที่เป็น
+          super_admin อยู่ 0 คน และไม่มีทาง HTTP request ใดๆ ที่สร้างให้ได้เลย —
+          ต้องสร้างผ่านสคริปต์ seed ฐานข้อมูล (SQL) หรือคำสั่ง
+          <code>INSERT</code> เข้าตารางโดยตรงเท่านั้น อย่าลบผู้ใช้ super_admin
+          คนสุดท้ายที่เหลืออยู่ทิ้ง มิฉะนั้นจะไม่มีใครสร้าง super_admin
+          คนใหม่ได้อีก
         </div>
       </section>
 
@@ -837,14 +868,18 @@
 PUT   <span class="ep">/api/super-admin/companies/:id/features/:key</span></pre>
         <p>
           <span class="ep">POST /api/super-admin/catalog/publish</span> —
-          ดันชุดตรวจ DDC จากส่วนกลางลงบริษัท. ไม่ใส่ <code>companyIds</code> =
-          ทุกบริษัท active ที่ไม่ถูกลบ. สร้าง
-          <code>lab_test_categories</code> จาก
-          <code>categoryCode</code> ให้อัตโนมัติถ้ายังไม่มี และอัปเดตเฉพาะ
-          <strong>ฟิลด์โครงสร้าง</strong> — ราคา, ต้นทุน, สถานะเปิดปิด, ลำดับ
-          ไม่ถูกแตะ ปลอดภัยต่อการรันซ้ำ
+          ส่งชุดตรวจมาตรฐาน DDC (ชุดตรวจส่วนกลางจากกรมควบคุมโรค)
+          ลงไปยังแต่ละสคร. ถ้าไม่ระบุ <code>companyIds</code> จะหมายถึงส่งให้
+          ทุกสคร. ที่สถานะ active และยังไม่ถูกลบทั้งหมด คำสั่งนี้จะสร้าง
+          <code>lab_test_categories</code> (หมวดหมู่รายการตรวจ) จาก
+          <code>categoryCode</code> ให้อัตโนมัติถ้ายังไม่มีอยู่ก่อน
+          และจะอัปเดตเฉพาะ
+          <strong>ฟิลด์ที่เป็นโครงสร้างของรายการตรวจ</strong> เท่านั้น —
+          ส่วนราคา, ต้นทุน, สถานะเปิด/ปิดใช้งาน,
+          และลำดับที่แต่ละสคร.ตั้งเองจะไม่ถูกแตะต้อง
+          จึงรันคำสั่งนี้ซ้ำได้อย่างปลอดภัยโดยไม่ทำลายข้อมูลที่ตั้งค่าไว้แล้ว
         </p>
-        <pre>POST <span class="ep">/api/super-admin/catalog/import-from-company</span>   <span class="c"># harvest จาก tenant เดียวขึ้นส่วนกลาง</span></pre>
+        <pre>POST <span class="ep">/api/super-admin/catalog/import-from-company</span>   <span class="c"># ดึงรายการตรวจจากสคร.เดียวขึ้นไปเก็บไว้ในแคตตาล็อกส่วนกลาง</span></pre>
         <p>
           route super-admin อื่น: <span class="ep">GET /stats</span>,
           <span class="ep">GET/PATCH /companies/:id</span>,
@@ -859,18 +894,23 @@ PUT   <span class="ep">/api/super-admin/companies/:id/features/:key</span></pre>
       <section class="blk">
         <h3>กับดัก</h3>
         <div class="note">
-          <b>company ใหม่มีแคตตาล็อกว่างเปล่า.</b> ไม่มีแผนก
-          ไม่มีชนิดสิ่งส่งตรวจ ไม่มีหมวดหมู่ ไม่มีรายการตรวจ ไม่มี settings —
-          ไม่มีอะไร provision ให้เกินกว่า company/branch/admin
+          <b>company (หน่วยงาน) ที่สร้างใหม่จะมีแคตตาล็อกว่างเปล่า.</b>
+          หมายความว่าไม่มีแผนก ไม่มีชนิดสิ่งส่งตรวจ ไม่มีหมวดหมู่
+          ไม่มีรายการตรวจ และไม่มี settings ใดๆ — ตอนสร้าง company
+          ใหม่ระบบเตรียมให้แค่ company/สาขา/ผู้ใช้ admin เท่านั้น
+          ส่วนที่เหลือต้องมาตั้งค่าเพิ่มเอง
         </div>
       </section>
     </article>
 
     <!-- ══════════ SECTION 2 ══════════ -->
-    <article class="slide" id="s-2" data-title="หนุนงาน import">
+    <article class="slide" id="s-2" data-title="สนับสนุนงาน import">
       <div class="eyebrow">Section 2</div>
-      <h2>หนุนงาน import ของผู้ใช้</h2>
-      <p class="lede">ผู้ใช้ทำเอง IT รู้ endpoint และข้อจำกัดไว้แก้ปัญหา</p>
+      <h2>สนับสนุนงาน import data ของผู้ใช้งาน</h2>
+      <p class="lede">
+        งาน import ข้อมูลนี้ปกติผู้ใช้งานเป็นคนทำเอง แต่ IT ควรรู้จัก endpoint
+        ที่เกี่ยวข้องและข้อจำกัดของระบบไว้ เพื่อช่วยแก้ปัญหาเมื่อผู้ใช้งานติดขัด
+      </p>
 
       <section class="blk">
         <h3>Endpoint</h3>
@@ -882,8 +922,11 @@ POST <span class="ep">/api/import/:entity</span>            <span class="c"># mu
           <code>lab-orders</code> — ไม่มีอื่น
         </p>
         <p>
-          ทั้ง plugin อยู่หลัง feature gate <code>import</code> และต้องมีสิทธิ์
-          <code>settings.manage</code>
+          ฟีเจอร์ import ทั้งหมดถูกควบคุมด้วยระบบเปิด/ปิดฟีเจอร์ (feature gate)
+          ชื่อ
+          <code>import</code> — ถ้าไม่ได้เปิดฟีเจอร์นี้ไว้ให้บริษัทนั้น
+          จะใช้งานไม่ได้เลย และผู้ใช้งานยังต้องมีสิทธิ์
+          <code>settings.manage</code> ด้วยจึงจะเรียกใช้ได้
         </p>
       </section>
 
@@ -934,8 +977,10 @@ POST <span class="ep">/api/import/:entity</span>            <span class="c"># mu
           </table>
         </div>
         <p>
-          <strong>ลำดับบังคับ:</strong> patients ก่อน lab-orders (order resolve
-          patient จาก HN)
+          <strong>ลำดับบังคับ:</strong> ต้อง import patients ก่อน lab-orders
+          เสมอ เพราะตอน import order ระบบจะค้นหาผู้ป่วยที่ตรงกันโดยใช้เลข HN
+          (Hospital Number) — ถ้ายังไม่มีผู้ป่วยรายนั้นอยู่ในระบบ order
+          จะจับคู่ไม่ได้
         </p>
       </section>
 
@@ -943,41 +988,53 @@ POST <span class="ep">/api/import/:entity</span>            <span class="c"># mu
         <h3>lab-orders specifics</h3>
         <ul>
           <li>
-            order number มินต์เป็น <code>IMP{yy}{mm}{dd}{seq}</code> และ
-            <code>lsn = orderNumber</code> — เลขที่เดิมของระบบเก่า<strong
-              >ไม่ถูกเก็บไว้</strong
+            ระบบจะสร้างเลขที่ order (order number) ให้เองทุกครั้งในรูปแบบ
+            <code>IMP{yy}{mm}{dd}{seq}</code> และตั้งค่า
+            <code>lsn = orderNumber</code> ให้เท่ากัน — เลขที่ order
+            เดิมจากระบบเก่า (ถ้าไฟล์ที่ import มามีอยู่)<strong
+              >จะไม่ถูกเก็บไว้</strong
             >
           </li>
           <li>
-            status มาจากวันที่ที่ให้มา: มี received date ⇒
-            <code>processing</code>, มี collected date ⇒ <code>collected</code>,
-            ไม่มีทั้งคู่ ⇒ <code>pending</code>
+            สถานะของ order จะคำนวณจากวันที่ที่ให้มาในไฟล์: ถ้ามีวันที่ received
+            (วันรับตัวอย่าง) จะตั้งเป็น <code>processing</code>, ถ้ามีวันที่
+            collected (วันเก็บตัวอย่าง) จะตั้งเป็น <code>collected</code>,
+            ถ้าไม่มีวันที่ทั้งสองแบบจะตั้งเป็น <code>pending</code>
           </li>
           <li>
-            string วันที่แบบไม่มีเวลา anchor เป็นเที่ยงคืน Bangkok ไม่ใช่ UTC
+            ถ้าค่าวันที่ในไฟล์ import ไม่มีระบุเวลากำกับไว้ด้วย
+            ระบบจะตีความว่าเป็นเวลาเที่ยงคืนตามเขตเวลากรุงเทพฯ ไม่ใช่เวลา UTC
           </li>
           <li>
-            <code>sending_org_code</code> ที่ไม่ตรงกับหน่วยงานที่มี
-            <strong>ไม่ทำให้แถวล้ม</strong> — เก็บเป็น snapshot string เฉยๆ
-            ต้องเช็ครหัสหน่วยงานผิดด้วยมือ
+            ถ้า <code>sending_org_code</code> (รหัสหน่วยงานที่ส่งตรวจ) ในไฟล์
+            ไม่ตรงกับหน่วยงานใดที่มีอยู่ในระบบ
+            <strong>จะไม่ทำให้แถวนั้น import ไม่สำเร็จ</strong> —
+            ระบบจะเก็บค่าที่ได้มาไว้เป็นข้อความธรรมดา (snapshot) เฉยๆ
+            โดยไม่ตรวจสอบ จึงต้องตรวจดูรหัสหน่วยงานที่ผิดด้วยตนเอง
           </li>
         </ul>
         <div class="note stop">
-          <b>ห้ามรัน import สองไฟล์พร้อมกัน.</b> การมินต์เลข order ทำ
-          <code>COUNT(*)</code> ต่อแถว รันขนานกัน = เลขชนกัน. และเป็น O(n) query
-          ต่อไฟล์ ไฟล์ใหญ่ช้า — ปรับ timeout ที่ proxy/nginx ด้วย
+          <b>ห้ามรัน import สองไฟล์พร้อมกัน.</b> การสร้างเลขที่ order
+          ใหม่แต่ละครั้ง ระบบใช้วิธีนับจำนวนแถวที่มีอยู่แล้ว
+          (<code>COUNT(*)</code>) ทีละแถว — ถ้ารันสองไฟล์พร้อมกัน เลขที่ order
+          อาจซ้ำกันได้
+          นอกจากนี้การนับแบบนี้ยังทำให้เวลาที่ใช้เพิ่มขึ้นตามจำนวนแถวในไฟล์
+          (O(n)) ไฟล์ที่มีแถวเยอะจะยิ่งใช้เวลานาน — อย่าลืมปรับค่า timeout ที่
+          proxy/nginx ให้รองรับด้วย
         </div>
       </section>
 
       <section class="blk">
         <h3>ก่อนรัน / กู้พัง</h3>
         <div class="note">
-          <b>snapshot database ก่อน bulk import ทุกครั้ง</b> — ไม่มี undo
+          <b>สำรองข้อมูล (snapshot) ฐานข้อมูลก่อนรัน bulk import ทุกครั้ง</b> —
+          เพราะระบบไม่มีปุ่ม undo ให้ย้อนกลับ
         </div>
         <p>
-          <strong>กู้ import ที่พังกลางทาง:</strong> แก้เฉพาะแถวที่ error
-          แล้วอัปโหลดใหม่เฉพาะแถวนั้น ห้ามอัปทั้งไฟล์ซ้ำ —
-          จะได้แถวที่สำเร็จแล้วซ้ำอีกชุด
+          <strong>วิธีกู้เมื่อ import ล้มเหลวกลางทาง:</strong>
+          แก้ไขเฉพาะแถวที่ขึ้น error แล้วอัปโหลดไฟล์ใหม่ที่มีแค่แถวเหล่านั้น
+          ห้ามอัปโหลดทั้งไฟล์เดิมซ้ำอีกครั้ง — เพราะจะทำให้แถวที่สำเร็จไปแล้วถูก
+          import ซ้ำเป็นชุดที่สอง
         </p>
       </section>
     </article>
@@ -986,37 +1043,57 @@ POST <span class="ep">/api/import/:entity</span>            <span class="c"># mu
     <article class="slide" id="s-3" data-title="Integration">
       <div class="eyebrow">Section 3</div>
       <h2>Integration</h2>
-      <p class="lede">ต่อทีละขั้น แต่ละขั้นพึ่งขั้นก่อนหน้า</p>
+      <p class="lede">
+        ต้องต่อระบบทีละขั้นตามลำดับ
+        เพราะแต่ละขั้นต้องอาศัยข้อมูลที่ตั้งไว้ในขั้นก่อนหน้า
+      </p>
 
       <section class="blk">
         <h3>1 · referring organization</h3>
         <p>
-          <span class="ep">GET /api/mophealth-facilities</span> — directory NHSO
-          กลาง PK <code>hcode</code> ~57k แถว โหลดโดย CLI script
+          <span class="ep">GET /api/mophealth-facilities</span> —
+          เรียกดูทำเนียบสถานพยาบาลกลางจาก สปสช. (NHSO) มีประมาณ 57,000 แถว
+          โดยแต่ละแถวระบุตัวด้วยรหัสสถานพยาบาล (<code>hcode</code>)
+          ข้อมูลชุดนี้ไม่ได้มากับ migration
+          <strong
+            >แต่โหลดเข้าฐานข้อมูลด้วยสคริปต์บรรทัดคำสั่ง (CLI script)</strong
+          >
+          ที่
           <code>apps/backend/src/scripts/import-nhso-facilities.ts</code>
-          <strong>ไม่ใช่ migration</strong>
         </p>
-        <pre>POST <span class="ep">/api/referring-organizations</span>   <span class="c"># adopt facility เข้า tenant</span></pre>
+        <pre>POST <span class="ep">/api/referring-organizations</span>   <span class="c"># นำสถานพยาบาล (facility) จากทำเนียบกลางมารับเข้าเป็นหน่วยงานส่งตรวจของ tenant นี้</span></pre>
       </section>
 
       <section class="blk">
         <h3>2 · external lab config</h3>
         <p>
-          <span class="ep">POST /api/external-lab-configs</span> — ออก API key
-          รูปแบบ <code>ndcl_&lt;48 hex&gt;</code> โชว์<strong
-            >ครั้งเดียว</strong
+          <span class="ep">POST /api/external-lab-configs</span> — endpoint
+          นี้ออก API key ให้พาร์ทเนอร์ในรูปแบบ
+          <code>ndcl_&lt;48 hex&gt;</code> โดยจะ<strong
+            >แสดงค่าเต็มให้เห็นเพียงครั้งเดียวตอนสร้างเท่านั้น</strong
           >
-          เก็บแค่ SHA-256 hash ใน <code>integration_credentials</code>
+          หลังจากนั้นระบบจะเก็บไว้เฉพาะค่าที่เข้ารหัสแบบ SHA-256 hash
+          (ถอดกลับเป็นค่าจริงไม่ได้) ไว้ในตาราง
+          <code>integration_credentials</code> — ถ้าทำ key หายต้องออก key
+          ใหม่เท่านั้น
         </p>
         <p>
-          config มี <code>allowedTests[]</code> (บังคับเป็น scope — test นอก
-          scope ⇒ 403), <code>defaultBranchId</code>,
-          <code>resultCallbackUrl</code>,
-          <code>resultCallbackSecret</code> (encrypted)
+          การตั้งค่า (config) ของ partner แต่ละราย มีฟิลด์
+          <code>allowedTests[]</code> ซึ่งกำหนดขอบเขตการเข้าถึง (scope) — ถ้า
+          partner เรียกใช้ test ที่ไม่อยู่ในรายการนี้ ระบบจะปฏิเสธด้วย HTTP
+          status 403, <code>defaultBranchId</code> (สาขาปลายทางที่จะรับ order),
+          <code>resultCallbackUrl</code> (URL ที่ระบบจะยิงผลตรวจกลับไปให้
+          partner), และ
+          <code>resultCallbackSecret</code> (รหัสลับสำหรับยืนยันการยิง callback
+          กลับ — เก็บแบบเข้ารหัส)
         </p>
         <div class="note">
-          <b>ต้องมี referring organization อยู่ก่อน.</b> ฟิลด์ identity ของ org
-          ถูก snapshot มาจากมัน ไม่ได้พิมพ์เอง
+          <b
+            >ต้องมี referring organization (หน่วยงานส่งตรวจ)
+            ที่เชื่อมไว้อยู่ก่อนแล้ว.</b
+          >
+          เพราะฟิลด์ระบุตัวตนของหน่วยงาน (identity) ใน config
+          นี้จะถูกคัดลอกมาจากหน่วยงานนั้นโดยอัตโนมัติ ไม่ใช่กรอกขึ้นมาใหม่เอง
         </div>
       </section>
 
@@ -1026,9 +1103,12 @@ POST <span class="ep">/api/import/:entity</span>            <span class="c"># mu
 POST <span class="ep">/api/public/v1/orders/batch</span>   <span class="c"># สูงสุด 100 orders, คืน 202</span>
 POST <span class="ep">/api/public/v1/orders</span>          <span class="c"># legacy</span></pre>
         <p>
-          auth: header <code>x-api-key</code> ไม่ใช่ JWT. rate limit ต่อ key
-          ต่อชั่วโมงผ่าน Redis (<code>PUBLIC_API_RATE_LIMIT_PER_HOUR</code>,
-          default 1000)
+          การยืนยันตัวตน (auth) ของ endpoint กลุ่มนี้ใช้ header
+          <code>x-api-key</code> (ค่า API key ที่ออกไว้ในขั้นตอนก่อนหน้า) ไม่ใช่
+          JWT (โทเคนแบบที่ผู้ใช้งานในระบบใช้ตอน login) และมีการจำกัดจำนวนคำขอ
+          (rate limit) ต่อ key ต่อชั่วโมง โดยนับผ่าน Redis (ตั้งค่าได้ที่
+          <code>PUBLIC_API_RATE_LIMIT_PER_HOUR</code>, ค่าเริ่มต้นคือ 1000
+          ครั้ง/ชั่วโมง)
         </p>
         <pre>GET <span class="ep">/api/public/v1/orders/:submissionId/status</span>
 GET <span class="ep">/api/public/v1/results/:orderId</span>
@@ -1039,14 +1119,21 @@ GET <span class="ep">/api/public/v1/results/lsn/:lsn</span></pre>
         </p>
         <div class="note stop">
           <b
-            >บังคับให้ partner ส่ง
-            <code>externalSubmissionId</code> ทุกครั้ง.</b
+            >บังคับให้ partner ส่งค่า
+            <code>externalSubmissionId</code> มาทุกครั้ง.</b
           >
-          นี่คือ idempotency key — ถ้าไม่ส่ง retry จะสร้าง order ซ้ำ
+          ค่านี้ทำหน้าที่เป็น idempotency key
+          คือค่าที่ระบบใช้แยกแยะว่าคำขอนี้เคยส่งมาแล้วหรือยัง — ถ้า partner
+          ไม่ส่งค่านี้มา เมื่อมีการส่งคำขอเดิมซ้ำ (เช่นตอน retry
+          หลังเน็ตเวิร์กมีปัญหา) ระบบจะสร้าง order
+          ซ้ำขึ้นมาอีกใบโดยไม่รู้ว่าเป็นคำขอเดิม
         </div>
         <p>
-          attachment: base64-inline, เพดาน 10 MB/ไฟล์ (server-side), สูงสุด 20
-          ไฟล์/order — ยังไม่มี external blob storage. เจ้าหน้าที่อ่านที่
+          ไฟล์แนบ (attachment): ส่งแบบฝังเป็นข้อความ base64 ในตัวคำขอเลย
+          (ไม่ใช่ลิงก์ไฟล์) จำกัดขนาดไม่เกิน 10 MB ต่อไฟล์
+          (ระบบฝั่งเซิร์ฟเวอร์บังคับ) และไม่เกิน 20 ไฟล์ต่อ order —
+          ปัจจุบันยังไม่มีระบบเก็บไฟล์แยกต่างหาก (external blob storage)
+          เจ้าหน้าที่ในหน่วยงานจะเห็น order ที่ส่งเข้ามาได้ที่
           <span class="ep">GET /api/incoming-orders</span>
         </p>
       </section>
@@ -1054,8 +1141,13 @@ GET <span class="ep">/api/public/v1/results/lsn/:lsn</span></pre>
       <section class="blk">
         <h3>4 · instrument (agent)</h3>
         <p>
-          on-prem agent (<code>apps/agent</code>) ทำหน้าที่ decode ASTM/HL7 แล้ว
-          post JSON ที่ normalize แล้ว
+          agent คือโปรแกรมเสริมที่ติดตั้งบนเครื่องคอมพิวเตอร์ในแล็บเอง (on-prem
+          แปลว่าอยู่ในสถานที่ของแล็บ ไม่ใช่บนคลาวด์) มีซอร์สโค้ดอยู่ที่
+          <code>apps/agent</code>
+          ทำหน้าที่รับข้อมูลดิบจากเครื่องตรวจแล็บที่ส่งมาด้วยมาตรฐาน ASTM หรือ
+          HL7 (มาตรฐานสื่อสารข้อมูลของอุปกรณ์การแพทย์) แปลงข้อมูลนั้น (decode)
+          ให้เป็นรูปแบบที่ระบบเข้าใจได้ตรงกัน (normalize) แล้วส่งเป็น JSON
+          เข้าสู่ NDCLIMS ต่อ
         </p>
         <pre>POST <span class="ep">/api/instruments/agent/auth</span>
 POST <span class="ep">/api/instruments/agent/heartbeat</span>
@@ -1063,15 +1155,17 @@ POST <span class="ep">/api/instruments/agent/results</span>
 GET  <span class="ep">/api/instruments/agent/orders/:sampleId</span>   <span class="c"># host query / worklist</span></pre>
         <div class="note stop">
           <b
-            >ผล map เข้ารายการตรวจผ่าน
-            <code>lab_tests.hl7_code</code> (uppercase).</b
+            >ระบบจับคู่ผลตรวจที่ส่งเข้ามากับรายการตรวจในแคตตาล็อก
+            โดยเทียบกับค่าฟิลด์
+            <code>lab_tests.hl7_code</code> (ต้องเป็นตัวพิมพ์ใหญ่).</b
           >
-          ถ้าฟิลด์นี้ว่างหรือผิด ผลหายเงียบๆ ไม่มี error
+          ถ้าฟิลด์นี้ในรายการตรวจว่างเปล่าหรือตั้งค่าผิด ผลตรวจจะหายไปเงียบๆ
+          โดยไม่มีข้อความ error แจ้งเตือนเลย — ต้องตรวจสอบด้วยตนเอง
         </div>
         <p>
-          route จัดการ + device API key อยู่ที่
-          <code>/api/instruments</code> หลัง feature gate
-          <code>instruments</code>
+          หน้าจัดการเครื่องตรวจและ API key ของอุปกรณ์อยู่ที่
+          <code>/api/instruments</code> ซึ่งอยู่หลังระบบเปิด/ปิดฟีเจอร์ (feature
+          gate) ชื่อ <code>instruments</code>
         </p>
       </section>
 
@@ -1081,10 +1175,16 @@ GET  <span class="ep">/api/instruments/agent/orders/:sampleId</span>   <span cla
 GET  <span class="ep">/api/hl7/results/:id</span>
 GET  <span class="ep">/api/hl7/messages</span></pre>
         <div class="note stop">
-          <b>ทางเดียว — outbound เท่านั้น.</b> ไม่มี inbound ORU parser, ไม่มี
-          MLLP listener, ไม่มี ACK handling. timestamp format เป็น UTC ไม่ใช่
-          local time. ตาราง <code>hl7_messages</code> เข้าถึงด้วย raw SQL —
-          ไม่อยู่ใน Drizzle schema
+          <b>ระบบรองรับการส่งข้อความ HL7 ออกทางเดียวเท่านั้น (outbound).</b>
+          หมายความว่า NDCLIMS ส่งคำสั่งตรวจ (order) ออกไปหาระบบอื่นได้
+          แต่<strong>ไม่มี</strong> ตัวอ่านข้อความผลตรวจที่ส่งกลับเข้ามา (ไม่มี
+          ORU parser — ORU คือรูปแบบข้อความ HL7 ที่ใช้รายงานผลตรวจ),
+          ไม่มีตัวรับข้อความผ่านโปรโตคอลเครือข่ายมาตรฐานของ HL7 (ไม่มี MLLP
+          listener), และไม่มีการส่งข้อความตอบรับยืนยัน (ไม่มี ACK handling)
+          รูปแบบเวลา (timestamp) ในข้อความ HL7 เป็นเวลา UTC ไม่ใช่เวลาท้องถิ่น
+          และตาราง <code>hl7_messages</code>
+          เข้าถึงด้วยคำสั่ง SQL ดิบโดยตรง — ไม่ได้กำหนดไว้ใน schema ของ Drizzle
+          (ตัว ORM ที่ระบบใช้จัดการฐานข้อมูล)
         </div>
       </section>
 
@@ -1115,32 +1215,50 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
     <article class="slide" id="s-4" data-title="Ops ระบบ live">
       <div class="eyebrow">Section 4</div>
       <h2>Ops ระบบ live</h2>
-      <p class="lede">รักษาระบบให้รอด ไม่ใช่ตั้งค่าใหม่</p>
+      <p class="lede">
+        section นี้ว่าด้วยการดูแลรักษาระบบที่ใช้งานอยู่แล้วให้ทำงานต่อเนื่อง
+        ไม่ใช่การตั้งค่าระบบใหม่
+      </p>
 
       <section class="blk">
         <h3>Schema migrations</h3>
         <p>
-          tree จริงคือ <code>supabase/migrations/</code> (~69 ไฟล์)
-          รันอัตโนมัติตอน backend boot ผ่าน
-          <code>apps/backend/src/lib/migrate.ts</code> ติดตามใน
-          <code>schema_migrations</code> table, 1 transaction ต่อไฟล์,
-          เรียงตามชื่อไฟล์
+          โฟลเดอร์ที่เก็บไฟล์ migration (คำสั่งเปลี่ยนโครงสร้างฐานข้อมูล)
+          ที่ใช้งานจริงคือ <code>supabase/migrations/</code> (มีประมาณ 69 ไฟล์)
+          ไฟล์เหล่านี้จะรันให้อัตโนมัติทุกครั้งที่ backend เริ่มทำงาน (boot)
+          ผ่านโค้ดที่
+          <code>apps/backend/src/lib/migrate.ts</code> ระบบจะบันทึกไว้ในตาราง
+          <code>schema_migrations</code> ว่าไฟล์ไหนรันไปแล้วบ้าง
+          โดยแต่ละไฟล์รันอยู่ใน 1 ธุรกรรมฐานข้อมูล (transaction)
+          และรันเรียงตามชื่อไฟล์
         </p>
         <p>
-          <code>scripts/apply-migrations.sh</code> — standalone runner (มี
-          <code>--dry-run</code>, idempotent) สำหรับ deploy แบบ serverless ที่
-          boot-time migration ไม่รัน
+          <code>scripts/apply-migrations.sh</code> คือสคริปต์แยกต่างหาก
+          (ไม่ผูกกับตอน backend boot) มีตัวเลือก
+          <code>--dry-run</code> ให้ทดลองดูก่อนโดยไม่แก้ข้อมูลจริง
+          และรันซ้ำได้โดยไม่เกิดผลข้างเคียง (idempotent) — ใช้สคริปต์นี้เมื่อ
+          deploy บนสภาพแวดล้อมแบบ serverless ที่ไม่รัน migration ตอน boot
+          ให้อัตโนมัติ
         </p>
         <div class="note stop">
-          <b>อย่าชี้ migration runner ไปที่ transaction-mode pooler.</b> ใช้
-          <code>DIRECT_DATABASE_URL</code>
+          <b
+            >อย่าชี้ตัวรัน migration ไปที่ connection pooler แบบ
+            transaction-mode (เช่น PgBouncer)</b
+          >
+          เพราะโหมดนี้อาจส่งต่อ session ไปให้ client อื่นระหว่างที่ migration
+          ยังทำงานไม่เสร็จ ทำให้คำสั่งหลายบรรทัดในไฟล์เดียวพังได้ — ให้ใช้
+          <code>DIRECT_DATABASE_URL</code> ซึ่งชี้ตรงเข้าฐานข้อมูลโดยไม่ผ่าน
+          pooler แทน
         </div>
         <div class="note">
-          <b>DEAD PATHS — กับดัก:</b> <code>pnpm db:seed</code> ชี้ไป
-          <code>packages/db/migrations/001_ndclims_schema.sql</code> และ
-          <code>make migrate</code> ชี้ไป
-          <code>database/</code> ที่ไม่มีอยู่จริง — ทั้งคู่ไม่ใช่ tree จริง ใช้
-          <code>setup-local-db.sh</code> หรือ boot-time runner เท่านั้น
+          <b>เส้นทางที่ตายแล้ว (DEAD PATHS) — ข้อควรระวัง:</b> คำสั่ง
+          <code>pnpm db:seed</code> อ้างอิงไฟล์ไปที่
+          <code>packages/db/migrations/001_ndclims_schema.sql</code> และคำสั่ง
+          <code>make migrate</code> อ้างอิงไปที่โฟลเดอร์
+          <code>database/</code> ซึ่งไม่มีอยู่จริงในโปรเจกต์ —
+          ทั้งสองคำสั่งนี้ไม่ได้ชี้ไปที่โฟลเดอร์ migration ที่ใช้งานจริง ให้ใช้
+          <code>setup-local-db.sh</code>
+          หรือปล่อยให้ตัวรัน migration ตอน backend boot ทำงานเองเท่านั้น
         </div>
       </section>
 
@@ -1148,11 +1266,20 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
         <h3>Backup / restore / rollback</h3>
         <p>ดู <code>DEPLOYMENT.md</code> §8 สำหรับขั้นตอนเต็ม</p>
         <div class="note">
-          <b>backup ที่ไม่เคย restore ไม่นับว่าเป็น backup</b>
+          <b
+            >ไฟล์สำรอง (backup) ที่ไม่เคยทดลองกู้คืน (restore) ดูสักครั้ง
+            ไม่ควรนับว่าเป็น backup ที่ใช้งานได้จริง</b
+          >
+          — ต้องทดลอง restore เป็นระยะเพื่อให้แน่ใจว่าไฟล์สำรองใช้กู้คืนได้จริง
         </div>
         <div class="note stop">
-          <b>migration ที่ไม่ backward-compatible</b> — redeploy image เก่า
-          ย้อนไม่ได้ ต้อง restore database เท่านั้น
+          <b
+            >ถ้า migration
+            ที่รันไปแล้วเปลี่ยนโครงสร้างข้อมูลจนใช้กับโค้ดเวอร์ชันเก่าไม่ได้
+            (ไม่ backward-compatible)</b
+          >
+          — การย้อนกลับไปใช้ image เวอร์ชันเก่าอย่างเดียวจะแก้ปัญหาไม่ได้ ต้อง
+          restore ฐานข้อมูลกลับไปด้วยเท่านั้น
         </div>
       </section>
 
@@ -1170,16 +1297,22 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
         <h3>Troubleshooting</h3>
         <ul>
           <li>
-            <strong>schema_migrations ค้าง</strong> — ไฟล์ migration ล้มกลางทาง
-            เช็ค row ที่ไม่ commit แล้วแก้ก่อนรันรอบถัดไป
+            <strong>ตาราง schema_migrations ค้าง (มีแถวที่ยังไม่เสร็จ)</strong>
+            — เกิดเมื่อไฟล์ migration รันไปครึ่งทางแล้วล้มเหลว
+            ให้ตรวจดูแถวที่ยังไม่ถูก commit ในตารางนี้
+            แล้วแก้ไขปัญหาให้เรียบร้อยก่อนปล่อยให้รันรอบถัดไป
           </li>
           <li>
-            <strong><code>CORS_ORIGIN</code> ไม่ตั้งใน production</strong> —
-            fail closed เว้นแต่ตั้ง <code>CORS_ALLOW_ANY=true</code>
+            <strong>ลืมตั้งค่า <code>CORS_ORIGIN</code> ใน production</strong> —
+            ระบบจะปฏิเสธคำขอข้ามโดเมนทั้งหมดเป็นค่าเริ่มต้น (fail closed)
+            จนกว่าจะตั้งค่านี้ หรือเปิดอนุญาตทุกโดเมนด้วย
+            <code>CORS_ALLOW_ANY=true</code>
           </li>
           <li>
-            <strong>แก้สิทธิ์ role แล้วไม่มีผล</strong> — permission
-            ถูกก็อปปี้ลง JWT ตอน login แล้ว ต้อง logout/login ใหม่
+            <strong>แก้สิทธิ์ของ role แล้วผู้ใช้งานไม่เห็นผลลัพธ์ทันที</strong>
+            — สิทธิ์ (permission) ของผู้ใช้จะถูกคัดลอกลงไปเก็บในโทเคนยืนยันตัวตน
+            (JWT) ตอน login เพียงครั้งเดียว ดังนั้นผู้ใช้ต้อง logout แล้ว login
+            ใหม่ จึงจะได้สิทธิ์ที่อัปเดตแล้ว
           </li>
         </ul>
       </section>
@@ -1267,11 +1400,16 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
           </table>
         </div>
         <p>
-          per-company override ชนะ plan preset เสมอ. ทุกตัวที่ gate อยู่ใน
-          <code>apps/backend/src/app.ts</code>. core LIMS workflow (patients,
-          orders, results, billing, reports, users, settings) ไม่ถูก gate เลย.
-          ถ้า <code>companies.plan_status</code> ไม่ใช่ <code>'active'</code> —
-          feature ที่ gate ปิดหมดไม่ว่า plan จะเป็นอะไร
+          ถ้ามีการตั้งค่าเปิด/ปิดฟีเจอร์เฉพาะบริษัทใดบริษัทหนึ่งไว้เป็นพิเศษ
+          (per-company override) ค่านั้นจะชนะค่าตั้งต้นตามแพ็กเกจแผน (plan
+          preset) เสมอ รายการฟีเจอร์ทั้งหมดที่ถูกควบคุมด้วยระบบเปิด/ปิดฟีเจอร์
+          (gate) อยู่ในไฟล์
+          <code>apps/backend/src/app.ts</code> ส่วนฟังก์ชันหลักของระบบ LIMS เอง
+          (ผู้ป่วย, order, ผลตรวจ, การเงิน, รายงาน, ผู้ใช้งาน, การตั้งค่า)
+          ไม่ถูกควบคุมด้วยระบบนี้เลย ใช้งานได้เสมอไม่ว่าจะอยู่แผนไหน
+          และถ้าสถานะแผนของบริษัท (<code>companies.plan_status</code>) ไม่ใช่
+          <code>'active'</code> ฟีเจอร์ทุกตัวที่ถูก gate ไว้จะถูกปิดทั้งหมด
+          ไม่ว่าบริษัทนั้นจะอยู่แผนอะไรก็ตาม
         </p>
       </section>
 
@@ -1296,7 +1434,7 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
               </tr>
               <tr>
                 <td><code>company_admin</code></td>
-                <td>ผู้ดูแลบริษัท</td>
+                <td>ผู้ดูแลสคร.</td>
                 <td>1</td>
                 <td>
                   <code
@@ -1364,14 +1502,20 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
           </table>
         </div>
         <p>
-          matching: ฝั่งที่<strong>ได้รับสิทธิ์</strong>รองรับ wildcard
-          (<code>*</code>, <code>lab.*</code>, <code>lab.result.*</code>)
-          ฝั่งที่<strong>ต้องมีสิทธิ์</strong>ต้องเป็น leaf เจาะจงเสมอ. user ถือ
-          role เดียว — ไม่มี join table แบบ multi-role. เข้าถึงได้ต้องมี<strong
-            >ทั้ง</strong
-          >
-          role permission <strong>และ</strong> company feature entitlement —
-          feature guard short-circuit ให้ <code>super_admin</code> เสมอ
+          วิธีเทียบสิทธิ์: ฝั่งที่<strong>role ได้รับสิทธิ์มา</strong> (คอลัมน์
+          permissions ในตารางด้านบน) อนุญาตให้ใช้เครื่องหมาย wildcard
+          แทนกลุ่มสิทธิ์ได้ (เช่น <code>*</code> คือทุกสิทธิ์,
+          <code>lab.*</code> คือทุกสิทธิ์ในหมวด lab,
+          <code>lab.result.*</code> คือทุกสิทธิ์ในหมวดผลตรวจ)
+          แต่ฝั่งที่<strong>โค้ดตรวจสอบว่าต้องมีสิทธิ์อะไร</strong>ต้องระบุสิทธิ์แบบเจาะจงเสมอ
+          (ไม่ใช้ wildcard) ผู้ใช้แต่ละคนถือได้เพียง role เดียวเท่านั้น —
+          ระบบไม่รองรับการให้ผู้ใช้คนเดียวมีได้หลาย role พร้อมกัน
+          การจะเข้าถึงฟีเจอร์หนึ่งได้ ผู้ใช้ต้องมี<strong>ทั้ง</strong>
+          สิทธิ์จาก role ของตัวเอง
+          <strong>และ</strong> บริษัทต้องมีสิทธิ์ใช้ฟีเจอร์นั้น (entitlement)
+          ตามแผนที่สมัคร — ยกเว้น
+          <code>super_admin</code> ซึ่งข้ามการตรวจสอบสิทธิ์ของฟีเจอร์ (feature
+          guard) นี้ได้เสมอโดยอัตโนมัติ
         </p>
       </section>
 
@@ -1482,22 +1626,32 @@ POST <span class="ep">/api/webhook-deliveries/run-retry-wave</span></pre>
         <h3>สิ่งที่ระบบยังไม่มี</h3>
         <ul>
           <li>
-            inbound HL7 (ไม่มี ORU parser, ไม่มี MLLP listener, ไม่มี ACK
-            handling)
+            การรับข้อความ HL7 เข้าระบบ (inbound) — ไม่มีตัวอ่านข้อความผลตรวจ
+            (ORU parser), ไม่มีตัวรับข้อความผ่านโปรโตคอลเครือข่ายมาตรฐาน HL7
+            (MLLP listener), ไม่มีการส่งข้อความตอบรับยืนยัน (ACK handling)
           </li>
           <li>
-            import แบบ CSV/XML/fixed-width — รับ <code>.xlsx</code> เท่านั้น
+            การ import ไฟล์แบบ CSV/XML/fixed-width — ระบบรับไฟล์
+            <code>.xlsx</code> เท่านั้น
           </li>
           <li>
-            import สำหรับแผนก, ชนิดสิ่งส่งตรวจ, หน่วยงานส่งตรวจ, ค่าอ้างอิง,
-            กลุ่มลูกค้า
+            การ import ข้อมูลตั้งต้นสำหรับแผนก, ชนิดสิ่งส่งตรวจ,
+            หน่วยงานส่งตรวจ, ค่าอ้างอิงผลตรวจ, และกลุ่มลูกค้า —
+            ต้องกรอกเข้าระบบเองทีละรายการ
           </li>
           <li>
-            ตาราง LOINC หรือ ICD — ทั้งสองเป็นช่องข้อความอิสระ ไม่ validate
+            ตารางรหัสมาตรฐาน LOINC (รหัสมาตรฐานสากลของรายการตรวจแล็บ) หรือ ICD
+            (รหัสมาตรฐานสากลของการวินิจฉัยโรค) —
+            ทั้งสองฟิลด์เป็นช่องข้อความอิสระที่พิมพ์อะไรก็ได้
+            ระบบไม่ตรวจสอบความถูกต้อง (validate) ให้
           </li>
-          <li>import ผลตรวจย้อนหลัง (historical results)</li>
-          <li>background job queue สำหรับ import</li>
-          <li>คำสั่ง bootstrap สร้าง super_admin คนแรก</li>
+          <li>การ import ผลตรวจที่เกิดขึ้นในอดีต (historical results)</li>
+          <li>
+            คิวงานเบื้องหลัง (background job queue) สำหรับประมวลผลการ import
+          </li>
+          <li>
+            คำสั่งตั้งต้นระบบ (bootstrap) สำหรับสร้างผู้ใช้ super_admin คนแรก
+          </li>
         </ul>
       </section>
 
