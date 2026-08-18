@@ -1,0 +1,3483 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NDCLIMS Onboarding Bible</title>
+<style>
+:root {
+  /* ── surfaces & ink ── */
+  --paper: #ffffff;
+  --raise: #ffffff;
+  --sunk: #f1f3f3;
+  --ink: #090b0c;
+  --ink-2: #67787c;
+  --ink-3: #989999;
+  --line: #e3e7e8;
+  --line-2: #d8d8d8;
+  --grid: rgba(9, 11, 12, 0.04);
+
+  /* ── accent / status ── */
+  --accent: #007a55;
+  --accent-soft: #deeee9;
+  --accent-ink: #006045;
+  --on-accent: #ecfdf5;
+  --warn: #a25a12;
+  --warn-soft: #f6eada;
+  --ok: #2f7d4f;
+  --ok-soft: #dfeee5;
+  --stop: #e7000b;
+  --stop-soft: #fde6e7;
+
+  /* ── type ── */
+  --font-display:
+    "Space Grotesk", "IBM Plex Sans Thai", "Noto Sans Thai", -apple-system,
+    "Segoe UI", sans-serif;
+  --font-body:
+    "IBM Plex Sans Thai", "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+    "Sukhumvit Set", "Noto Sans Thai", "IBM Plex Sans Thai Looped", "Segoe UI",
+    Tahoma, sans-serif;
+  --font-mono:
+    "IBM Plex Mono", "JetBrains Mono", "Space Mono", ui-monospace, "SF Mono",
+    Menlo, "Cascadia Mono", "Roboto Mono", monospace;
+
+  /* ── structure ── */
+  --radius-sm: 2px;
+  --radius: 3px;
+  --shadow-sm: 0 1px 2px rgba(9, 11, 12, 0.07);
+  --shadow-md: 0 10px 30px -12px rgba(9, 11, 12, 0.22);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #090b0c;
+    --raise: #161b1d;
+    --sunk: #050607;
+    --ink: #f9fbfb;
+    --ink-2: #9ca8ab;
+    --ink-3: #757778;
+    --line: #2b2d2d;
+    --line-2: #393b3c;
+    --grid: rgba(249, 251, 251, 0.045);
+    --accent: #00bc7d;
+    --accent-soft: #08271e;
+    --accent-ink: #59d3aa;
+    --on-accent: #032018;
+    --warn: #d69a4e;
+    --warn-soft: #2e2417;
+    --ok: #63be8b;
+    --ok-soft: #13291e;
+    --stop: #ff6467;
+    --stop-soft: #30191b;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #090b0c;
+  --raise: #161b1d;
+  --sunk: #050607;
+  --ink: #f9fbfb;
+  --ink-2: #9ca8ab;
+  --ink-3: #757778;
+  --line: #2b2d2d;
+  --line-2: #393b3c;
+  --grid: rgba(249, 251, 251, 0.045);
+  --accent: #00bc7d;
+  --accent-soft: #08271e;
+  --accent-ink: #59d3aa;
+  --on-accent: #032018;
+  --warn: #d69a4e;
+  --warn-soft: #2e2417;
+  --ok: #63be8b;
+  --ok-soft: #13291e;
+  --stop: #ff6467;
+  --stop-soft: #30191b;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scrollbar-gutter: stable;
+}
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  margin: 0;
+  line-height: 1.3;
+  font-family: var(--font-display);
+}
+a {
+  color: var(--accent-ink);
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+code,
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+}
+
+/* ── control bar ───────────────────────────── */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--raise);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 24px;
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  margin-right: auto;
+}
+.brand b {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.brand span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.brand {
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 3px;
+  background: #fefaf0;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.sibling-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--ink-2);
+  white-space: nowrap;
+  background: var(--raise);
+}
+.sibling-link:hover {
+  background: var(--sunk);
+}
+.sibling-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.grp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.grp > label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.seg {
+  display: flex;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.seg button {
+  font: inherit;
+  font-size: 13px;
+  padding: 5px 12px;
+  border: 0;
+  cursor: pointer;
+  background: var(--raise);
+  color: var(--ink-2);
+  border-right: 1px solid var(--line-2);
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.seg button:last-child {
+  border-right: 0;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.seg button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ── gantt ── styled as a specimen turnaround / incubation log ── */
+.gantt-note {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+  max-width: 66ch;
+}
+.gantt-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--raise);
+  padding: 16px 18px 10px;
+}
+.gantt {
+  min-width: 560px;
+}
+.g-axis {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 9px;
+}
+.g-axis .g-ticks {
+  position: relative;
+  height: 16px;
+  border-bottom: 1px solid var(--line-2);
+}
+.g-axis .g-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid var(--line);
+}
+.g-axis .g-tick span {
+  position: absolute;
+  left: 4px;
+  top: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.g-row {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 3px 0;
+}
+.g-label {
+  font-size: 13px;
+  line-height: 1.35;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 7px;
+  align-items: baseline;
+}
+.g-label .g-n {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.g-label .g-who {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.g-track {
+  position: relative;
+  height: 26px;
+}
+.g-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.g-grid i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid var(--line);
+}
+.g-bar {
+  position: absolute;
+  top: 4px;
+  height: 18px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+}
+.g-bar .g-core {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--accent);
+}
+.g-bar em {
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.g-bar.inside em {
+  left: auto;
+  right: 6px;
+  color: var(--ink);
+}
+.g-row.opt .g-bar {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.75;
+}
+.g-row.opt .g-bar .g-core {
+  background: var(--line-2);
+}
+.g-row.crit .g-bar {
+  border-color: var(--warn);
+}
+.g-row.crit .g-bar .g-core {
+  background-color: var(--warn);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 5px,
+    rgba(0, 0, 0, 0.16) 5px 10px
+  );
+}
+.gantt-total {
+  font-size: 14px;
+  margin: 14px 0 0;
+}
+.gantt-total b {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+}
+.g-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+.g-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.g-legend i {
+  width: 22px;
+  height: 9px;
+  display: inline-block;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+}
+.g-legend i.stretch {
+  background: var(--accent-soft);
+}
+.g-legend i.optl {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--line-2);
+}
+.g-legend i.critl {
+  background-color: var(--warn);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.18) 3px 6px
+  );
+  border-color: var(--warn);
+}
+@media (max-width: 640px) {
+  .g-axis,
+  .g-row {
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 9px;
+  }
+  .g-label {
+    font-size: 12px;
+  }
+}
+
+/* ── daily-flow handoff strip ─────────────────── */
+.flow-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--raise);
+  padding: 26px 20px 20px;
+  margin: 0 0 16px;
+}
+.flow {
+  display: flex;
+  align-items: flex-start;
+  min-width: max-content;
+}
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 164px;
+  flex: 0 0 auto;
+}
+.flow-role {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 9px;
+  text-align: center;
+}
+.flow-box {
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 12px 13px;
+  text-align: center;
+  width: 100%;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+.flow-box b {
+  font-size: 13.5px;
+  line-height: 1.3;
+}
+.flow-box span {
+  font-size: 11.5px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+.flow-status {
+  margin-top: 9px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  flex: 0 0 auto;
+  color: var(--line-2);
+  font-size: 16px;
+  align-self: center;
+  margin-top: -30px;
+}
+@media (max-width: 640px) {
+  .flow-step {
+    width: 132px;
+  }
+  .flow-box {
+    min-height: 100px;
+    padding: 10px;
+  }
+}
+
+/* ── shell ─────────────────────────────────── */
+.shell {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 0;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+.rail {
+  border-right: 1px solid var(--line);
+  padding: 26px 0 60px;
+  position: sticky;
+  top: 61px;
+  align-self: start;
+  max-height: calc(100vh - 61px);
+  overflow-y: auto;
+}
+.rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.rail a {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 9px 20px 9px 16px;
+  text-decoration: none;
+  color: var(--ink-2);
+  border-left: 2px solid transparent;
+  font-size: 13.5px;
+  line-height: 1.4;
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.rail a:hover {
+  background: var(--sunk);
+}
+.rail a .n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+.rail a[aria-current="true"] {
+  border-left-color: var(--accent);
+  color: var(--ink);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+.rail a[aria-current="true"] .n {
+  color: var(--accent-ink);
+}
+.rail a.done .n::after {
+  content: " ✓";
+  color: var(--ok);
+}
+.rail-head {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 0 16px 10px;
+}
+
+main {
+  padding: 34px 40px 90px;
+  min-width: 0;
+}
+
+/* ── slides ────────────────────────────────── */
+.slide {
+  display: none;
+  animation: fade 0.22s ease;
+}
+.slide.on {
+  display: block;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    animation: none;
+  }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+.slide h2 {
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.lede {
+  color: var(--ink-2);
+  font-size: 17px;
+  margin: 12px 0 0;
+  max-width: 62ch;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 30px;
+}
+.chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-2);
+  background: var(--raise);
+  color: var(--ink-2);
+}
+.chip b {
+  font-family: var(--font-body);
+  color: var(--ink);
+  font-weight: 600;
+}
+.chip.dur {
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--accent-ink);
+}
+.chip.opt {
+  background: var(--warn-soft);
+  border-color: transparent;
+  color: var(--warn);
+}
+
+section.blk {
+  margin: 0 0 30px;
+}
+section.blk > h3 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: 9px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line-2) 0 1px,
+    transparent 1px 7px
+  );
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 4px;
+}
+.blk p {
+  margin: 0 0 12px;
+  max-width: 66ch;
+}
+.blk ul,
+.blk ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+  max-width: 66ch;
+}
+.blk li {
+  margin: 0 0 7px;
+}
+.blk li::marker {
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+}
+
+/* track visibility */
+[data-track] {
+  display: none;
+}
+body.t-user [data-track~="user"],
+body.t-pm [data-track~="pm"] {
+  display: block;
+}
+li[data-track],
+span[data-track] {
+  display: none;
+}
+body.t-user li[data-track~="user"],
+body.t-pm li[data-track~="pm"] {
+  display: list-item;
+}
+body.t-user span[data-track~="user"],
+body.t-pm span[data-track~="pm"] {
+  display: inline;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  background: var(--sunk);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 13px 16px;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+pre .c {
+  color: var(--ink-3);
+}
+.ep {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--sunk);
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+.note {
+  border-left: 3px solid var(--warn);
+  background: var(--warn-soft);
+  padding: 12px 16px;
+  margin: 0 0 14px;
+  max-width: 68ch;
+}
+.note b {
+  color: var(--warn);
+}
+.note.stop {
+  border-color: var(--stop);
+  background: var(--stop-soft);
+}
+.note.stop b {
+  color: var(--stop);
+}
+
+/* ── checklist ── styled as a lab verification / requisition form ── */
+.gate {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  background: var(--raise);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.gate h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.gate > p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+}
+.gate ul {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: none;
+}
+.gate label {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 11px;
+  align-items: start;
+  padding: 7px 6px;
+  cursor: pointer;
+  font-size: 14.5px;
+  line-height: 1.55;
+  border-radius: var(--radius-sm);
+  border-bottom: 1px dashed var(--line);
+}
+.gate li:last-child label {
+  border-bottom: 0;
+}
+.gate label:hover {
+  background: var(--sunk);
+}
+.gate input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 4px 0 0;
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  background: var(--raise);
+  cursor: pointer;
+  position: relative;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.gate input[type="checkbox"]:hover {
+  border-color: var(--accent);
+}
+.gate input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.gate input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(40deg);
+}
+.gate input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.gate input:checked + span {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--line-2);
+}
+.prog {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.prog .track {
+  flex: 1;
+  height: 6px;
+  background: var(--sunk);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line-2) 0 1px,
+    transparent 1px 20%
+  );
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.prog .fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0;
+  transition: width 0.25s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .prog .fill {
+    transition: none;
+  }
+}
+.prog .cnt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid var(--line-2);
+  background: var(--raise);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.btn:hover {
+  background: var(--sunk);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.btn.primary:hover {
+  background: var(--accent-ink);
+  border-color: var(--accent-ink);
+}
+.btn.primary:disabled {
+  background: var(--sunk);
+  border-color: var(--line);
+  color: var(--ink-3);
+  cursor: not-allowed;
+  transform: none;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.lockmsg {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--warn);
+}
+
+/* ── tables ── ledger / lab-report layout ── */
+.tw {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  margin: 0 0 18px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+  background: var(--raise);
+}
+th,
+td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+thead th {
+  background: var(--sunk);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  border-bottom: 2px solid var(--line-2);
+}
+tbody tr:nth-child(even) {
+  background: var(--grid);
+}
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+td code {
+  background: var(--sunk);
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+}
+.req {
+  color: var(--stop);
+  font-weight: 700;
+}
+.yes {
+  color: var(--ok);
+  font-weight: 700;
+}
+.no {
+  color: var(--ink-3);
+}
+
+.kbdhint {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+kbd {
+  border: 1px solid var(--line-2);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
+  background: var(--raise);
+  font-size: 11.5px;
+}
+
+/* ── cover ── */
+.cover .rule {
+  height: 7px;
+  width: 96px;
+  margin: 22px 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--accent) 0 2px,
+    transparent 2px 9px
+  );
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: auto 2px;
+}
+.pipe {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.9;
+  background: var(--sunk);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 16px 18px;
+  overflow-x: auto;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 14px;
+  margin: 0 0 18px;
+}
+.card {
+  border: 1px solid var(--line);
+  background: var(--raise);
+  padding: 15px 17px;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+.card h4 {
+  font-size: 14.5px;
+  margin-bottom: 6px;
+}
+.card p {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin: 0;
+}
+.card .n {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--accent-ink);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 7px;
+}
+
+/* ── closing / it-runbook link ── */
+.itlink {
+  border: 1px solid var(--line-2);
+  background: var(--sunk);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 0 0 18px;
+}
+.itlink p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+@media (max-width: 880px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    position: static;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+  }
+  .rail ol {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .rail a {
+    white-space: nowrap;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+  }
+  .rail a[aria-current="true"] {
+    border-bottom-color: var(--accent);
+  }
+  main {
+    padding: 26px 20px 70px;
+  }
+}
+
+@media print {
+  .bar,
+  .rail,
+  .nav,
+  .kbdhint {
+    display: none !important;
+  }
+  .shell {
+    display: block;
+    max-width: none;
+  }
+  main {
+    padding: 0;
+  }
+  body {
+    background-image: none;
+  }
+  .slide {
+    display: block !important;
+    page-break-after: always;
+    animation: none;
+  }
+  [data-track] {
+    display: block !important;
+  }
+  li[data-track] {
+    display: list-item !important;
+  }
+  span[data-track] {
+    display: inline !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11.5pt;
+  }
+  .gate,
+  .card,
+  .tw,
+  pre,
+  .note,
+  .flow-wrap {
+    break-inside: avoid;
+  }
+}
+
+</style>
+
+<div class="bar">
+  <div class="brand">
+    <span class="brand-mark"
+      ><img
+        src="data:image/png;base64,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GHm3c143eNZ/MDgsrawr+G7P7/hykx7zvM55CsQXPjqw5kLMfrYW8iynRLB2H/Jv80aN14Z8zwMCa36DrucVMdvW9LgZv47A7do4jKp2Ix+SyVH0ze6UOCET8OZNMHBmlUF6mElqU+S67YSgY1Z8l2eQ+nBytoKB5310quRF0O23GUonzYSA6knkG56OPNchQWWUlXDx2h55jElN1jdxrGji/0Ul3c2VtlFF2X2YZwwC3idKPptg+uqzU/92Htqw3b+Oi9rauEFMh/N4DPZhhFyt3ONR1wXWLI5emlEYDDoT/uZTqM4SFj2E6s0Bx8Be+Czz4HM8h+oKp2qgHVgzG1oy5kXe2XWZ93kan2V7POAthfNrcnyn57CPL8R4CK84jJ7BAJpN8L2WRp7/Z9guN+Az+QYvVnWL51pVdXr6LN975eUiD6LTfWObbYUeoaWw/z7G/rsG+6/wPE7osRlYs2lmANRrcRjlXW+yv39pYM3NGKi1PlIBpkFQ+QimPT63YCrz0mMfSq+H2lAQWLMmWsbXw/XtY+Tbpo+fqzy9H872SlI5dJwB8p/XxH1nEgSg/8J7nVKwvS/0PEj6Hj4rfaYiuPftF1hzKWbw/DbOg48wEDy5NusgyFtwLZkB50j63Kx6n8ruO2efyMDn+icGXX4X1S/mQWD7b9RS14G/q2XSTIaUR47W360wYHFTjPdIJsd4HQ/cl1Udj4JGqB8E1vwRaXir4ro2EY7ZR5AOdVrOrI3Szns6ztvNcC/fGNW1PsE9OF1FpOrfdMRhpMUGrsexvx7O7UkRdCbXVY0Z8hpBXvNc59r2oOR577zt7sD1bf/AmtMQyyyP2OITxLeaKnhBB8drEBERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERHR/7cHxwQAAAAIg9Y/tTU8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEvVADi08iB13ehCAAAAAElFTkSuQmCC"
+        alt="ตราสำนักงานป้องกันควบคุมโรคที่ 10"
+    /></span>
+    <span class="brand-text">
+      <b>NDCLIMS Onboarding Bible</b
+      ><span>คู่มือเริ่มใช้งาน &amp; ย้ายข้อมูล</span>
+    </span>
+  </div>
+
+  <a class="sibling-link" href="./ndclims-it-runbook.html"
+    >คู่มือ IT →</a
+  >
+
+  <div class="grp">
+    <label>มุมมอง</label>
+    <div class="seg" id="trackSeg">
+      <button data-t="user" aria-pressed="true">เจ้าหน้าที่ / Lab Admin</button>
+      <button data-t="pm" aria-pressed="false">ผู้บริหาร</button>
+    </div>
+  </div>
+
+  <div class="grp">
+    <label>สถานการณ์</label>
+    <div class="seg" id="scenSeg">
+      <button data-s="new" aria-pressed="true">แล็บเปิดใหม่</button>
+      <button data-s="migrate" aria-pressed="false">ย้ายจากระบบเดิม</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="rail" aria-label="ลำดับขั้น">
+    <div class="rail-head">ลำดับงาน</div>
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <!-- ══════════ COVER ══════════ -->
+    <article
+      class="slide cover on"
+      id="cover"
+      data-title="เริ่มที่นี่"
+      data-step="—"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">อ่านก่อนเริ่ม</div>
+      <h2>ระบบพร้อมใช้แล้ว เหลือแค่กรอกข้อมูลของแล็บคุณ</h2>
+      <div class="rule"></div>
+      <p class="lede">
+        IT ได้ติดตั้ง NDCLIMS และเปิดบัญชีของแล็บคุณไว้เรียบร้อยแล้ว —
+        ไม่ต้องติดตั้งอะไรเพิ่ม.
+        สิ่งที่เหลือคือ<strong>กรอกข้อมูลของแล็บ</strong>ตามลำดับด้านล่าง
+        แต่ละขั้นปลดล็อกขั้นถัดไป
+        ข้ามไม่ได้เพราะขั้นหลังต้องอ้างอิงข้อมูลจากขั้นก่อน เช่น
+        จะสั่งตรวจไม่ได้ถ้ายังไม่มีรายการตรวจในระบบ
+      </p>
+
+      <section class="blk">
+        <h3>ลำดับที่ต้องกรอก</h3>
+        <div class="pipe">
+          เข้าระบบครั้งแรก └→ แผนก + ชนิดสิ่งส่งตรวจ └→ หมวดหมู่ + รายการตรวจ +
+          แพ็กเกจ └→ ผู้ใช้ + สิทธิ์
+          <span style="opacity: 0.6">(ถ้ามีระบบเดิม) └→ ย้ายผู้ป่วยเดิม</span>
+          └→ หน่วยงานส่งตรวจ └→ ซ้อมใช้งานจริง └→ เปิดใช้จริง
+        </div>
+        <p style="font-size: 13.5px; color: var(--ink-3)">
+          ลูกศรอ่านว่า "ต้องมีอันบนก่อน ถึงจะทำอันล่างได้" ไม่ใช่แค่คำแนะนำ —
+          ระบบไม่ให้ทำสลับลำดับ
+        </p>
+      </section>
+
+      <section class="blk">
+        <h3>ใช้เอกสารนี้ยังไง</h3>
+        <div class="cards">
+          <div class="card">
+            <span class="n">1</span>
+            <h4>เลือกมุมมอง</h4>
+            <p>
+              สลับปุ่มบนสุดระหว่าง 2 มุมมอง — เจ้าหน้าที่ได้ขั้นตอนบนหน้าจอ,
+              ผู้บริหารได้เวลากับความเสี่ยง
+            </p>
+          </div>
+          <div class="card">
+            <span class="n">2</span>
+            <h4>เลือกสถานการณ์</h4>
+            <p>
+              แล็บเปิดใหม่ข้ามขั้นย้ายข้อมูลได้ —
+              เลือกแล้วรายการซ้ายจะซ่อนขั้นที่ไม่เกี่ยว
+            </p>
+          </div>
+          <div class="card">
+            <span class="n">3</span>
+            <h4>ติ๊ก checklist</h4>
+            <p>
+              ทุกขั้นมีเงื่อนไขปิดงาน ปุ่มไปขั้นถัดไปจะปลดล็อกเมื่อติ๊กครบ
+              ค่าที่ติ๊กถูกจำไว้ในเครื่อง
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>ภาพรวมเวลา</h3>
+        <p class="gantt-note">
+          แถบทึบ = กรณีเร็วสุด · แถบจาง = ส่วนที่ยืดได้ถ้าติดขัด · เส้นประ =
+          ขั้นที่ข้ามได้ในสถานการณ์นี้. แผนเปลี่ยนตามปุ่ม
+          <strong>สถานการณ์</strong> ด้านบน
+        </p>
+        <div class="gantt-wrap">
+          <div id="gantt" class="gantt"></div>
+        </div>
+        <p class="gantt-total" id="ganttTotal"></p>
+        <p data-track="pm">
+          งานที่กินเวลาเกินคาดบ่อยที่สุดคือขั้นหมวดหมู่ + รายการตรวจ —
+          ไม่ใช่การเข้าระบบครั้งแรก.
+          ตัวเลขนี้นับเป็นวันทำการและถือว่าแต่ละขั้นทำต่อกันไป ไม่ทับซ้อน
+        </p>
+      </section>
+
+      <div class="nav">
+        <button class="btn primary" data-go="next">เริ่มเลย →</button>
+        <span class="kbdhint"
+          >กด <kbd>←</kbd> <kbd>→</kbd> เพื่อเลื่อน · <kbd>Ctrl</kbd>+<kbd
+            >P</kbd
+          >
+          พิมพ์ทั้งเล่ม</span
+        >
+      </div>
+    </article>
+
+    <!-- ══════════ DAILY FLOW ══════════ -->
+    <article
+      class="slide"
+      id="daily-flow"
+      data-title="งานประจำวันทำยังไง"
+      data-step="—"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ก่อนเริ่มกรอกข้อมูล</div>
+      <h2>งานประจำวันทำยังไง</h2>
+      <p class="lede">
+        ก่อนไปกรอกข้อมูล ลองดูก่อนว่าตัวอย่างสิ่งส่งตรวจ 1
+        ชิ้นเดินทางผ่านระบบยังไง ตั้งแต่คนไข้เดินเข้ามาจนถึงจ่ายเงิน —
+        แต่ละช่องคือใครทำ คลิกอะไร และสถานะของใบสั่งตรวจจะเปลี่ยนเป็นอะไร
+      </p>
+
+      <section class="blk">
+        <h3>เส้นทางของใบสั่งตรวจ 1 ใบ</h3>
+        <div class="flow-wrap">
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-role">receptionist</div>
+              <div class="flow-box">
+                <b>ลงทะเบียนผู้ป่วย</b>
+                <span>คลิก "ผู้ป่วยใหม่" กรอกข้อมูล แล้วบันทึก</span>
+              </div>
+              <div class="flow-status">ได้ HN</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">receptionist</div>
+              <div class="flow-box">
+                <b>สั่งตรวจ</b>
+                <span
+                  >เปิดผู้ป่วย → เลือกรายการตรวจ/แพ็กเกจ → สร้างใบสั่งตรวจ</span
+                >
+              </div>
+              <div class="flow-status">รอดำเนินการ</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">lab_technician</div>
+              <div class="flow-box">
+                <b>รับตัวอย่าง</b>
+                <span
+                  >สแกน/เปิดใบสั่งตรวจ → บันทึกวันเวลาที่รับตัวอย่างจริง</span
+                >
+              </div>
+              <div class="flow-status">กำลังดำเนินการ</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">lab_technician</div>
+              <div class="flow-box">
+                <b>บันทึกผล</b>
+                <span>กรอกค่าผลตรวจทีละรายการในใบสั่งตรวจ</span>
+              </div>
+              <div class="flow-status">รอตรวจสอบ</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">lab_manager / doctor</div>
+              <div class="flow-box">
+                <b>อนุมัติผล</b>
+                <span>ตรวจค่าที่บันทึก แล้วกดอนุมัติ</span>
+              </div>
+              <div class="flow-status">อนุมัติแล้ว</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">receptionist / lab_manager</div>
+              <div class="flow-box">
+                <b>พิมพ์ใบรายงาน</b>
+                <span
+                  >เปิดใบสั่งตรวจที่อนุมัติแล้ว → พิมพ์ / ดาวน์โหลด PDF</span
+                >
+              </div>
+              <div class="flow-status">พิมพ์แล้ว</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-role">cashier</div>
+              <div class="flow-box">
+                <b>เก็บเงิน</b>
+                <span>เปิดใบสั่งตรวจ → รับชำระ → ออกใบเสร็จ</span>
+              </div>
+              <div class="flow-status">ปิดงาน</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: var(--ink-3)">
+          บทบาทที่เขียนไว้คือค่ามาตรฐาน — แล็บเล็กอาจให้คนเดียวสวมหลายบทบาทได้
+          ตราบใดที่บัญชีของเขามีสิทธิ์ (ดูตาราง 8 บทบาทในภาคผนวก)
+        </p>
+      </section>
+
+      <section class="blk">
+        <h3>สิ่งที่ควรรู้ก่อนลงมือ</h3>
+        <ul>
+          <li>
+            ใบสั่งตรวจมี "สถานะ" เสมอ —
+            ดูสถานะแล้วรู้ทันทีว่าใบไหนค้างอยู่ขั้นไหน ไม่ต้องถามปากเปล่า
+          </li>
+          <li>
+            ผลตรวจที่ยัง<strong>ไม่อนุมัติ</strong>จะพิมพ์ใบรายงานไม่ได้ —
+            กันผลหลุดออกไปก่อนมีคนตรวจสอบ
+          </li>
+          <li>
+            งานทั้งหมดนี้ทำได้ก็ต่อเมื่อมี "รายการตรวจ" ในระบบแล้ว —
+            ซึ่งเป็นสิ่งที่ต้องกรอกในขั้นที่ 1–2 ก่อน
+          </li>
+        </ul>
+      </section>
+
+      <div class="nav">
+        <button class="btn" data-go="prev">← ย้อนกลับ</button
+        ><button class="btn primary" data-go="next">เริ่มกรอกข้อมูล →</button>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 0 ══════════ -->
+    <article
+      class="slide"
+      id="phase-0"
+      data-title="เข้าระบบครั้งแรก"
+      data-step="00"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 0</div>
+      <h2>เข้าระบบครั้งแรก</h2>
+      <p class="lede">
+        IT ได้ติดตั้งระบบและสร้างบัญชี admin ของแล็บไว้ให้แล้ว —
+        งานของคุณในขั้นนี้คือเข้าระบบให้ได้จริง เปลี่ยนรหัสผ่าน
+        แล้วสำรวจเมนูคร่าวๆ ก่อนเริ่มกรอกข้อมูล
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> Lab admin</span
+        ><span class="chip dur">1 ชั่วโมง</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ทำอะไร</h3>
+        <ol>
+          <li>
+            รับ URL ระบบ + บัญชี admin ของแล็บจาก IT แล้วลอง login ให้ได้จริง
+          </li>
+          <li>
+            เปลี่ยนรหัสผ่านทันทีที่เข้าได้ครั้งแรก — อย่าใช้รหัสที่ IT
+            ตั้งให้ต่อ
+          </li>
+          <li>
+            เดินดูเมนูหลักคร่าวๆ: ผู้ป่วย, ใบสั่งตรวจ, ตั้งค่า, รายงาน —
+            ยังไม่ต้องกรอกอะไร แค่รู้ว่าอยู่ตรงไหน
+          </li>
+          <li>
+            ตรวจว่าชื่อแล็บ / ชื่อสาขา ที่ขึ้นบนหน้าจอสะกดถูก —
+            แก้ตอนนี้ง่ายกว่าแก้ทีหลัง ถ้าผิดแจ้ง IT ทันที
+          </li>
+        </ol>
+      </section>
+
+      <section class="blk">
+        <h3>กับดัก</h3>
+        <div class="note">
+          <b>รหัสผ่านเริ่มต้นเป็นความลับแค่ชั่วคราว</b> —
+          ทุกคนที่รู้ขั้นตอนติดตั้งมักรู้รหัสเริ่มต้นเดียวกัน
+          เปลี่ยนก่อนให้คนอื่นเข้าใช้งานต่อ
+        </div>
+      </section>
+
+      <div class="gate" data-gate="0">
+        <h4>ต้องได้อะไรก่อนไปขั้นที่ 1</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >login ด้วยบัญชี admin ของแล็บได้จริง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span>เปลี่ยนรหัสผ่านแล้ว</span></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ชื่อแล็บ / ชื่อสาขา ที่ขึ้นในระบบสะกดถูกต้อง</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นที่ 1 →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 1 ══════════ -->
+    <article
+      class="slide"
+      id="phase-1"
+      data-title="แผนก + ชนิดสิ่งส่งตรวจ"
+      data-step="01"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 1</div>
+      <h2>แผนก และชนิดสิ่งส่งตรวจ</h2>
+      <p class="lede">
+        แล็บของคุณเริ่มจากแคตตาล็อกว่างเปล่า — ยังไม่มีแผนก
+        ไม่มีชนิดสิ่งส่งตรวจสักตัว สองอย่างนี้ต้องมีก่อน
+        เพราะรายการตรวจในขั้นถัดไปต้องเลือกอ้างอิงทั้งคู่
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> Lab admin</span
+        ><span class="chip dur">1 วัน</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ทำยังไงบนหน้าจอ</h3>
+        <ol>
+          <li>
+            <strong>แผนก</strong> — ตั้งค่า → แผนก → เพิ่มทีละแผนก (เคมี,
+            โลหิตวิทยา, จุลชีววิทยา… ตามที่แล็บมีจริง)
+          </li>
+          <li>
+            <strong>ชนิดสิ่งส่งตรวจ</strong> — ตั้งค่า → สิ่งส่งตรวจ →
+            เพิ่มทีละชนิด (Serum, Whole Blood, Urine, Sputum…)
+          </li>
+        </ol>
+        <div class="note">
+          <b>สองรายการนี้ไม่มีไฟล์ Excel ให้นำเข้า</b>
+          ต้องกรอกทีละรายการบนหน้าจอ ถ้ามี 20 รายการขึ้นไป ให้เผื่อเวลาไว้
+          อย่ารอทำทีเดียวตอนท้าย
+        </div>
+      </section>
+
+      <div class="gate" data-gate="1">
+        <h4>ต้องได้อะไรก่อนไปขั้นที่ 2</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >แผนกครบทุกแผนกที่แล็บมีจริง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ชนิดสิ่งส่งตรวจครบทุกชนิดที่ใช้จริง</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นที่ 2 →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 2 ══════════ -->
+    <article
+      class="slide"
+      id="phase-2"
+      data-title="หมวดหมู่ + รายการตรวจ + แพ็กเกจ"
+      data-step="02"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 2 · ขั้นที่ช้าที่สุด</div>
+      <h2>หมวดหมู่ รายการตรวจ และแพ็กเกจ</h2>
+      <p class="lede">
+        นี่คือขั้นที่กินเวลานานที่สุดในทุกแล็บ — ไม่ใช่การเข้าระบบครั้งแรก.
+        แล็บที่มีรายการตรวจ 300+
+        รายการมักใช้เวลาเป็นสัปดาห์แค่ตกลงว่ารหัสไหนใช้ตัวไหน เผื่อเวลาให้พอ
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> หัวหน้าแล็บ</span
+        ><span class="chip dur">3–7 วัน</span>
+      </div>
+
+      <section class="blk">
+        <h3>ลำดับการใส่ (ห้ามสลับ)</h3>
+        <div class="pipe">
+          1. หมวดหมู่การตรวจ 2. รายการตรวจ
+          <span style="opacity: 0.6">— นำเข้าด้วยไฟล์ Excel</span>
+          3. แพ็กเกจ
+          <span style="opacity: 0.6"
+            >— นำเข้าด้วยไฟล์ Excel ต้องมีรายการตรวจก่อน</span
+          >
+        </div>
+      </section>
+
+      <section class="blk" data-track="user">
+        <h3>ทำยังไงบนหน้าจอ</h3>
+        <ol>
+          <li>
+            <strong>หมวดหมู่การตรวจ</strong> — เพิ่มหมวดที่จะใช้จัดกลุ่ม เช่น
+            CHEM, HEMA, MICRO
+          </li>
+          <li>
+            <strong>รายการตรวจ</strong> — โหลด template แล้วกรอก:
+            <ul style="margin-top: 6px">
+              <li>
+                ปุ่ม <em>นำเข้าข้อมูล</em> → เลือก "รายการตรวจ" →
+                <em>ดาวน์โหลด template</em>
+              </li>
+              <li>
+                ไฟล์ที่ได้มีหัวตารางภาษาไทย + แถวตัวอย่าง 3 แถว —
+                <strong>ลบแถวตัวอย่างทิ้งก่อนอัปโหลด</strong>
+              </li>
+              <li>
+                กรอกข้อมูลจริง แล้วอัปโหลดกลับ ระบบจะรายงานว่าแถวไหนผิดอะไร
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>แพ็กเกจ</strong> — นำเข้าทีหลังสุด เพราะช่อง "รายการตรวจ"
+            ต้องอ้างรหัสที่มีอยู่แล้ว
+          </li>
+        </ol>
+        <div class="note">
+          <b>ก่อนกดอัปโหลด</b> เปิดหน้า
+          <a href="#prep-files">เตรียมไฟล์ยังไงให้ผ่าน</a> —
+          มีกฎการกรอกทุกช่องและตารางแปลข้อความแดง
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>กับดัก</h3>
+        <div class="note">
+          <b>นำเข้าแล้วผิด แก้ทีละแถวไม่ได้ทั้งไฟล์</b>. 500 แถว ผิด 30 แถว →
+          470 แถวเข้าไปแล้ว. แก้เฉพาะแถวที่ error แล้วอัปโหลดใหม่เฉพาะแถวนั้น
+          ห้ามอัปทั้งไฟล์ซ้ำ ไม่งั้นได้ข้อมูลซ้ำ
+        </div>
+        <div class="note">
+          <b>เพดาน 5,000 แถวต่อไฟล์</b> และเป็น <code>.xlsx</code> เท่านั้น —
+          ไม่รับ CSV. แล็บที่มีรายการตรวจเยอะให้แบ่งไฟล์
+        </div>
+        <div class="note">
+          <b>รหัสรายการตรวจเปลี่ยนทีหลังยาก</b>
+          เพราะใบสั่งตรวจกับแพ็กเกจอ้างรหัสนี้. เคาะรหัสให้จบในขั้นนี้
+        </div>
+        <div class="note" data-track="user">
+          <b>ถ้าเมนูที่คาดว่าจะมีหายไป</b> เช่น เชื่อมเครื่องวิเคราะห์ หรือ HL7
+          — ให้ถาม IT ก่อน มันถูกคุมด้วย plan ของแล็บ ไม่ใช่บั๊ก
+        </div>
+      </section>
+
+      <div class="gate" data-gate="2">
+        <h4>ต้องได้อะไรก่อนไปขั้นที่ 3</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >รายการตรวจเข้าครบ จำนวนแถวในระบบ = จำนวนแถวในไฟล์ต้นทาง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ไม่มีรหัสรายการตรวจซ้ำ และหัวหน้าแล็บเซ็นรับรองรายการแล้ว</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ค่าอ้างอิงต่ำ–สูง ใส่ครบในรายการที่เป็นค่าตัวเลข</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >แพ็กเกจนำเข้าแล้ว และเปิดดูเห็นรายการตรวจย่อยถูกต้อง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ลองสร้างใบสั่งตรวจทดสอบ 1 ใบด้วยมือ
+                แล้วเลือกรายการตรวจได้จริง</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นที่ 3 →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 3 ══════════ -->
+    <article
+      class="slide"
+      id="phase-3"
+      data-title="ผู้ใช้ + สิทธิ์"
+      data-step="03"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 3</div>
+      <h2>ผู้ใช้และสิทธิ์</h2>
+      <p class="lede">
+        ผู้ใช้ 1 คนมีได้ <strong>1 บทบาทเท่านั้น</strong> —
+        ไม่มีการให้หลายบทบาทพร้อมกัน. ถ้าคนหนึ่งทำสองหน้าที่
+        ต้องเลือกบทบาทที่กว้างกว่า หรือให้ IT ช่วยสร้างบทบาทใหม่
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> Lab admin</span
+        ><span class="chip dur">1–2 วัน</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ทำยังไง</h3>
+        <ol>
+          <li>
+            ดูตาราง 8 บทบาทมาตรฐานในภาคผนวก แล้วจับคู่เจ้าหน้าที่แต่ละคนกับบทบาท
+          </li>
+          <li>
+            ถ้าไม่มีบทบาทไหนพอดี — ตั้งค่า → บทบาท → สร้างใหม่
+            แล้วเลือกสิทธิ์ทีละข้อ
+          </li>
+          <li>เพิ่มผู้ใช้: ทีละคนบนหน้าจอ หรือนำเข้าทีเดียวถ้าเกิน 15 คน</li>
+          <li>
+            ให้ทุกคนลอง login แล้วเช็กว่าเมนูที่เห็น<strong
+              >ตรงกับงานจริง</strong
+            >
+            — เห็นน้อยไปคือทำงานไม่ได้ เห็นมากไปคือความเสี่ยง
+          </li>
+        </ol>
+        <p>
+          ช่อง <em>บทบาท</em> กับ <em>สาขา</em> ในไฟล์นำเข้า กรอก<strong
+            >รหัสหรือชื่อไทยก็ได้</strong
+          >
+          — <code>lab_technician</code> หรือ
+          <code>นักเทคนิคการแพทย์</code> ผ่านทั้งคู่ ค่าที่ใช้ได้ดูในแท็บ
+          <em>ข้อมูลอ้างอิง</em> ของไฟล์ template
+        </p>
+        <div class="note">
+          <b>ก่อนกดอัปโหลด</b> เปิดหน้า
+          <a href="#prep-files">เตรียมไฟล์ยังไงให้ผ่าน</a> —
+          มีกฎรหัสผ่านและตารางแปลข้อความแดง
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>กับดัก</h3>
+        <div class="note">
+          <b>เปลี่ยนบทบาทของผู้ใช้แล้วสิทธิ์ไม่เปลี่ยนทันที</b>
+          — ให้ผู้ใช้ logout แล้ว login ใหม่หลังเปลี่ยนบทบาท
+        </div>
+        <div class="note">
+          <b>รหัสผ่านในไฟล์นำเข้าเป็นข้อความเปล่า.</b>
+          ไฟล์นี้คือรายการรหัสผ่านของทั้งแล็บ — ลบทิ้งหลังนำเข้าเสร็จ
+          อย่าเก็บไว้ในโฟลเดอร์ที่แชร์กัน
+        </div>
+      </section>
+
+      <div class="gate" data-gate="3">
+        <h4>ต้องได้อะไรก่อนไปขั้นถัดไป</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >เจ้าหน้าที่ทุกคนมีบัญชี และ login
+                ได้จริงอย่างน้อยคนละครั้ง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ทดสอบแล้วว่าแต่ละบทบาทเห็นเมนูตรงกับงานจริง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >มีผู้ใช้ระดับ admin ของแล็บอย่างน้อย 2 คน
+                (กันคนเดียวลาออก/ลืมรหัส)</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ทุกคนเปลี่ยนรหัสผ่านเริ่มต้นแล้ว และลบไฟล์นำเข้า
+                ผู้ใช้ทิ้งแล้ว</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นถัดไป →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 4 (migrate เท่านั้น) ══════════ -->
+    <article
+      class="slide"
+      id="phase-4"
+      data-title="ย้ายผู้ป่วยเดิม"
+      data-step="04"
+      data-scen="migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 4 · เฉพาะแล็บที่มีระบบเดิม</div>
+      <h2>ย้ายผู้ป่วยเดิมเข้าระบบ</h2>
+      <p class="lede">
+        ผู้ป่วยก่อน แล้วค่อยใบสั่งตรวจ — ใบสั่งตรวจอ้าง HN ของผู้ป่วย
+        ถ้ายังไม่มีผู้ป่วยจะ error ทุกแถว
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> Lab admin</span
+        ><span class="chip dur">5–15 วัน</span>
+      </div>
+
+      <section class="blk">
+        <h3>ตัดสินก่อน: ย้ายย้อนหลังแค่ไหน</h3>
+        <p>
+          ระบบรับนำเข้าได้แค่ <strong>ผู้ป่วย</strong> กับ
+          <strong>ใบสั่งตรวจ</strong> — <strong>ไม่มีการนำเข้าผลตรวจ</strong>.
+          ใบสั่งตรวจที่นำเข้าจะอยู่ในสถานะ รอดำเนินการ / เก็บแล้ว /
+          กำลังดำเนินการ ตามวันที่ที่กรอก ไม่ใช่ผลที่อนุมัติแล้ว
+        </p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>ทางเลือก</th>
+                <th>เหมาะกับ</th>
+                <th>ข้อแลก</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ย้ายเฉพาะผู้ป่วย</strong></td>
+                <td>แล็บส่วนใหญ่</td>
+                <td>
+                  ประวัติผลเก่าต้องเปิดดูในระบบเดิม —
+                  เก็บระบบเดิมไว้อ่านอย่างเดียว
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ผู้ป่วย + งานค้าง</strong></td>
+                <td>มีใบสั่งตรวจค้างวัน cutover</td>
+                <td>ต้องเคลียร์งานค้างให้เหลือน้อยที่สุดก่อน go-live</td>
+              </tr>
+              <tr>
+                <td><strong>ย้ายผลย้อนหลังด้วย</strong></td>
+                <td>ที่บังคับตามกฎหมาย/ระเบียบ</td>
+                <td>
+                  ระบบไม่มีเครื่องมือให้ — ต้องคุยกับ IT เป็นงานเพิ่มแยกต่างหาก
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p data-track="pm">
+          คำแนะนำ: เลือกทางที่ 1 หรือ 2 แล้ว<strong
+            >เก็บระบบเดิมไว้อ่านอย่างเดียว 1–2 ปี</strong
+          >. การย้ายผลย้อนหลังทั้งหมดมักกินเวลามากกว่าที่เหลือของโครงการรวมกัน
+        </p>
+      </section>
+
+      <section class="blk" data-track="user">
+        <h3>ขั้นตอนย้ายผู้ป่วย</h3>
+        <ol>
+          <li>โหลด template "ผู้ป่วย" จากปุ่มนำเข้าข้อมูล</li>
+          <li>
+            เอาข้อมูลจากระบบเดิมมาวางให้ตรงคอลัมน์ (ดูตารางคอลัมน์เต็มในภาคผนวก)
+          </li>
+          <li>
+            ทำความสะอาดก่อนอัป: วันเกิดต้องเป็น <code>YYYY-MM-DD</code> ·
+            เพศต้องเป็น <code>M</code>/<code>F</code>/<code>U</code> (ระบบรับ
+            "ชาย"/"หญิง" ให้ด้วย) · เลขบัตรประชาชน 13 หลักไม่มีขีด
+          </li>
+          <li>
+            ทดลองอัปไฟล์ทดสอบ <strong>20 แถวก่อน</strong> ดูว่าผ่านหมด
+            แล้วค่อยอัปทั้งชุด
+          </li>
+          <li>แบ่งไฟล์ใหญ่ให้ไม่เกิน 5,000 แถวต่อไฟล์</li>
+          <li>
+            เสร็จแล้วสุ่มตรวจ 10 รายเทียบกับระบบเดิม — ชื่อ วันเกิด เลขบัตร
+            ตรงไหม
+          </li>
+        </ol>
+        <div class="note">
+          <b>ก่อนกดอัปโหลด</b> เปิดหน้า
+          <a href="#prep-files">เตรียมไฟล์ยังไงให้ผ่าน</a> —
+          มีกฎการกรอกทุกช่องและตารางแปลข้อความแดง
+        </div>
+
+        <p>
+          ช่อง HN ปล่อยว่างได้ ระบบจะออกให้เอง — แต่ถ้าจะย้ายใบสั่งตรวจต่อ
+          <strong>ต้องใส่ HN เดิมมาด้วย</strong> เพราะไฟล์ใบสั่งตรวจอ้างถึง HN
+        </p>
+      </section>
+
+      <section class="blk" data-track="user">
+        <h3>ขั้นตอนย้ายใบสั่งตรวจ (ถ้าจำเป็น)</h3>
+        <ol>
+          <li>ต้องเสร็จหลังผู้ป่วยเท่านั้น</li>
+          <li>
+            ช่อง "รหัสรายการตรวจ/กลุ่ม" ใส่รหัสคั่นด้วยจุลภาค เช่น
+            <code>HIV-VL,CD4</code> — ต้องเป็นรหัสที่มีอยู่จริงจากขั้นที่ 2
+          </li>
+          <li>
+            สถานะของใบสั่งตรวจถูกคำนวณจากวันที่: กรอกวันที่รับตัวอย่าง →
+            กำลังดำเนินการ · กรอกแค่วันที่เก็บ → เก็บแล้ว · ไม่กรอกเลย →
+            รอดำเนินการ
+          </li>
+          <li>
+            เลขที่ใบสั่งตรวจจะออกใหม่ทุกใบ —
+            <strong>ไม่เก็บเลขเดิม</strong>
+            ถ้าต้องอ้างเลขเดิมให้ใส่ไว้ในช่องหมายเหตุทางคลินิก
+          </li>
+        </ol>
+      </section>
+
+      <section class="blk">
+        <h3>กับดัก</h3>
+        <div class="note stop">
+          <b>นำเข้าผิดแล้วไม่มีปุ่ม undo.</b>
+          แก้ได้ทางเดียวคือลบทีละรายการหรือให้ IT ช่วยกู้จาก backup — ขอให้ IT
+          สำรองข้อมูลไว้ก่อนทุกครั้งที่อัปไฟล์ชุดใหญ่
+        </div>
+        <div class="note">
+          <b>ผู้ป่วยซ้ำเป็นปัญหาที่พบบ่อยสุด.</b> ระบบเดิมมักมีคนเดียวหลาย HN.
+          ทำความสะอาดที่ไฟล์ Excel ก่อน ง่ายกว่ามารวมทีหลังในระบบ
+        </div>
+        <div class="note">
+          <b>ไม่รับ CSV.</b> ถ้า export จากระบบเดิมออกมาเป็น CSV ต้องเปิดด้วย
+          Excel แล้ว save as <code>.xlsx</code> —
+          และเช็กว่าเลขบัตรประชาชนไม่ถูกแปลงเป็น <code>1.23E+12</code>
+        </div>
+      </section>
+
+      <div class="gate" data-gate="4">
+        <h4>ต้องได้อะไรก่อนไปขั้นถัดไป</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ตัดสินขอบเขตการย้ายแล้ว
+                และผู้บริหารรับทราบว่าผลเก่าอยู่ที่ไหน</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ทดสอบไฟล์ตัวอย่าง 20 แถวผ่านก่อนอัปชุดใหญ่</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >จำนวนผู้ป่วยในระบบตรงกับต้นทาง
+                (ยอมรับส่วนต่างได้ต่อเมื่ออธิบายได้ทุกแถว)</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >สุ่มตรวจผู้ป่วย 10 ราย เทียบกับระบบเดิมแล้วตรงกัน</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >เคลียร์ผู้ป่วยซ้ำแล้ว</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >(ถ้าย้ายใบสั่งตรวจ) สุ่มตรวจ 10 ใบ
+                รายการตรวจและสถานะถูกต้อง</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นถัดไป →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 5 ══════════ -->
+    <article
+      class="slide"
+      id="phase-5"
+      data-title="หน่วยงานส่งตรวจ"
+      data-step="05"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 5</div>
+      <h2>หน่วยงานส่งตรวจ</h2>
+      <p class="lede">
+        ถ้าแล็บของคุณรับใบสั่งตรวจจากโรงพยาบาล/หน่วยงานภายนอก
+        ต้องรับหน่วยงานนั้นเข้ามาในระบบก่อน
+        ระบบภายนอกถึงจะส่งใบสั่งตรวจเข้ามาได้
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> Lab admin</span
+        ><span class="chip dur">1–2 วัน</span
+        ><span class="chip opt">ข้ามได้ถ้าไม่มีหน่วยงานส่งตรวจภายนอก</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ทำยังไง</h3>
+        <ol>
+          <li>
+            เพิ่มหน่วยงานส่งตรวจ — ค้นจากทะเบียนสถานพยาบาลด้วยรหัส hcode
+            หรือชื่อ แล้วกดรับเข้ามาเป็นหน่วยงานของแล็บ
+          </li>
+          <li>กำหนดว่าหน่วยงานนั้นสั่งตรวจอะไรได้บ้าง และผลจะเข้าสาขาไหน</li>
+          <li>
+            หลังเปิดใช้ ให้ดูหน้า "ใบสั่งตรวจที่รับเข้า" ทุกวันช่วงแรก —
+            ใบที่ระบบภายนอกส่งมาจะโผล่ที่นี่
+          </li>
+        </ol>
+        <p>
+          การเชื่อมต่อทางเทคนิค (API key, HL7, เครื่องวิเคราะห์, webhook)
+          เป็นงานของ IT ทั้งหมด — ดูรายละเอียดใน
+          <a href="./ndclims-it-runbook.html">คู่มือ IT</a>
+        </p>
+      </section>
+
+      <div class="gate" data-gate="5">
+        <h4>ต้องได้อะไรก่อนไปขั้นถัดไป</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >หน่วยงานส่งตรวจอยู่ในระบบครบทุกแห่งที่เกี่ยวข้อง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >กำหนดรายการตรวจที่แต่ละหน่วยงานสั่งได้
+                และสาขาที่รับผลแล้ว</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ทดสอบดูหน้า "ใบสั่งตรวจที่รับเข้า" แล้วเห็นใบทดสอบจริง</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นถัดไป →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 6 ══════════ -->
+    <article
+      class="slide"
+      id="phase-6"
+      data-title="ซ้อมใช้งานจริง + อบรม"
+      data-step="06"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 6</div>
+      <h2>ซ้อมใช้งานจริงและอบรม</h2>
+      <p class="lede">
+        ใช้งานระบบใหม่กับเคสจริง (คู่กับระบบเดิมถ้ามี) แล้วเทียบผล.
+        ขั้นนี้คือสิ่งเดียวที่กันความหายนะวันเปิดใช้จริง
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> ทุกฝ่าย</span
+        ><span class="chip dur">5–10 วัน</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ทำอะไรทุกวัน</h3>
+        <ol>
+          <li>
+            เลือกงานจริงวันละ 10–20 เคส บันทึกในระบบใหม่
+            (คู่กับระบบเดิมด้วยถ้ายังใช้อยู่)
+          </li>
+          <li>
+            เดินให้ครบวงจร: ลงทะเบียนผู้ป่วย → สั่งตรวจ → รับตัวอย่าง → บันทึกผล
+            → อนุมัติผล → พิมพ์ใบรายงาน → เก็บเงิน
+          </li>
+          <li>
+            ถ้ามีระบบเดิมคู่กัน — เทียบใบรายงานจากสองระบบ ค่าตรงกันไหม
+            หน่วยตรงไหม ค่าอ้างอิงตรงไหม
+          </li>
+          <li>จดทุกอย่างที่ไม่ตรงหรือติดขัดลงรายการเดียว — ห้ามแก้ปากเปล่า</li>
+          <li>
+            เจ้าหน้าที่ต้องได้ลงมือทำเองอย่างน้อยคนละ 3 เคส ไม่ใช่แค่นั่งดู
+          </li>
+        </ol>
+      </section>
+
+      <section class="blk" data-track="pm">
+        <h3>เกณฑ์ตัดสินใจ go / no-go</h3>
+        <ul>
+          <li>ปิดข้อผิดพลาดระดับ blocker ครบ 100% — ไม่มีการยกเว้น</li>
+          <li>
+            ผลตรวจที่เทียบแล้วตรงกัน ≥ 99% (ถ้ามีระบบเดิมคู่กัน)
+            และส่วนที่ไม่ตรงอธิบายได้ทุกเคส
+          </li>
+          <li>เจ้าหน้าที่ทุกคนเดินครบวงจรด้วยตัวเองได้อย่างน้อย 1 รอบ</li>
+          <li>
+            มีแผนถอย เขียนไว้เป็นลายลักษณ์อักษร
+            ว่าถ้าล้มจะกลับไปใช้ระบบเดิมยังไงภายในกี่ชั่วโมง (ถ้ามีระบบเดิม)
+          </li>
+        </ul>
+      </section>
+
+      <div class="gate" data-gate="6">
+        <h4>ต้องได้อะไรก่อนเปิดใช้จริง</h4>
+        <p>ติ๊กครบทุกข้อจึงจะปลดล็อกปุ่มถัดไป</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ซ้อมใช้งานครบตามจำนวนวันที่ตกลง</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span>ปิด blocker หมดแล้ว</span></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ใบรายงานพิมพ์ถูกต้อง หัวหน้าแล็บเซ็นรับรองแล้ว</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >เจ้าหน้าที่ทุกคนผ่านการอบรมและลงมือทำเองแล้ว</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >มีแผนถอยเป็นลายลักษณ์อักษร (ถ้ามีระบบเดิม)</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ตกลงวันและเวลาเปิดใช้จริงแล้ว
+                แจ้งหน่วยงานที่ส่งตรวจเรียบร้อย</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next" disabled>
+            ไปขั้นสุดท้าย →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ ขั้นที่ 7 ══════════ -->
+    <article
+      class="slide"
+      id="phase-7"
+      data-title="เปิดใช้จริง + 2 สัปดาห์แรก"
+      data-step="07"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ขั้นที่ 7</div>
+      <h2>เปิดใช้จริง และสองสัปดาห์แรก</h2>
+      <p class="lede">
+        วันเปิดใช้จริงทำงานตามลำดับที่เขียนไว้เท่านั้น ห้ามด้นสด
+      </p>
+      <div class="meta">
+        <span class="chip"><b>ใคร:</b> ทุกฝ่าย</span
+        ><span class="chip dur">1 วัน + เฝ้าระวัง 2 สัปดาห์</span>
+      </div>
+
+      <section class="blk" data-track="user">
+        <h3>ลำดับวันเปิดใช้จริง</h3>
+        <ol>
+          <li>ประกาศหยุดรับงานใหม่ในระบบเดิม ณ เวลาที่ตกลง (ถ้ามีระบบเดิม)</li>
+          <li>
+            เคลียร์งานค้างในระบบเดิมให้จบ หรือย้ายรายการที่ค้างเข้าระบบใหม่
+          </li>
+          <li>ตรวจนับให้ตรงอีกครั้งกับข้อมูลที่กรอกไว้</li>
+          <li>สลับหน่วยงานส่งตรวจให้ส่งเข้าระบบใหม่</li>
+          <li>
+            ประกาศเปิดใช้ระบบใหม่ · ระบบเดิมเป็นอ่านอย่างเดียวเท่านั้น
+            ห้ามบันทึกเพิ่ม
+          </li>
+        </ol>
+        <div class="note">
+          <b>สองระบบรับงานพร้อมกันไม่ได้.</b> ถ้ายังบันทึกได้ทั้งคู่
+          ข้อมูลจะแตกเป็นสองชุดภายในวันเดียว และรวมกลับแทบไม่ได้ —
+          ปิดสิทธิ์บันทึกในระบบเดิมทันทีที่สลับ
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>สองสัปดาห์แรก</h3>
+        <ul>
+          <li data-track="user">
+            มีคนรับเรื่องปัญหาประจำวัน 1 คน รวมทุกเรื่องไว้ที่เดียว
+            ไม่กระจายทางแชท
+          </li>
+          <li data-track="user">
+            ประชุมสั้น 15 นาทีทุกเช้าใน 5 วันแรก — อะไรพัง อะไรช้า อะไรหาไม่เจอ
+          </li>
+          <li data-track="pm">
+            สรุปสถานะให้ผู้บริหารสัปดาห์ละครั้ง: จำนวนเคสที่ทำผ่านระบบใหม่ ·
+            ปัญหาเปิดค้าง · ปัญหาปิดแล้ว
+          </li>
+          <li data-track="pm">
+            ยังไม่ปลดระบบเดิมจนกว่าจะครบอย่างน้อย 1 เดือนหลังเปิดใช้จริง
+            (ถ้ามีระบบเดิม)
+          </li>
+        </ul>
+      </section>
+
+      <div class="gate" data-gate="7">
+        <h4>ปิดการ onboard เมื่อ</h4>
+        <p>ติ๊กครบทุกข้อ = จบการ onboard</p>
+        <div class="prog">
+          <div class="track"><div class="fill"></div></div>
+          <span class="cnt">0 / 0</span>
+        </div>
+        <ul>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >งานประจำวันทั้งหมดทำผ่านระบบใหม่
+                ไม่มีการกลับไปใช้ระบบเดิม</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ไม่มีปัญหาระดับ blocker ค้างเกิน 5 วันทำการ</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >ระบบเดิมถูกตั้งเป็นอ่านอย่างเดียว และมีแผนเก็บข้อมูลระยะยาว
+                (ถ้ามีระบบเดิม)</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" /><span
+                >เจ้าหน้าที่ทำงานเองได้โดยไม่ต้องถามทีมโครงการทุกวัน</span
+              ></label
+            >
+          </li>
+        </ul>
+        <div class="nav">
+          <button class="btn" data-go="prev">← ย้อนกลับ</button
+          ><button class="btn primary" data-go="next">ไปภาคผนวก →</button
+          ><span class="lockmsg"></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════════ เตรียมไฟล์ ══════════ -->
+    <article
+      class="slide"
+      id="prep-files"
+      data-title="เตรียมไฟล์ยังไงให้ผ่าน"
+      data-step="—"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ก่อนกดอัปโหลดทุกครั้ง</div>
+      <h2>เตรียมไฟล์ยังไงให้ผ่าน</h2>
+      <p class="lede">
+        ไฟล์ที่ไม่ผ่านเกือบทั้งหมดมาจากสามเรื่องเดิม — กรอกรหัสที่ไม่มีในระบบ
+        กรอกผิดรูปแบบ และกรอกซ้ำของที่มีอยู่แล้ว. หน้านี้กันสามเรื่องนั้น
+        และมีตารางแปลข้อความแดงตอนท้าย
+      </p>
+
+      <section class="blk">
+        <h3>1 · โหลด template ใหม่ทุกครั้ง แล้วเปิดดูแท็บที่สอง</h3>
+        <p>
+          ไฟล์ template ที่โหลดจากระบบมี <strong>2 แท็บ</strong> — แท็บ
+          <em>ข้อมูล</em> คือที่กรอก และแท็บ
+          <strong><em>ข้อมูลอ้างอิง</em></strong>
+          คือรายการรหัสที่มีอยู่จริงในแล็บของคุณ ณ วินาทีที่โหลด.
+          รหัสที่กรอกในแท็บแรกต้องมาจากแท็บที่สองเท่านั้น
+        </p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>ไฟล์ที่จะนำเข้า</th>
+                <th>แท็บ "ข้อมูลอ้างอิง" บอกอะไร</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ผู้ใช้งาน</td>
+                <td>
+                  รายการ<strong>บทบาท</strong> (รหัส + ชื่อไทย) และรายการ<strong
+                    >สาขา</strong
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>รายการตรวจ</td>
+                <td>รายการ<strong>หมวดหมู่</strong>ที่สร้างไว้แล้ว</td>
+              </tr>
+              <tr>
+                <td>แพ็กเกจ</td>
+                <td>รายการ<strong>รายการตรวจ</strong>ที่เปิดใช้งานอยู่</td>
+              </tr>
+              <tr>
+                <td>ใบสั่งตรวจ</td>
+                <td>
+                  รายการตรวจ (พร้อมชนิดสิ่งส่งตรวจ) ·
+                  <strong>หน่วยงานส่งตรวจ</strong> ·
+                  <strong>ผู้ป่วย 100 คนล่าสุด</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>ผู้ป่วย</td>
+                <td class="no">ไม่มี — ไฟล์ผู้ป่วยไม่ต้องอ้างรหัสอะไร</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>อย่าใช้ template เก่าที่โหลดไว้เมื่อสัปดาห์ก่อน</b>
+          แท็บอ้างอิงเป็นภาพ ณ ตอนโหลด. เพิ่มหมวดหมู่หรือรายการตรวจใหม่ไปแล้ว
+          ต้องโหลดใหม่ถึงจะเห็น
+        </div>
+        <div class="note">
+          <b>ห้ามสลับหรือแทรกคอลัมน์</b>
+          ระบบอ่านตาม<strong>ตำแหน่ง</strong>คอลัมน์ ไม่ได้อ่านจากชื่อหัวตาราง.
+          สลับคอลัมน์แล้วข้อมูลจะเข้าผิดช่องโดยไม่ขึ้น error.
+          ลบแถวตัวอย่างออกได้ แต่หัวตารางต้องอยู่
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>2 · ต้องมีอะไรอยู่ในระบบก่อน ถึงจะอัปไฟล์นี้ได้</h3>
+        <div class="pipe">
+          ผู้ใช้งาน ต้องมีก่อน: บทบาท + สาขา รายการตรวจ ต้องมีก่อน: หมวดหมู่
+          <span style="opacity: 0.6">(เฉพาะถ้ากรอกช่องหมวดหมู่)</span> แพ็กเกจ
+          ต้องมีก่อน: รายการตรวจ ที่เปิดใช้งานอยู่ ใบสั่งตรวจ ต้องมีก่อน:
+          ผู้ป่วย (HN) + รายการตรวจ ที่เปิดใช้งานอยู่
+        </div>
+        <p>นี่คือเหตุผลที่ขั้นตอนเรียงแบบนี้ — อัปข้ามลำดับแล้วจะแดงทั้งไฟล์</p>
+      </section>
+
+      <section class="blk">
+        <h3>3 · กฎการกรอกที่ระบบตรวจจริง</h3>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>ช่อง</th>
+                <th>กรอกยังไงถึงผ่าน</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>บทบาท · สาขา · หมวดหมู่</strong></td>
+                <td>
+                  กรอก<strong>รหัสหรือชื่อไทยก็ได้</strong>
+                  ไม่สนตัวพิมพ์เล็กใหญ่ — <code>lab_technician</code> หรือ
+                  <code>นักเทคนิคการแพทย์</code> ผ่านทั้งคู่
+                </td>
+              </tr>
+              <tr>
+                <td><strong>รหัสผ่าน</strong></td>
+                <td>
+                  อย่างน้อย <strong>8 ตัวอักษร</strong> และต้องมีครบ:
+                  ตัวพิมพ์ใหญ่ ≥1 · ตัวเลข ≥1 · อักขระพิเศษ ≥1 (เช่น
+                  <code>!@#$</code>). ตัวอย่างที่ผ่าน <code>Lab@2569</code>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>เพศ</strong></td>
+                <td>
+                  <code>M</code> <code>F</code> <code>U</code> — พิมพ์
+                  <code>ชาย</code> <code>หญิง</code> <code>male</code>
+                  <code>female</code> ได้ ระบบแปลงให้
+                </td>
+              </tr>
+              <tr>
+                <td><strong>วันเกิด</strong></td>
+                <td>
+                  รับ 2 แบบ: <code>2533-05-15</code> แบบ
+                  <code>YYYY-MM-DD</code> หรือ <code>15/05/1990</code> แบบ
+                  <code>DD/MM/YYYY</code>. <strong>ต้องเป็น ค.ศ.</strong> ไม่ใช่
+                  พ.ศ.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>วันที่ในใบสั่งตรวจ</strong></td>
+                <td>
+                  ใช้ <code>YYYY-MM-DD</code> · ปล่อยว่างได้ทั้งสามช่อง
+                  แต่ช่องที่กรอกจะกำหนดสถานะใบสั่งตรวจ
+                </td>
+              </tr>
+              <tr>
+                <td><strong>เลขบัตรประชาชน</strong></td>
+                <td>13 หลักติดกัน ไม่มีขีด ไม่มีเว้นวรรค · ปล่อยว่างได้</td>
+              </tr>
+              <tr>
+                <td><strong>รหัสไปรษณีย์</strong></td>
+                <td>5 หลักพอดี · ปล่อยว่างได้</td>
+              </tr>
+              <tr>
+                <td><strong>ด่วน · งดอาหาร</strong></td>
+                <td>
+                  ใส่ <code>Y</code> <code>YES</code> หรือ
+                  <code>ใช่</code> เท่านั้นถึงจะนับว่าใช่.
+                  <strong
+                    >ค่าอื่นทั้งหมดรวม <code>N</code> และช่องว่าง =
+                    ไม่ใช่</strong
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ราคา · ค่าอ้างอิง</strong></td>
+                <td>
+                  ตัวเลขล้วน ไม่ใส่ <code>฿</code> ไม่ใส่จุลภาค —
+                  <code>1500</code> ไม่ใช่ <code>1,500</code>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ชนิดผลลัพธ์</strong></td>
+                <td>
+                  ปล่อยว่าง = <code>numeric</code> อัตโนมัติ. ค่าที่ใช้ได้:
+                  <code>numeric</code> <code>text</code> <code>select</code>
+                  <code>multi_select</code> <code>positive_negative</code>
+                  <code>numeric_text</code> <code>numeric_range</code>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>รหัสหลายตัวในช่องเดียว</strong></td>
+                <td>
+                  คั่นด้วยจุลภาค <code>HIV-VL,CD4,CBC</code> —
+                  เว้นวรรครอบจุลภาคได้
+                </td>
+              </tr>
+              <tr>
+                <td><strong>HN</strong></td>
+                <td>
+                  ปล่อยว่างให้ระบบออกให้ได้ · แต่ถ้าจะนำเข้าใบสั่งตรวจต่อ
+                  <strong>ต้องใส่ HN เดิมมาเอง</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>ค่าอ้างอิงแยกชาย–หญิงไม่ได้ผ่านการนำเข้า</b>
+          ช่องค่าต่ำสุด–สูงสุดในไฟล์ จะกลายเป็นค่าเดียวใช้กับทุกเพศ.
+          รายการที่ต้องแยกตามเพศ ให้นำเข้าก่อนแล้วมาแก้ในระบบทีหลัง
+        </div>
+        <div class="note">
+          <b>ช่อง "ชนิดสิ่งส่งตรวจ" ระบบไม่ตรวจ</b> พิมพ์ผิดเป็น
+          <code>Serumm</code> ก็ผ่าน และจะไปโผล่เป็นชนิดใหม่.
+          คัดลอกจากแท็บข้อมูลอ้างอิงเสมอ อย่าพิมพ์เอง
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>4 · สองเรื่องที่ต้องระวังเป็นพิเศษ</h3>
+        <div class="note stop">
+          <b>ข้อมูลจะเข้าสาขาของคนที่กดอัปโหลด</b> ไม่ใช่สาขาที่ระบุในไฟล์
+          (ยกเว้นไฟล์ผู้ใช้งานที่มีช่องสาขาให้กรอก). ถ้าแล็บมีหลายสาขา
+          <strong>ให้คนของสาขานั้นเป็นคนอัปโหลดข้อมูลของสาขาตัวเอง</strong> —
+          อัปผิดคน ข้อมูลไปผิดสาขาทั้งชุด และย้ายทีหลังต้องแก้ทีละรายการ
+        </div>
+        <div class="note">
+          <b>ถ้าเจอ HN ซ้ำผิดปกติหลังนำเข้าผู้ป่วย</b> หยุดนำเข้าทันที แล้วแจ้ง
+          IT — อย่านำเข้าต่อ
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>5 · ขั้นตอนที่ปลอดภัยที่สุด</h3>
+        <ol>
+          <li>โหลด template ใหม่ ดูแท็บ <em>ข้อมูลอ้างอิง</em></li>
+          <li>กรอกข้อมูลจริง ลบแถวตัวอย่างออก</li>
+          <li>ตัดมาแค่ <strong>20 แถวแรก</strong> ใส่ไฟล์ทดสอบ แล้วอัปก่อน</li>
+          <li>
+            ผ่านหมด 20 แถว ค่อยอัปทั้งชุด · ไม่ผ่าน แก้กฎที่ผิดแล้วลองใหม่
+          </li>
+          <li>ไฟล์ใหญ่แบ่งไม่เกิน 5,000 แถวต่อไฟล์</li>
+          <li>อัปเสร็จ สุ่มตรวจ 10 รายการเทียบกับต้นทาง</li>
+        </ol>
+        <div class="note stop">
+          <b>แถวที่ผ่านแล้วเข้าระบบทันที ถอนกลับไม่ได้</b> ไฟล์ 500 แถว ผิด 30
+          แถว = 470 แถวเข้าไปแล้ว. แก้เฉพาะ 30 แถวที่ผิดแล้วอัป<strong
+            >เฉพาะแถวนั้น</strong
+          >
+          — อัปไฟล์เดิมซ้ำทั้งไฟล์จะได้ข้อมูลซ้ำ
+        </div>
+        <div class="note">
+          <b>เกิน 5,000 แถวจะไม่เข้าเลยสักแถว</b> ไม่ใช่เข้าบางส่วน —
+          เห็นข้อความนี้แล้วแบ่งไฟล์ได้เลย
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>6 · ข้อความแดงแปลว่าอะไร แก้ยังไง</h3>
+        <p>
+          ระบบบอกเลขแถวตาม Excel — <strong>แถวที่ 2 คือข้อมูลแถวแรก</strong>
+          เพราะแถวที่ 1 เป็นหัวตาราง
+        </p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>ข้อความที่ขึ้น</th>
+                <th>แปลว่า</th>
+                <th>แก้ยังไง</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ไฟล์ไม่มีข้อมูล กรุณาตรวจสอบเทมเพลต</td>
+                <td>แท็บแรกว่าง หรือมีแต่หัวตาราง</td>
+                <td>
+                  เช็กว่ากรอกในแท็บ <em>ข้อมูล</em> ไม่ใช่แท็บอ้างอิง
+                  และไม่ได้สลับลำดับแท็บ
+                </td>
+              </tr>
+              <tr>
+                <td>จำนวนแถวเกินขีดจำกัด (สูงสุด 5000 แถว)</td>
+                <td>ไฟล์ใหญ่เกิน ยังไม่มีอะไรเข้าระบบ</td>
+                <td>แบ่งไฟล์ ไม่เกิน 5,000 แถวต่อไฟล์</td>
+              </tr>
+              <tr>
+                <td>ไม่พบบทบาท '…'</td>
+                <td>รหัสหรือชื่อบทบาทไม่ตรงกับที่มีในระบบ</td>
+                <td>คัดลอกจากแท็บอ้างอิง · ระวังเว้นวรรคเกินท้ายคำ</td>
+              </tr>
+              <tr>
+                <td>ไม่พบสาขา '…'</td>
+                <td>รหัสหรือชื่อสาขาไม่ตรง</td>
+                <td>
+                  คัดลอกจากแท็บอ้างอิง — สำนักงานใหญ่ปกติคือ <code>HQ</code>
+                </td>
+              </tr>
+              <tr>
+                <td>ไม่พบหมวดหมู่ '…'</td>
+                <td>ยังไม่ได้สร้างหมวดหมู่นี้</td>
+                <td>
+                  สร้างหมวดหมู่ในระบบก่อน หรือปล่อยช่องนี้ว่าง (ปล่อยว่างได้)
+                </td>
+              </tr>
+              <tr>
+                <td>ไม่พบรหัสรายการตรวจ '…'<br />ไม่พบรายการตรวจ: …</td>
+                <td>รหัสตรวจไม่มีในระบบ หรือถูกปิดใช้งานอยู่</td>
+                <td>
+                  นำเข้ารายการตรวจให้เสร็จก่อน · เช็กว่ารายการนั้นยังเปิดใช้งาน
+                </td>
+              </tr>
+              <tr>
+                <td>ไม่พบผู้ป่วย HN '…' ในระบบ</td>
+                <td>นำเข้าใบสั่งตรวจก่อนนำเข้าผู้ป่วย หรือ HN ไม่ตรง</td>
+                <td>
+                  นำเข้าผู้ป่วยให้เสร็จก่อน · เช็กว่า HN ตรงกับที่อยู่ในระบบเป๊ะ
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  ชื่อผู้ใช้ซ้ำภายในไฟล์<br />HN ซ้ำภายในไฟล์<br />รหัสซ้ำภายในไฟล์
+                </td>
+                <td>ในไฟล์เดียวกันมีค่านี้มากกว่าหนึ่งแถว</td>
+                <td>
+                  ใช้ Excel เน้นค่าซ้ำ (Conditional Formatting → Duplicate
+                  Values) แล้วลบแถวเกิน
+                </td>
+              </tr>
+              <tr>
+                <td>… นี้มีอยู่แล้วในระบบ</td>
+                <td>ค่านี้ถูกนำเข้าไปแล้ว</td>
+                <td>
+                  ลบแถวนั้นออก — มักเกิดจากอัปไฟล์เดิมซ้ำ
+                  ให้อัปเฉพาะแถวที่เคยผิด
+                </td>
+              </tr>
+              <tr>
+                <td>กรุณากรอก…</td>
+                <td>ช่องบังคับว่าง</td>
+                <td>ดูช่องที่ทำเครื่องหมายบังคับในตารางคอลัมน์ (ภาคผนวก ก)</td>
+              </tr>
+              <tr>
+                <td>รหัสผ่านต้องมี…</td>
+                <td>รหัสผ่านไม่ครบเงื่อนไข</td>
+                <td>
+                  ≥8 ตัว + พิมพ์ใหญ่ + ตัวเลข + อักขระพิเศษ เช่น
+                  <code>Lab@2569</code>
+                </td>
+              </tr>
+              <tr>
+                <td>เพศต้องเป็น M, F หรือ U (ได้รับ '…')</td>
+                <td>ค่าที่กรอกแปลงไม่ได้</td>
+                <td>
+                  ใช้ <code>M</code> <code>F</code> <code>U</code> หรือ
+                  <code>ชาย</code> <code>หญิง</code> — คำอื่นไม่รับ
+                </td>
+              </tr>
+              <tr>
+                <td>รูปแบบวันเกิดไม่ถูกต้อง (ใช้ YYYY-MM-DD)</td>
+                <td>รูปแบบวันที่อ่านไม่ออก หรือเป็น พ.ศ.</td>
+                <td>
+                  ใช้ <code>1990-05-15</code> หรือ <code>15/05/1990</code> ·
+                  แปลง พ.ศ. เป็น ค.ศ. (ลบ 543)
+                </td>
+              </tr>
+              <tr>
+                <td>เลขบัตรประชาชนต้องเป็น 13 หลัก</td>
+                <td>
+                  มีขีด เว้นวรรค หรือ Excel แปลงเป็น <code>1.23E+12</code>
+                </td>
+                <td>
+                  ตั้งคอลัมน์เป็น <em>ข้อความ</em> ก่อนวางข้อมูล แล้ววางใหม่
+                </td>
+              </tr>
+              <tr>
+                <td>รหัสไปรษณีย์ต้องเป็น 5 หลัก</td>
+                <td>Excel ตัดเลข 0 นำหน้าออก</td>
+                <td>ตั้งคอลัมน์เป็น <em>ข้อความ</em> แล้ววางใหม่</td>
+              </tr>
+              <tr>
+                <td>รูปแบบอีเมลไม่ถูกต้อง</td>
+                <td>ไม่มี <code>@</code> หรือไม่มีจุดหลังโดเมน</td>
+                <td>แก้ให้ถูก หรือปล่อยว่าง (อีเมลไม่บังคับ)</td>
+              </tr>
+              <tr>
+                <td>ราคาต้องเป็นตัวเลข<br />ค่าอ้างอิงต้องเป็นตัวเลข</td>
+                <td>มีจุลภาค สัญลักษณ์เงิน หรือข้อความปน</td>
+                <td>
+                  เหลือแต่ตัวเลข — <code>1500</code> ไม่ใช่
+                  <code>1,500 บาท</code>
+                </td>
+              </tr>
+              <tr>
+                <td>ชนิดผลลัพธ์ไม่ถูกต้อง (ใช้: …)</td>
+                <td>พิมพ์ชื่อชนิดผิด</td>
+                <td>
+                  ใช้ค่าจากรายการในหัวข้อ 3 หรือปล่อยว่างให้เป็น
+                  <code>numeric</code>
+                </td>
+              </tr>
+              <tr>
+                <td>รูปแบบวันที่ไม่ถูกต้อง (ใช้ YYYY-MM-DD)</td>
+                <td>วันที่ในใบสั่งตรวจอ่านไม่ออก</td>
+                <td>
+                  ใช้ <code>2569-03-21</code> เป็น ค.ศ. <code>2026-03-21</code>
+                </td>
+              </tr>
+              <tr>
+                <td>Failed to insert package</td>
+                <td>ระบบบันทึกแพ็กเกจไม่สำเร็จ</td>
+                <td>
+                  ไม่ใช่ความผิดของข้อมูล — จดรหัสแพ็กเกจแถวนั้นแล้วแจ้ง IT
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>รหัสหน่วยงานส่งตรวจผิดจะไม่ขึ้นแดง</b> ระบบเก็บเป็นข้อความไว้เฉยๆ
+          แล้วปล่อยผ่าน. ถ้าใบสั่งตรวจที่นำเข้าไปไม่ผูกกับหน่วยงาน
+          ให้กลับมาเช็กช่องนี้ว่าตรงกับแท็บอ้างอิงไหม
+        </div>
+      </section>
+
+      <div class="nav">
+        <button class="btn" data-go="prev">← ย้อนกลับ</button>
+        <button class="btn primary" data-go="next">ไปภาคผนวก →</button>
+      </div>
+    </article>
+
+    <!-- ══════════ APPENDIX ══════════ -->
+    <article
+      class="slide"
+      id="appendix"
+      data-title="ภาคผนวก"
+      data-step="—"
+      data-scen="new migrate"
+    >
+      <div class="eyebrow">ภาคผนวก</div>
+      <h2>ตารางอ้างอิง</h2>
+      <p class="lede">
+        ค่าทั้งหมดในหน้านี้ดึงจาก source จริงของระบบ ไม่ใช่การประมาณ
+      </p>
+
+      <section class="blk">
+        <h3>A · ไฟล์ที่นำเข้าได้ และคอลัมน์</h3>
+        <p>
+          ทั้งหมดเป็น <code>.xlsx</code> เท่านั้น สูงสุด 5,000 แถวต่อไฟล์ ·
+          <span class="req">แดง</span> = บังคับ · กฎการกรอกแต่ละช่องดูที่หน้า
+          <a href="#prep-files">เตรียมไฟล์ยังไงให้ผ่าน</a>
+        </p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>ประเภท</th>
+                <th>คอลัมน์ (ตามลำดับในไฟล์)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ผู้ใช้งาน</strong><br /><code>users</code></td>
+                <td>
+                  <span class="req">ชื่อผู้ใช้</span> ·
+                  <span class="req">รหัสผ่าน</span> ·
+                  <span class="req">ชื่อ (ไทย)</span> ·
+                  <span class="req">นามสกุล (ไทย)</span> · ชื่อ (อังกฤษ) ·
+                  นามสกุล (อังกฤษ) · อีเมล · เบอร์โทร · รหัสพนักงาน · คำนำหน้า ·
+                  <span class="req">บทบาท (รหัส หรือ ชื่อไทย)</span> ·
+                  <span class="req">สาขา (รหัส หรือ ชื่อไทย)</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ผู้ป่วย</strong><br /><code>patients</code></td>
+                <td>
+                  HN · คำนำหน้า · <span class="req">ชื่อ (ไทย)</span> ·
+                  <span class="req">นามสกุล (ไทย)</span> · ชื่อ (อังกฤษ) ·
+                  นามสกุล (อังกฤษ) · เลขบัตรประชาชน · วันเกิด (YYYY-MM-DD หรือ
+                  DD/MM/YYYY) · <span class="req">เพศ (M/F/U)</span> · หมู่เลือด
+                  · เบอร์โทร · อีเมล · ที่อยู่ · จังหวัด · รหัสไปรษณีย์ ·
+                  โรคประจำตัว · การแพ้ยา/สารเคมี
+                </td>
+              </tr>
+              <tr>
+                <td><strong>รายการตรวจ</strong><br /><code>lab-tests</code></td>
+                <td>
+                  <span class="req">รหัส</span> ·
+                  <span class="req">ชื่อ (ไทย)</span> · ชื่อ (อังกฤษ) · หมวดหมู่
+                  (รหัส หรือ ชื่อไทย) · แผนก · ชนิดสิ่งส่งตรวจ · หน่วย · ราคา ·
+                  ชนิดผลลัพธ์ · ตัวเลือก · ค่าอ้างอิงต่ำสุด · ค่าอ้างอิงสูงสุด
+                </td>
+              </tr>
+              <tr>
+                <td><strong>แพ็กเกจ</strong><br /><code>packages</code></td>
+                <td>
+                  <span class="req">รหัส</span> ·
+                  <span class="req">ชื่อ (ไทย)</span> · ชื่อ (อังกฤษ) ·
+                  รายละเอียด · ราคา ·
+                  <span class="req">รายการตรวจ (codes คั่นด้วย ,)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>ใบสั่งตรวจ</strong><br /><code>lab-orders</code>
+                </td>
+                <td>
+                  <span class="req">HN ผู้ป่วย</span> · รหัสหน่วยงานที่ส่งตรวจ ·
+                  สิทธิผู้ป่วย · ชนิดสิ่งส่งตรวจ ·
+                  <span class="req">รหัสรายการตรวจ/กลุ่ม</span> · วันที่สั่งตรวจ
+                  · วันที่เก็บตัวอย่าง · วันที่รับตัวอย่าง · ด่วน (Y/YES/ใช่) ·
+                  งดอาหาร (Y/YES/ใช่) · หมายเหตุทางคลินิก
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>ค่าที่ระบบรับได้:</strong><br />
+          ชนิดผลลัพธ์ — <code>numeric</code> <code>text</code>
+          <code>select</code> <code>multi_select</code>
+          <code>positive_negative</code> <code>numeric_text</code>
+          <code>numeric_range</code><br />
+          เพศ — <code>M</code> <code>F</code> <code>U</code> (รับ
+          <code>ชาย</code>/<code>หญิง</code>/<code>male</code>/<code
+            >female</code
+          >
+          ให้ด้วย)<br />
+          สิทธิผู้ป่วย — <code>UC</code> <code>SSS</code> <code>CSMBS</code>
+          <code>LGO</code> <code>CASH</code> <code>OPD</code>
+        </p>
+      </section>
+
+      <section class="blk">
+        <h3>B · เมนูบางอย่างไม่ขึ้น?</h3>
+        <p>
+          ถ้าเมนูที่คาดว่าจะมี (เช่น นัดหมาย, เชื่อมเครื่องวิเคราะห์, HL7)
+          ไม่ปรากฏในระบบของแล็บคุณ — อย่าเพิ่งคิดว่าระบบพัง ให้ถาม IT ก่อน
+          เพราะฟีเจอร์เหล่านี้ถูกเปิด/ปิดตาม<strong>แพ็กเกจ (plan)</strong
+          >ที่แล็บสมัครไว้
+        </p>
+      </section>
+
+      <section class="blk">
+        <h3>C · บทบาทมาตรฐาน 8 แบบ</h3>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>รหัส</th>
+                <th>ชื่อ</th>
+                <th>ระดับ</th>
+                <th>สิทธิ์</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>super_admin</code></td>
+                <td>ผู้ดูแลระบบสูงสุด</td>
+                <td>0</td>
+                <td><code>*</code></td>
+              </tr>
+              <tr>
+                <td><code>company_admin</code></td>
+                <td>ผู้ดูแลบริษัท</td>
+                <td>1</td>
+                <td>
+                  <code
+                    >company.* branch.* user.* patient.* lab.* report.*
+                    billing.* settings.*</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>branch_admin</code></td>
+                <td>ผู้ดูแลสาขา</td>
+                <td>2</td>
+                <td>
+                  <code
+                    >branch.view user.* patient.* lab.* report.* billing.*</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>lab_manager</code></td>
+                <td>หัวหน้าห้องปฏิบัติการ</td>
+                <td>3</td>
+                <td><code>patient.* lab.* report.* billing.view</code></td>
+              </tr>
+              <tr>
+                <td><code>lab_technician</code></td>
+                <td>นักเทคนิคการแพทย์</td>
+                <td>3</td>
+                <td>
+                  <code>patient.view lab.order.* lab.result.* report.view</code>
+                </td>
+              </tr>
+              <tr>
+                <td><code>receptionist</code></td>
+                <td>พนักงานต้อนรับ</td>
+                <td>3</td>
+                <td>
+                  <code
+                    >patient.* lab.order.create lab.order.view billing.*</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>doctor</code></td>
+                <td>แพทย์</td>
+                <td>3</td>
+                <td>
+                  <code
+                    >patient.view lab.order.* lab.result.view lab.result.approve
+                    report.*</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>cashier</code></td>
+                <td>แคชเชียร์</td>
+                <td>3</td>
+                <td><code>patient.view lab.order.view billing.*</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h3>D · ข้อจำกัดที่พบบ่อย</h3>
+        <p>สี่ข้อนี้เจอบ่อยที่สุดตอนกรอกข้อมูล — รู้ไว้ก่อนจะได้ไม่เสียเวลา</p>
+        <ul>
+          <li>รับไฟล์นำเข้าเฉพาะ <code>.xlsx</code> เท่านั้น — ไม่รับ CSV</li>
+          <li>สูงสุด 5,000 แถวต่อไฟล์ — ไฟล์ใหญ่กว่านี้ต้องแบ่ง</li>
+          <li>
+            นำเข้าแล้ว<strong>ย้อนกลับไม่ได้</strong> — ผิดแล้วต้องลบทีละรายการ
+          </li>
+          <li>
+            ไม่มีการนำเข้าผลตรวจย้อนหลัง — นำเข้าได้แค่ผู้ป่วยกับใบสั่งตรวจ
+          </li>
+        </ul>
+      </section>
+
+      <section class="blk">
+        <h3>E · อภิธานศัพท์</h3>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>คำ</th>
+                <th>ความหมาย</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>HN</code></td>
+                <td>
+                  เลขประจำตัวผู้ป่วยในแล็บ (Hospital Number) —
+                  ออกให้อัตโนมัติเมื่อลงทะเบียน
+                </td>
+              </tr>
+              <tr>
+                <td>สาขา</td>
+                <td>
+                  หน่วยของแล็บที่แยกทำงาน เช่น HQ —
+                  ผู้ใช้และผลตรวจผูกกับสาขาใดสาขาหนึ่ง
+                </td>
+              </tr>
+              <tr>
+                <td>บทบาท</td>
+                <td>
+                  ชุดสิทธิ์ที่กำหนดว่าผู้ใช้เห็น/แก้อะไรได้บ้าง (ดูตาราง C)
+                </td>
+              </tr>
+              <tr>
+                <td>สิทธิ์ (permission)</td>
+                <td>การอนุญาตย่อยแต่ละอย่างที่ประกอบกันเป็นบทบาท</td>
+              </tr>
+              <tr>
+                <td>แพ็กเกจ (plan)</td>
+                <td>
+                  ระดับการสมัครใช้งานของแล็บ ควบคุมว่าเปิดฟีเจอร์ไหนได้บ้าง
+                  (ตั้งค่าโดย IT)
+                </td>
+              </tr>
+              <tr>
+                <td>หน่วยงานส่งตรวจ</td>
+                <td>โรงพยาบาล/คลินิกภายนอกที่ส่งใบสั่งตรวจเข้ามาให้แล็บ</td>
+              </tr>
+              <tr>
+                <td>ใบสั่งตรวจที่รับเข้า</td>
+                <td>หน้าจอแสดงใบสั่งตรวจที่หน่วยงานภายนอกส่งเข้ามาผ่านระบบ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="blk">
+        <div class="itlink">
+          <p>
+            เรื่องการติดตั้ง เซิร์ฟเวอร์ API และการเชื่อมต่อระบบภายนอก
+            อยู่ในคู่มือแยกสำหรับ IT / ผู้ดูแลระบบ
+          </p>
+          <a class="btn" href="./ndclims-it-runbook.html"
+            >คู่มือสำหรับ IT / ผู้ดูแลระบบ</a
+          >
+        </div>
+      </section>
+
+      <div class="nav">
+        <button class="btn" data-go="prev">← ย้อนกลับ</button>
+        <button class="btn" data-go="first">กลับหน้าแรก</button>
+        <button class="btn" id="resetAll">ล้าง checklist ทั้งหมด</button>
+      </div>
+    </article>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var slides = Array.prototype.slice.call(
+      document.querySelectorAll(".slide"),
+    );
+    var rail = document.getElementById("rail");
+    var KEY = "ndclims-bible-v2";
+    var state = {};
+    try {
+      state = JSON.parse(localStorage.getItem(KEY) || "{}");
+    } catch (e) {
+      state = {};
+    }
+    var save = function () {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(state));
+      } catch (e) {}
+    };
+
+    /* ── track ── */
+    var trackSeg = document.getElementById("trackSeg");
+    function setTrack(t) {
+      document.body.className = "t-" + t;
+      Array.prototype.forEach.call(trackSeg.children, function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.t === t));
+      });
+      state.track = t;
+      save();
+    }
+    trackSeg.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (b) setTrack(b.dataset.t);
+    });
+
+    /* ── scenario ── */
+    var scenSeg = document.getElementById("scenSeg");
+    function setScen(s) {
+      Array.prototype.forEach.call(scenSeg.children, function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.s === s));
+      });
+      state.scen = s;
+      save();
+      buildRail();
+      buildGantt();
+      if (!visible().indexOf) return;
+      if (visible().indexOf(current()) === -1) show(visible()[0]);
+    }
+    scenSeg.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (b) setScen(b.dataset.s);
+    });
+
+    function scen() {
+      return state.scen || "new";
+    }
+
+    /* ── gantt ── */
+    var PHASES = [
+      {
+        n: 0,
+        t: "เข้าระบบครั้งแรก",
+        who: "Lab admin",
+        min: 1,
+        max: 1,
+        scen: "new migrate",
+      },
+      {
+        n: 1,
+        t: "แผนก + ชนิดสิ่งส่งตรวจ",
+        who: "Lab admin",
+        min: 1,
+        max: 1,
+        scen: "new migrate",
+      },
+      {
+        n: 2,
+        t: "หมวดหมู่ + รายการตรวจ",
+        who: "หัวหน้าแล็บ",
+        min: 3,
+        max: 7,
+        scen: "new migrate",
+        crit: true,
+      },
+      {
+        n: 3,
+        t: "ผู้ใช้ + สิทธิ์",
+        who: "Lab admin",
+        min: 1,
+        max: 2,
+        scen: "new migrate",
+      },
+      {
+        n: 4,
+        t: "ย้ายผู้ป่วยเดิม",
+        who: "แล็บ + IT",
+        min: 5,
+        max: 15,
+        scen: "migrate",
+        crit: true,
+      },
+      {
+        n: 5,
+        t: "หน่วยงานส่งตรวจ",
+        who: "Lab admin",
+        min: 1,
+        max: 2,
+        scen: "new migrate",
+      },
+      {
+        n: 6,
+        t: "ซ้อมใช้งานจริง + อบรม",
+        who: "ทุกฝ่าย",
+        min: 5,
+        max: 10,
+        scen: "new migrate",
+      },
+      {
+        n: 7,
+        t: "เปิดใช้จริง + 2 สัปดาห์แรก",
+        who: "ทุกฝ่าย",
+        min: 10,
+        max: 10,
+        scen: "new migrate",
+      },
+    ];
+
+    function buildGantt() {
+      var host = document.getElementById("gantt");
+      if (!host) return;
+      var sc = scen();
+      var rows = PHASES.map(function (p) {
+        return { p: p, active: p.scen.split(" ").indexOf(sc) !== -1 };
+      });
+
+      var cMin = 0,
+        cMax = 0;
+      rows.forEach(function (r) {
+        r.sMin = cMin;
+        r.sMax = cMax;
+        if (r.active) {
+          cMin += r.p.min;
+          cMax += r.p.max;
+        }
+        r.eMin = cMin;
+        r.eMax = cMax;
+      });
+      var span = cMax || 1;
+      var weeks = Math.ceil(span / 5);
+
+      var ticks = "",
+        axisTicks = "";
+      for (var w = 0; w <= weeks; w++) {
+        var left = Math.min(((w * 5) / span) * 100, 100);
+        ticks += '<i style="left:' + left + '%"></i>';
+        axisTicks +=
+          '<div class="g-tick" style="left:' +
+          left +
+          '%"><span>' +
+          (w === 0 ? "เริ่ม" : "สัปดาห์ " + w) +
+          "</span></div>";
+      }
+
+      var html =
+        '<div class="g-axis"><div></div><div class="g-ticks">' +
+        axisTicks +
+        "</div></div>";
+
+      rows.forEach(function (r) {
+        var p = r.p;
+        var cls =
+          "g-row" +
+          (r.active ? "" : " opt") +
+          (r.active && p.crit ? " crit" : "");
+        var dur =
+          p.min === p.max ? p.min + " วัน" : p.min + "–" + p.max + " วัน";
+        var bar;
+        if (r.active) {
+          var l = (r.sMin / span) * 100;
+          var wdt = Math.max(((r.eMax - r.sMin) / span) * 100, 1.2);
+          var core = ((r.eMin - r.sMin) / (r.eMax - r.sMin || 1)) * 100;
+          bar =
+            '<div class="g-bar' +
+            (l + wdt > 88 ? " inside" : "") +
+            '" style="left:' +
+            l +
+            "%;width:" +
+            wdt +
+            '%">' +
+            '<span class="g-core" style="width:' +
+            core +
+            '%"></span><em>' +
+            dur +
+            "</em></div>";
+        } else {
+          bar =
+            '<div class="g-bar" style="left:0;width:14%"><em>ข้ามในสถานการณ์นี้</em></div>';
+        }
+        html +=
+          '<div class="' +
+          cls +
+          '">' +
+          '<div class="g-label"><span class="g-n">' +
+          String(p.n).padStart(2, "0") +
+          "</span>" +
+          "<span>" +
+          p.t +
+          '<span class="g-who">' +
+          p.who +
+          "</span></span></div>" +
+          '<div class="g-track"><div class="g-grid">' +
+          ticks +
+          "</div>" +
+          bar +
+          "</div></div>";
+      });
+
+      html +=
+        '<div class="g-legend">' +
+        "<span><i></i> เร็วสุด</span>" +
+        '<span><i class="stretch"></i> ส่วนที่ยืดได้</span>' +
+        '<span><i class="critl"></i> ขั้นที่บานปลายบ่อย</span>' +
+        '<span><i class="optl"></i> ข้ามในสถานการณ์นี้</span></div>';
+
+      host.innerHTML = html;
+
+      var wk = function (d) {
+        return Math.round((d / 5) * 10) / 10;
+      };
+      var out = document.getElementById("ganttTotal");
+      if (out) {
+        out.innerHTML =
+          "รวมทั้งหมด <b>" +
+          cMin +
+          "–" +
+          cMax +
+          " วันทำการ</b> " +
+          "(ประมาณ <b>" +
+          wk(cMin) +
+          "–" +
+          wk(cMax) +
+          " สัปดาห์</b>) สำหรับสถานการณ์ที่เลือกอยู่";
+      }
+    }
+    function visible() {
+      return slides.filter(function (s) {
+        return s.dataset.scen.split(" ").indexOf(scen()) !== -1;
+      });
+    }
+    function current() {
+      return (
+        slides.filter(function (s) {
+          return s.classList.contains("on");
+        })[0] || slides[0]
+      );
+    }
+
+    /* ── rail ── */
+    function buildRail() {
+      rail.innerHTML = "";
+      visible().forEach(function (s) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = "#" + s.id;
+        a.innerHTML =
+          '<span class="n">' +
+          s.dataset.step +
+          "</span><span>" +
+          s.dataset.title +
+          "</span>";
+        li.appendChild(a);
+        rail.appendChild(li);
+      });
+      markRail();
+    }
+    function markRail() {
+      var cur = current();
+      Array.prototype.forEach.call(rail.querySelectorAll("a"), function (a) {
+        var id = a.getAttribute("href").slice(1);
+        a.setAttribute("aria-current", String(id === cur.id));
+        var g = document.querySelector("#" + id + " [data-gate]");
+        a.classList.toggle("done", !!(g && gateComplete(g)));
+      });
+    }
+
+    /* ── navigation ── */
+    function show(slide) {
+      if (!slide) return;
+      slides.forEach(function (s) {
+        s.classList.toggle("on", s === slide);
+      });
+      markRail();
+      if (location.hash !== "#" + slide.id)
+        history.replaceState(null, "", "#" + slide.id);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+    function step(dir) {
+      var v = visible(),
+        i = v.indexOf(current());
+      if (i === -1) return show(v[0]);
+      var next = v[i + dir];
+      if (next) show(next);
+    }
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-go]");
+      if (!b) return;
+      if (b.dataset.go === "next") step(1);
+      else if (b.dataset.go === "prev") step(-1);
+      else if (b.dataset.go === "first") show(visible()[0]);
+    });
+    rail.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      show(document.getElementById(a.getAttribute("href").slice(1)));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.target.matches("input,textarea,button")) return;
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
+    });
+    window.addEventListener("hashchange", function () {
+      var t = document.getElementById(location.hash.slice(1));
+      if (t && t.classList.contains("slide")) show(t);
+    });
+
+    /* ── gates ── */
+    function gateBoxes(g) {
+      return Array.prototype.slice.call(
+        g.querySelectorAll("input[type=checkbox]"),
+      );
+    }
+    function gateComplete(g) {
+      return gateBoxes(g).every(function (c) {
+        return c.checked;
+      });
+    }
+
+    document.querySelectorAll("[data-gate]").forEach(function (g) {
+      var id = g.dataset.gate;
+      var boxes = gateBoxes(g);
+      var fill = g.querySelector(".fill");
+      var cnt = g.querySelector(".cnt");
+      var btn = g.querySelector('[data-go="next"]');
+      var msg = g.querySelector(".lockmsg");
+
+      boxes.forEach(function (c, i) {
+        c.checked = !!state["g" + id + "_" + i];
+        c.addEventListener("change", function () {
+          state["g" + id + "_" + i] = c.checked;
+          save();
+          refresh();
+          markRail();
+        });
+      });
+
+      function refresh() {
+        var done = boxes.filter(function (c) {
+          return c.checked;
+        }).length;
+        fill.style.width = (done / boxes.length) * 100 + "%";
+        cnt.textContent = done + " / " + boxes.length;
+        var ok = done === boxes.length;
+        btn.disabled = !ok;
+        msg.textContent = ok
+          ? ""
+          : "เหลืออีก " + (boxes.length - done) + " ข้อ";
+      }
+      refresh();
+    });
+
+    document.getElementById("resetAll").addEventListener("click", function () {
+      Object.keys(state).forEach(function (k) {
+        if (k.charAt(0) === "g") delete state[k];
+      });
+      save();
+      document
+        .querySelectorAll("[data-gate] input[type=checkbox]")
+        .forEach(function (c) {
+          c.checked = false;
+        });
+      document.querySelectorAll("[data-gate]").forEach(function (g) {
+        g.querySelector(".fill").style.width = "0%";
+        g.querySelector(".cnt").textContent = "0 / " + gateBoxes(g).length;
+        var b = g.querySelector('[data-go="next"]');
+        if (b) b.disabled = true;
+        var m = g.querySelector(".lockmsg");
+        if (m) m.textContent = "เหลืออีก " + gateBoxes(g).length + " ข้อ";
+      });
+      markRail();
+    });
+
+    /* ── boot ── */
+    setTrack(state.track || "user");
+    setScen(state.scen || "new");
+    var hashTarget = document.getElementById(location.hash.slice(1));
+    show(
+      hashTarget && hashTarget.classList.contains("slide")
+        ? hashTarget
+        : visible()[0],
+    );
+  })();
+</script>
