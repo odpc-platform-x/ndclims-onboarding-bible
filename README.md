@@ -16,8 +16,8 @@
 
 | Site          | URL                                                            |
 | ------------- | -------------------------------------------------------------- |
-| NDCLIMS       | [odpc-01.ndclims.com](http://odpc-10.ndclims.com/)             |
-| Clinexa Stock | [odpc-01.clinexa-stock.com](http://odpc-10.clinexa-stock.com/) |
+| NDCLIMS       | [odpc-10.ndclims.com](http://odpc-10.ndclims.com/)             |
+| Clinexa Stock | [odpc-10.clinexa-stock.com](http://odpc-10.clinexa-stock.com/) |
 
 ## 🛠 Tech Stack
 
