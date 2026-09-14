@@ -10,7 +10,7 @@
 | ---------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Onboarding Bible | เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | [odpc-platform-x.github.io/ndclims-onboarding-bible](https://odpc-platform-x.github.io/ndclims-onboarding-bible)                                                 |
 | IT Runbook       | IT / Super Admin                    | [odpc-platform-x.github.io/ndclims-onboarding-bible/ndclims-it-runbook.html](https://odpc-platform-x.github.io/ndclims-onboarding-bible/ndclims-it-runbook.html) |
-| Slide Orentaion        |  เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | [odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html](https://odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html) |
+| Slide Orentation        |  เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | [odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html](https://odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html) |
 
 ## 🔗 ระบบจริง
 
