@@ -1,3 +1,5 @@
+<img src="https://cdn.odpcx.com/public/idp/odpcx-logo.webp" alt="ODPCx Logo" style="height: 100px;" /> <img src="https://www.ndclims.com/ndclims-logo.svg" alt="NDCLIMS Logo" style="height: 100px;" />
+
 # NDCLIMS Onboarding Bible
 
 คู่มือ onboarding แบบ interactive สำหรับระบบ NDCLIMS (Thai national disease-control LIMS) — สำนักงานป้องกันควบคุมโรคที่ 10
@@ -8,13 +10,14 @@
 | ---------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Onboarding Bible | เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | [odpc-platform-x.github.io/ndclims-onboarding-bible](https://odpc-platform-x.github.io/ndclims-onboarding-bible)                                                 |
 | IT Runbook       | IT / Super Admin                    | [odpc-platform-x.github.io/ndclims-onboarding-bible/ndclims-it-runbook.html](https://odpc-platform-x.github.io/ndclims-onboarding-bible/ndclims-it-runbook.html) |
+| Slide Orentaion        |  เจ้าหน้าที่ / Lab Admin / ผู้บริหาร | [odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html](https://odpc-platform-x.github.io/ndclims-onboarding-bible/presentation-onboarding.html) |
 
 ## 🔗 ระบบจริง
 
 | Site          | URL                                                            |
 | ------------- | -------------------------------------------------------------- |
-| NDCLIMS       | [odpc-01.ndclims.com](http://odpc-01.ndclims.com/)             |
-| Clinexa Stock | [odpc-01.clinexa-stock.com](http://odpc-01.clinexa-stock.com/) |
+| NDCLIMS       | [odpc-01.ndclims.com](http://odpc-10.ndclims.com/)             |
+| Clinexa Stock | [odpc-01.clinexa-stock.com](http://odpc-10.clinexa-stock.com/) |
 
 ## 🛠 Tech Stack
 
@@ -38,4 +41,4 @@ Monorepo: `apps/backend` (Fastify) · `apps/web` (Next.js/React) · `apps/agent`
 
 ## สำหรับผู้แก้ไขเอกสาร
 
-อ่าน [`HANDOFF.md`](./HANDOFF.md) ก่อนแก้ไฟล์ `index.html` / `ndclims-it-runbook.html` — มี source-of-truth mapping กลับไปที่โค้ด backend จริง
+อ่าน [`HANDOFF.md`](./HANDOFF.md) ก่อนแก้ไฟล์ `index.html` / `ndclims-it-runbook.html` /`presentation-onboarding.html` — มี source-of-truth mapping กลับไปที่โค้ด backend จริง
