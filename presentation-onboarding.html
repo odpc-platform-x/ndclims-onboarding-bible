@@ -589,19 +589,19 @@
     }
 
     /* slide 16 only: 5 cards, center row 2 instead of leaving an empty slot */
-    .slide[data-slide="16"] .card-grid {
+    .slide[data-slide="17"] .card-grid {
       grid-template-columns: repeat(6, 1fr);
     }
 
-    .slide[data-slide="16"] .card-grid .card-editorial {
+    .slide[data-slide="17"] .card-grid .card-editorial {
       grid-column: span 2;
     }
 
-    .slide[data-slide="16"] .card-grid .card-editorial:nth-child(4) {
+    .slide[data-slide="17"] .card-grid .card-editorial:nth-child(4) {
       grid-column: 2 / span 2;
     }
 
-    .slide[data-slide="16"] .card-grid .card-editorial:nth-child(5) {
+    .slide[data-slide="17"] .card-grid .card-editorial:nth-child(5) {
       grid-column: 4 / span 2;
     }
 
@@ -1507,7 +1507,9 @@
       user-select: none;
       -webkit-user-drag: none;
       display: block;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
     }
 
     .image-modal-caption {
@@ -1825,21 +1827,22 @@
         </div>
         <div class="card-editorial tone-blue bounce-1">
           <div class="card-num">05</div>
-          <div class="card-title">ใบแจ้งหนี้สร้างอัตโนมัติ</div>
+          <div class="card-title">หาใบสั่งตรวจเจอในช่องเดียว</div>
           <div class="card-desc">
-            สั่งตรวจปุ๊บ มีใบแจ้งหนี้รอเก็บเงินทันที ไม่ต้องสร้างเอง
+            สแกนบาร์โค้ด หรือพิมพ์เลขที่ใบสั่ง / HN / ชื่อผู้ป่วย
           </div>
         </div>
       </div>
       <script type="application/json" class="slide-notes">
           {
             "title": "ทำไมต้องใช้ NDCLIMS",
-            "script": "ข่าวดีคือฝ่าย IT ติดตั้งระบบและเปิดบัญชีแล็บให้เราแล้ว ไม่ต้องติดตั้งอะไรเพิ่ม และระบบนี้ช่วยงานประจำวันของเราจริงๆ ห้าเรื่องนี้คือประโยชน์ที่จับต้องได้ทันที",
+            "script": "เป็นระบบ On Cloud ใช้งานได้ทันทีไม่ต้องติดตั้งอะไรเพิ่ม และระบบนี้ช่วยงานประจำวันของเราจริงๆ ห้าเรื่องนี้คือประโยชน์ที่จับต้องได้ทันที",
             "notes": [
               "เวลา ~2 นาที",
-              "IT ติดตั้งระบบ + เปิดบัญชีแล็บให้แล้ว ไม่ต้องติดตั้งอะไรเพิ่ม",
+              "เป็นระบบ On Cloud ใช้งานได้ทันที ไม่ต้องติดตั้งอะไรเพิ่ม",
               "งานตั้งค่าเป็นหน้าที่ Lab admin แยกไว้ในภาคผนวก",
               "เน้นย้ำสามขั้น (บันทึกผล → Verify → Approve) และประวัติการแก้ไขผล",
+              "ช่องค้นหาสิ่งส่งตรวจใช้ได้ทั้งสแกนบาร์โค้ดและพิมพ์ค้นหา",
               "โฟกัสวันนี้คือการใช้งานประจำวัน"
             ]
           }
@@ -1895,8 +1898,42 @@
         </script>
     </div>
 
-    <!-- 3: เข้าระบบครั้งแรก (ลงมือพร้อมกัน) -->
+    <!-- 3: กฎการใช้บัญชีและข้อมูลผู้ป่วย -->
     <div class="slide" data-slide="3">
+      <div class="cb-wrap">
+        <div class="section-eyebrow anim-1">ก่อนแตะระบบจริง</div>
+        <div class="cb-heading anim-2">กฎการใช้บัญชีและข้อมูลผู้ป่วย</div>
+        <ul class="cb-list anim-3">
+          <li>
+            ห้ามใช้บัญชีร่วมกัน ห้ามบอกรหัสผ่านคนอื่น —
+            <span class="cb-accent">ทุกการกระทำบันทึกชื่อคุณ</span>
+            ไว้ในประวัติการใช้งาน
+          </li>
+          <li>Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกับคนอื่น</li>
+          <li>ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว</li>
+          <li>
+            ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA —
+            เปิดดูเฉพาะที่จำเป็นต่องานเท่านั้น
+          </li>
+        </ul>
+      </div>
+      <script type="application/json" class="slide-notes">
+          {
+            "title": "กฎการใช้บัญชีและข้อมูลผู้ป่วย",
+            "script": "ก่อนแตะระบบจริง มีกฎสำคัญสี่ข้อ ห้ามใช้บัญชีร่วมกันเด็ดขาดเพราะทุกการกระทำในระบบบันทึกชื่อผู้ใช้ไว้ ลุกจากเครื่องที่ใช้ร่วมกับคนอื่นต้อง logout ทุกครั้ง ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว และผลตรวจเป็นข้อมูลส่วนบุคคลตามกฎหมาย PDPA เปิดดูเฉพาะที่จำเป็นต่องาน",
+            "notes": [
+              "เวลา ~2 นาที",
+              "ห้ามใช้บัญชีร่วม/บอกรหัส — ทุกการกระทำบันทึกชื่อผู้ใช้ในประวัติการใช้งาน",
+              "Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกัน",
+              "ห้ามส่งผลตรวจ/ภาพหน้าจอผู้ป่วยทางแชทส่วนตัว",
+              "ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA เปิดดูเฉพาะที่จำเป็น"
+            ]
+          }
+        </script>
+    </div>
+
+    <!-- 4: เข้าระบบครั้งแรก (ลงมือพร้อมกัน) -->
+    <div class="slide" data-slide="4">
       <div class="slide-tag anim-1">ลงมือพร้อมกัน</div>
       <h2 class="anim-2">เข้าระบบครั้งแรก</h2>
       <div class="daily-row anim-3">
@@ -1934,7 +1971,7 @@
             "title": "เข้าระบบครั้งแรก",
             "script": "ทุกคนมีบัญชีผู้ใช้อยู่แล้ว เพราะฉะนั้นให้เปิด URL ระบบแล้ว login ด้วยบัญชีของตัวเองพร้อมกันเลยตอนนี้ เปลี่ยนรหัสผ่านทันทีที่ตั้งค่า ถ้าเมนูไม่ครบหรือเข้าไม่ได้ ให้ยกมือบอกเลยไม่ต้องพยายามแก้เอง และจำไว้ว่าระบบนี้ไม่มีปุ่มลืมรหัสผ่าน ต้องติดต่อ Lab admin หรือฝ่าย IT กรมเท่านั้น",
             "notes": [
-              "เวลา ~4 นาที",
+              "เวลา ~8 นาที",
               "เปิด URL ระบบ แล้ว login ด้วย user ของตัวเอง (มีบัญชีอยู่แล้วทุกคน)",
               "เปลี่ยนรหัสผ่านทันทีที่ ตั้งค่า > ความปลอดภัย > เปลี่ยนรหัสผ่าน",
               "เมนูไม่ครบ/เข้าไม่ได้ → ยกมือบอกทันที",
@@ -1945,53 +1982,19 @@
         </script>
     </div>
 
-    <!-- 4: กฎการใช้บัญชีและข้อมูลผู้ป่วย -->
-    <div class="slide" data-slide="4">
-      <div class="cb-wrap">
-        <div class="section-eyebrow anim-1">ก่อนแตะระบบจริง</div>
-        <div class="cb-heading anim-2">กฎการใช้บัญชีและข้อมูลผู้ป่วย</div>
-        <ul class="cb-list anim-3">
-          <li>
-            ห้ามใช้บัญชีร่วมกัน ห้ามบอกรหัสผ่านคนอื่น —
-            <span class="cb-accent">ทุกการกระทำบันทึกชื่อคุณ</span>
-            ไว้ในประวัติการใช้งาน
-          </li>
-          <li>Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกับคนอื่น</li>
-          <li>ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว</li>
-          <li>
-            ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA —
-            เปิดดูเฉพาะที่จำเป็นต่องานเท่านั้น
-          </li>
-        </ul>
-      </div>
-      <script type="application/json" class="slide-notes">
-          {
-            "title": "กฎการใช้บัญชีและข้อมูลผู้ป่วย",
-            "script": "ก่อนแตะระบบจริง มีกฎสำคัญสี่ข้อ ห้ามใช้บัญชีร่วมกันเด็ดขาดเพราะทุกการกระทำในระบบบันทึกชื่อผู้ใช้ไว้ ลุกจากเครื่องที่ใช้ร่วมกับคนอื่นต้อง logout ทุกครั้ง ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว และผลตรวจเป็นข้อมูลส่วนบุคคลตามกฎหมาย PDPA เปิดดูเฉพาะที่จำเป็นต่องาน",
-            "notes": [
-              "เวลา ~2 นาที",
-              "ห้ามใช้บัญชีร่วม/บอกรหัส — ทุกการกระทำบันทึกชื่อผู้ใช้ในประวัติการใช้งาน",
-              "Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกัน",
-              "ห้ามส่งผลตรวจ/ภาพหน้าจอผู้ป่วยทางแชทส่วนตัว",
-              "ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA เปิดดูเฉพาะที่จำเป็น"
-            ]
-          }
-        </script>
-    </div>
-
     <!-- 5: เส้นทางใบสั่งตรวจ 1 ใบ -->
     <div class="slide" data-slide="5">
       <div class="section-eyebrow anim-1">กิจวัตรของเจ้าหน้าที่แล็บ</div>
       <h2 class="anim-2">เส้นทางของใบสั่งตรวจ 1 ใบ</h2>
       <div class="diagram-wrap anim-3">
-        <svg viewBox="0 0 1040 292" role="img" aria-labelledby="s5-title s5-desc" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 1040 326" role="img" aria-labelledby="s5-title s5-desc" xmlns="http://www.w3.org/2000/svg">
           <title id="s5-title">
-            เส้นทางของใบสั่งตรวจ 7 ขั้นตอน พร้อมเลนเก็บเงินแยก
+            เส้นทางของใบสั่งตรวจ 7 ขั้นตอน พร้อมเลนวางบิล รพ. แยก
           </title>
           <desc id="s5-desc">
-            ผังหลักเจ็ดขั้นตอนจากลงทะเบียนผู้ป่วยถึงพิมพ์ใบรายงานผล
+            ผังหลักเจ็ดขั้นตอนจากลงทะเบียนผู้ป่วยถึงพิมพ์/ส่งผล รพ.
             พร้อมเส้นประนำเข้าอัตโนมัติจากโรงพยาบาลเข้าสู่ขั้นสั่งตรวจ
-            และเลนเก็บเงินที่แยกออกจากเส้นทางหลัก ทำได้ทุกเวลาหลังสั่งตรวจ
+            และเลนวางบิล รพ. ที่แยกออกจากเส้นทางหลัก ทำนอกระบบ
           </desc>
           <defs>
             <marker id="s5-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
@@ -2146,77 +2149,77 @@
             หัวหน้าห้องปฏิบัติการ/แพทย์
           </text>
 
-          <!-- 7: พิมพ์ใบรายงานผล (เจ้าหน้าที่บันทึกข้อมูล) -->
+          <!-- 7: พิมพ์ / ส่งผล รพ. (เจ้าหน้าที่บันทึกข้อมูล) -->
           <rect x="890" y="40" width="124" height="112" rx="8" fill="var(--bg-card)" style="stroke: var(--accent-blue)"
             stroke-opacity="0.4" stroke-width="1" />
           <rect x="890" y="40" width="124" height="4" rx="2" style="fill: var(--accent-blue)" />
           <text x="952" y="72" text-anchor="middle" font-size="12.5" font-weight="600"
             style="font-family: var(--font-body); fill: var(--text)">
-            <tspan x="952" dy="0">พิมพ์ใบ</tspan>
-            <tspan x="952" dy="15">รายงานผล</tspan>
+            <tspan x="952" dy="0">พิมพ์ / ส่งผล</tspan>
+            <tspan x="952" dy="15">รพ.</tspan>
           </text>
           <line x1="898" y1="100" x2="1006" y2="100" style="stroke: var(--border-hover)" stroke-width="1" />
           <text x="952" y="122" text-anchor="middle" font-size="10"
             style="font-family: var(--font-label); fill: var(--text-dim)">
-            เฉพาะรายการอนุมัติแล้ว
+            อีเมลที่ รพ. แจ้งไว้
           </text>
           <text x="952" y="144" text-anchor="middle" font-size="8.5"
             style="font-family: var(--font-label); fill: var(--text-dim)">
             เจ้าหน้าที่บันทึกข้อมูล
           </text>
 
-          <!-- dashed lane: เก็บเงิน (แคชเชียร์) -->
+          <!-- dashed lane: วางบิล รพ. (เจ้าหน้าที่การเงิน) -->
           <line x1="232" y1="152" x2="232" y2="186" style="stroke: var(--accent-yellow)" stroke-width="1.3"
             stroke-dasharray="4,3" marker-end="url(#s5-arrow-dash)" />
           <rect x="122" y="192" width="220" height="60" rx="8" fill="var(--bg-card)"
             style="stroke: var(--accent-yellow)" stroke-width="1.2" stroke-dasharray="4,3" />
           <text x="232" y="216" text-anchor="middle" font-size="13" font-weight="700"
             style="font-family: var(--font-body); fill: var(--accent-yellow)">
-            เก็บเงิน
+            วางบิล รพ.
           </text>
           <text x="232" y="232" text-anchor="middle" font-size="9.5"
             style="font-family: var(--font-label); fill: var(--text-dim)">
-            แคชเชียร์
+            เจ้าหน้าที่การเงิน
           </text>
-          <text x="232" y="246" text-anchor="middle" font-size="9.5"
+          <text x="232" y="246" text-anchor="middle" font-size="9"
             style="font-family: var(--font-label); fill: var(--text-dim)">
-            ทำได้ทุกเวลาหลังสั่งตรวจ
+            ทำนอกระบบ · บันทึกรับชำระในระบบ
           </text>
 
-          <!-- legend -->
+          <!-- legend (2 rows: 3 + 2, avoids crowding the longer role labels) -->
           <line x1="26" y1="266" x2="1014" y2="266" style="stroke: var(--border-hover)" stroke-width="0.8" />
           <rect x="26" y="276" width="14" height="10" rx="2" style="fill: var(--accent-blue)" />
           <text x="46" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
             เจ้าหน้าที่บันทึกข้อมูล
           </text>
-          <rect x="256" y="276" width="14" height="10" rx="2" style="fill: var(--accent-purple)" />
-          <text x="276" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
+          <rect x="330" y="276" width="14" height="10" rx="2" style="fill: var(--accent-purple)" />
+          <text x="350" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
             เจ้าหน้าที่รับแล็บ
           </text>
-          <rect x="446" y="276" width="14" height="10" rx="2" style="fill: var(--accent-orange)" />
-          <text x="466" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
+          <rect x="560" y="276" width="14" height="10" rx="2" style="fill: var(--accent-orange)" />
+          <text x="580" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
             นักเทคนิคการแพทย์
           </text>
-          <rect x="660" y="276" width="14" height="10" rx="2" style="fill: var(--accent-green)" />
-          <text x="680" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
+          <rect x="26" y="300" width="14" height="10" rx="2" style="fill: var(--accent-green)" />
+          <text x="46" y="309" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
             หัวหน้าห้องปฏิบัติการ/แพทย์
           </text>
-          <rect x="920" y="276" width="14" height="10" rx="2" style="fill: var(--accent-yellow)" />
-          <text x="940" y="285" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
-            แคชเชียร์
+          <rect x="330" y="300" width="14" height="10" rx="2" style="fill: var(--accent-yellow)" />
+          <text x="350" y="309" font-size="9.5" style="font-family: var(--font-label); fill: var(--text-dim)">
+            เจ้าหน้าที่การเงิน
           </text>
         </svg>
       </div>
       <script type="application/json" class="slide-notes">
           {
             "title": "เส้นทางใบสั่งตรวจ — ภาพรวม",
-            "script": "นี่คือภาพรวมทั้งเส้นทางของใบสั่งตรวจหนึ่งใบ ใบสั่งตรวจเข้ามาได้สองทาง — พิมพ์เองโดยเจ้าหน้าที่บันทึกข้อมูล หรือรับเข้าอัตโนมัติจากโรงพยาบาลเครือข่ายที่เชื่อมระบบแล้ว จากนั้นเจ้าหน้าที่รับแล็บรับสิ่งส่งตรวจ นักเทคนิคการแพทย์บันทึกผลและ Verify หัวหน้าห้องปฏิบัติการหรือแพทย์ Approve แล้วเจ้าหน้าที่บันทึกข้อมูลพิมพ์ใบรายงานผล ส่วนการเก็บเงินแยกเป็นอีกเลนหนึ่งที่แคชเชียร์ทำได้ทุกเวลาหลังสั่งตรวจ",
+            "script": "นี่คือภาพรวมทั้งเส้นทางของใบสั่งตรวจหนึ่งใบ ใบสั่งตรวจเข้ามาได้สองทาง — พิมพ์เองโดยเจ้าหน้าที่บันทึกข้อมูล หรือรับเข้าอัตโนมัติจากโรงพยาบาลเครือข่ายที่เชื่อมระบบแล้ว จากนั้นเจ้าหน้าที่รับแล็บรับสิ่งส่งตรวจ นักเทคนิคการแพทย์บันทึกผลและ Verify หัวหน้าห้องปฏิบัติการหรือแพทย์ Approve แล้วเจ้าหน้าที่บันทึกข้อมูลพิมพ์และส่งผลให้โรงพยาบาลตามอีเมลที่แจ้งไว้ ส่วนการวางบิลโรงพยาบาลแยกเป็นอีกเลนหนึ่งที่เจ้าหน้าที่การเงินทำนอกระบบ",
             "notes": [
               "เวลา ~3 นาที",
-              "7 ขั้นหลัก: ลงทะเบียนผู้ป่วย → สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve → พิมพ์ใบรายงานผล",
+              "7 ขั้นหลัก: ลงทะเบียนผู้ป่วย → สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve → พิมพ์/ส่งผล รพ.",
               "สั่งตรวจเข้ามา 2 ทาง: กรอกเอง หรือรับเข้าอัตโนมัติจาก รพ./เครือข่ายที่เชื่อมระบบ",
-              "ใบแจ้งหนี้สร้างอัตโนมัติตอนสั่งตรวจ",
-              "เก็บเงินเป็นเลนแยก แคชเชียร์ทำได้ทุกเวลาหลังสั่งตรวจ ไม่ผูกกับสถานะผล",
+              "พิมพ์/ส่งผล รพ.: พิมพ์ใบรายงานผลเป็น PDF แล้วส่งไปอีเมลที่ รพ. แจ้งไว้",
+              "วางบิล รพ. เป็นเลนแยก ทำนอกระบบโดยเจ้าหน้าที่การเงิน ระบบบันทึกแค่รับชำระ",
               "พิมพ์ใบรายงานได้เฉพาะรายการที่ Approve แล้วเท่านั้น"
             ]
           }
@@ -2391,7 +2394,7 @@
               "ใบสั่งตรวจ: รอดำเนินการ → เก็บตัวอย่างแล้ว → กำลังตรวจ → เสร็จสิ้น (ยกเลิกได้เฉพาะสองสถานะแรก)",
               "สิ่งส่งตรวจจาก รพ. กด \"รับ\" แล้วข้ามไปกำลังตรวจได้เลย ไม่ต้องผ่านเก็บตัวอย่างแล้ว",
               "ผลตรวจต่อรายการ: รอผล → บันทึกผลแล้ว → ตรวจสอบแล้ว → อนุมัติแล้ว",
-              "ยกเลิก Verify / ยกเลิก Approve ถอยสถานะผลกลับไปแก้ได้ (ปฏิเสธผลทำได้ผ่าน API เท่านั้น ไม่มีปุ่มในหน้าเว็บ)",
+              "ยกเลิก Verify / ยกเลิก Approve ถอยสถานะผลกลับไปแก้ได้ (ปฏิเสธผลไม่มีปุ่มในหน้าเว็บ ทำได้เฉพาะทางเทคนิคเท่านั้น)",
               "ผลครบทุกรายการอนุมัติแล้ว → ใบสั่งตรวจเสร็จสิ้นอัตโนมัติ ไม่มีสถานะปิดงานแยก"
             ]
           }
@@ -2534,15 +2537,15 @@
         </div>
         <div class="daily-col-shot">
           <div class="shot-placeholder" data-caption="ภาพหน้าจอ: หน้าค้นหา/ลงทะเบียนผู้ป่วย + สั่งตรวจ">
-            <img src="images/guide3/open-new-ticket.png" alt="สั่งตรวจ">
+            <img src="images/guide3/open-new-ticket.png" alt="สั่งตรวจ" />
             <img src="images/guide3/search-before-add-new.png" alt="ค้นหาก่อน" />
             <img src="images/guide3/add-new-patient.png" alt="ลงทะเบียนผู้ป่วยใหม่" />
-            <img src="images/guide3/choose-patient.png" alt="เลือกผู้ป่วย">
+            <img src="images/guide3/choose-patient.png" alt="เลือกผู้ป่วย" />
 
-            <img src="images/guide3/select-package.png" alt="เลือกรายการตรวจ">
-            <img src="images/guide3/add-on.png" alt="เพิ่ม option การตรวจ เพิ่มตัวอย่าง">
-            <img src="images/guide3/preview-ticket.png" alt="ตรวจสอบรายละเอียดที่สั่ง ตรวจแล้ว">
-            <img src="images/guide3/warning-duplicated.png" alt="ระบบเตือนว่าพบข้อมูลรายการตรวจที่คล้ายกัน">
+            <img src="images/guide3/select-package.png" alt="เลือกรายการตรวจ" />
+            <img src="images/guide3/add-on.png" alt="เพิ่ม option การตรวจ เพิ่มตัวอย่าง" />
+            <img src="images/guide3/preview-ticket.png" alt="ตรวจสอบรายละเอียดที่สั่ง ตรวจแล้ว" />
+            <img src="images/guide3/warning-duplicated.png" alt="ระบบเตือนว่าพบข้อมูลรายการตรวจที่คล้ายกัน" />
             <div class="shot-zoom-badge">🔍 คลิกขยาย</div>
           </div>
         </div>
@@ -2630,14 +2633,14 @@
         </div>
         <div class="daily-col-shot">
           <div class="shot-placeholder">
-            <img src="images/guide4/process-ticket.png" alt="เมนูรับสิ่งส่งตรวจ">
-            <img src="images/guide4/accept-speciment.png" alt="เก็บสิ่งสงตรวจตามรายการ">
-            <img src="images/guide4/queue-print-label.png" alt="เลือกตัวอย่างที่ต้องการพิมพ์ สติกเกอร์">
-            <img src="images/guide4/print-label.png" alt="พิมพ์สติกเกอร์">
-            <img src="images/guide4/pending-to-accept.png" alt="ลงรับสิ่งส่งตรวจ">
-            <img src="images/guide4/inquery-accept.png" alt="เลือกรับสิ่งส่งตรวจ">
-            <img src="images/guide4/accept-status.png" alt="สิ่งสงตรวจที่รับแล้ว">
-            <img src="images/guide4/cannot-process-if-no-update-status.png" alt="หากยังไม่กดรับ จะลงผลไม่ได้">
+            <img src="images/guide4/process-ticket.png" alt="เมนูรับสิ่งส่งตรวจ" />
+            <img src="images/guide4/accept-speciment.png" alt="เก็บสิ่งสงตรวจตามรายการ" />
+            <img src="images/guide4/queue-print-label.png" alt="เลือกตัวอย่างที่ต้องการพิมพ์ สติกเกอร์" />
+            <img src="images/guide4/print-label.png" alt="พิมพ์สติกเกอร์" />
+            <img src="images/guide4/pending-to-accept.png" alt="ลงรับสิ่งส่งตรวจ" />
+            <img src="images/guide4/inquery-accept.png" alt="เลือกรับสิ่งส่งตรวจ" />
+            <img src="images/guide4/accept-status.png" alt="สิ่งสงตรวจที่รับแล้ว" />
+            <img src="images/guide4/cannot-process-if-no-update-status.png" alt="หากยังไม่กดรับ จะลงผลไม่ได้" />
             <div class="shot-zoom-badge">🔍 คลิกขยาย</div>
           </div>
         </div>
@@ -2723,12 +2726,12 @@
         </div>
         <div class="daily-col-shot">
           <div class="shot-placeholder">
-            <img src="images/guide5/overall-inquey.png" alt="หน้าลงผลแลป">
-            <img src="images/guide5/testing-status.png" alt="สถานะที่จะลงผลได้ต้องเป็น กำลังตรวจ">
-            <img src="images/guide5/update-result-lab.png" alt="ลงผลตรวจ">
-            <img src="images/guide5/checkpoint-result.png" alt="มี checkpoint สำหรับบอกด้วยว่าถือไหน">
-            <img src="images/guide5/save-daft-first.png" alt="บันทีกแบบร่างก่อน">
-            <img src="images/guide5/verify-all.png" alt="ตรวจยืนยันผลทั้งหมด">
+            <img src="images/guide5/overall-inquey.png" alt="หน้าลงผลแลป" />
+            <img src="images/guide5/testing-status.png" alt="สถานะที่จะลงผลได้ต้องเป็น กำลังตรวจ" />
+            <img src="images/guide5/update-result-lab.png" alt="ลงผลตรวจ" />
+            <img src="images/guide5/checkpoint-result.png" alt="มี checkpoint สำหรับบอกด้วยว่าถือไหน" />
+            <img src="images/guide5/save-daft-first.png" alt="บันทีกแบบร่างก่อน" />
+            <img src="images/guide5/verify-all.png" alt="ตรวจยืนยันผลทั้งหมด" />
             <div class="shot-zoom-badge">🔍 คลิกขยาย</div>
           </div>
         </div>
@@ -2806,8 +2809,8 @@
         </div>
         <div class="daily-col-shot">
           <div class="shot-placeholder">
-            <img src="images/guide6/approve.png" alt="อนุมัติผลตรวจ">
-            <img src="images/guide6/send-result-via-email.png" alt="ส่งผลตรวจทางอีเมล">
+            <img src="images/guide6/approve.png" alt="อนุมัติผลตรวจ" />
+            <img src="images/guide6/send-result-via-email.png" alt="ส่งผลตรวจทางอีเมล" />
             <div class="shot-zoom-badge">🔍 คลิกขยาย</div>
           </div>
         </div>
@@ -2832,399 +2835,509 @@
     <div class="slide demo-slide" data-slide="12">
       <div class="demo-badge anim-1">DEMO</div>
       <div class="cb-number anim-1">
-        งานประจำวัน 6/6 · เจ้าหน้าที่บันทึกข้อมูล + แคชเชียร์
+        งานประจำวัน 6/6 · เจ้าหน้าที่บันทึกข้อมูล + เจ้าหน้าที่การเงิน
       </div>
-      <h2 class="anim-2">พิมพ์ใบรายงานผล + เก็บเงิน</h2>
+      <h2 class="anim-2">พิมพ์ / ส่งผล รพ. + วางบิล</h2>
       <div class="daily-row anim-3">
         <div class="daily-col-main">
           <div class="cb-pair" style="margin-top: 0">
             <div class="cb-card fix">
-              <div class="cb-card-label fix-label">พิมพ์ใบรายงานผล</div>
+              <div class="cb-card-label fix-label">พิมพ์ / ส่งผล รพ.</div>
               <div class="cb-card-text">
-                เปิดใบสั่งตรวจ (หาด้วย "ค้นหาสิ่งส่งตรวจ" ก็ได้) → กด
-                "พิมพ์ใบรายงานผล" — รายการที่ยังไม่ Approve จะไม่ขึ้น
+                เปิดใบสั่งตรวจ → "พิมพ์ใบรายงานผล" → บันทึกเป็น PDF →
+                ส่งจากอีเมลแล็บไปที่อีเมลที่ รพ. แจ้งไว้ — รพ. ที่มีบัญชี
+                Portal ดู/พิมพ์ผลเองได้
               </div>
             </div>
             <div class="cb-card fix">
-              <div class="cb-card-label fix-label">เก็บเงิน</div>
+              <div class="cb-card-label fix-label">วางบิล รพ.</div>
               <div class="cb-card-text">
-                การเงิน &gt; ใบแจ้งหนี้ → ชำระ
-                (เงินสด/บัตรเครดิต/พร้อมเพย์/โอนเงิน) → "พิมพ์ใบเสร็จ" —
-                ทำได้ทุกเวลา ไม่เปลี่ยนสถานะใบสั่งตรวจ
+                ใบแจ้งหนี้ในระบบเป็นรายผู้ป่วย · วางบิล รพ. ทำนอกระบบ ·
+                ดูยอดค้างที่ การเงิน &gt; ลูกหนี้คงค้าง · รพ. โอนแล้ว →
+                เปิดใบแจ้งหนี้ → ชำระ "โอนเงิน"
               </div>
             </div>
           </div>
           <div class="step-warning mt-16">
-            รายการที่ยังไม่ Approve จะไม่ขึ้นในใบรายงาน · เก็บเงินได้ทุกเวลา
-            ไม่ต้องรอผลตรวจเสร็จ
+            ปุ่ม "ส่งผลทางอีเมล" ในระบบส่งถึงอีเมลผู้ป่วย ไม่ใช่ รพ. · รพ.
+            โทรถามผล → "ค้นหาสิ่งส่งตรวจ" ดูสถานะ (เสร็จสิ้น = อนุมัติครบ)
           </div>
         </div>
         <div class="daily-col-shot">
           <div class="shot-placeholder">
-            <img src="images/guide7/report-section.png" alt="หน้าพิมพ์ใบรายงานผล">
-            <img src="images/guide7/report-preview.png" alt="หน้าตัวอย่างใบรายงานผล">
-            <img src="images/guide7/invoice-section.png" alt="เมนูการเงิน ใบแจ้งหนี้">
-            <img src="images/guide7/approve-invoice.png" alt="อนุมัติการชำระเงิน">
+            <img src="images/guide7/report-section.png" alt="หน้าพิมพ์ใบรายงานผล" />
+            <img src="images/guide7/report-preview.png" alt="หน้าตัวอย่างใบรายงานผล" />
+            <img src="images/guide7/invoice-section.png" alt="เมนูการเงิน ใบแจ้งหนี้" />
+            <img src="images/guide7/approve-invoice.png" alt="อนุมัติการชำระเงิน" />
             <div class="shot-zoom-badge">🔍 คลิกขยาย</div>
           </div>
         </div>
       </div>
-    </div>
-    <script type="application/json" class="slide-notes">
+      <script type="application/json" class="slide-notes">
           {
-            "title": "งานประจำวัน 6/6 — พิมพ์ใบรายงานผล + เก็บเงิน",
-            "script": "เจ้าหน้าที่บันทึกข้อมูลเปิดใบสั่งตรวจ หรือค้นด้วยเมนูค้นหาสิ่งส่งตรวจก็ได้ แล้วกดพิมพ์ใบรายงานผล รายการที่ยังไม่อนุมัติจะไม่ขึ้นในใบ ส่วนแคชเชียร์เปิดเมนูการเงิน ใบแจ้งหนี้ เลือกวิธีชำระแล้วพิมพ์ใบเสร็จ ซึ่งทำได้ทุกเวลาไม่ว่าผลตรวจจะเสร็จหรือยัง และไม่ทำให้สถานะใบสั่งตรวจเปลี่ยน",
+            "title": "งานประจำวัน 6/6 — พิมพ์ / ส่งผล รพ. + วางบิล",
+            "script": "เจ้าหน้าที่บันทึกข้อมูลเปิดใบสั่งตรวจแล้วพิมพ์ใบรายงานผล บันทึกเป็น PDF แล้วส่งจากอีเมลแล็บไปที่อีเมลที่โรงพยาบาลแจ้งไว้ โรงพยาบาลที่มีบัญชี Portal ดูและพิมพ์ผลเองได้เลย ปุ่มส่งผลทางอีเมลในระบบส่งถึงผู้ป่วยเท่านั้น ไม่ใช่โรงพยาบาล ส่วนเจ้าหน้าที่การเงินดูยอดค้างที่เมนูลูกหนี้คงค้าง แล้ววางบิลกับโรงพยาบาลนอกระบบ พอโรงพยาบาลโอนเงินมาก็เปิดใบแจ้งหนี้แล้วบันทึกรับชำระ",
             "notes": [
-              "เวลา ~3 นาที",
-              "พิมพ์ใบรายงานผล: เปิดใบสั่งตรวจ (หรือ \"ค้นหาสิ่งส่งตรวจ\") → \"พิมพ์ใบรายงานผล\"",
-              "รายการที่ยังไม่ Approve จะไม่ขึ้นในใบรายงาน",
-              "เก็บเงิน: การเงิน > ใบแจ้งหนี้ → ชำระ → \"พิมพ์ใบเสร็จ\"",
-              "คำเตือน: เก็บเงินได้ทุกเวลา ไม่เปลี่ยนสถานะใบสั่งตรวจ ไม่มีสถานะ \"ปิดงาน\" แยก",
+              "เวลา ~4 นาที",
+              "พิมพ์/ส่งผล รพ.: เปิดใบสั่งตรวจ → \"พิมพ์ใบรายงานผล\" → บันทึก PDF → ส่งอีเมลจากแล็บไปยังอีเมลที่ รพ. แจ้งไว้",
+              "รพ. ที่มีบัญชี Portal (Lab admin สร้างให้ที่ ตั้งค่า > หน่วยงานที่ส่งตรวจ) ดู/พิมพ์ผลเองได้",
+              "คำเตือน: ปุ่ม \"ส่งผลทางอีเมล\" ในระบบส่งถึงอีเมลผู้ป่วยเท่านั้น ไม่ใช่ รพ.",
+              "วางบิล รพ.: ใบแจ้งหนี้ในระบบเป็นรายผู้ป่วย ไม่มีวางบิลรวมในระบบ ดูยอดค้างที่ การเงิน > ลูกหนี้คงค้าง",
+              "รพ. โอนเงินแล้ว → เปิดใบแจ้งหนี้ → ชำระ \"โอนเงิน\"",
+              "รพ. โทรถามผล → เมนู \"ค้นหาสิ่งส่งตรวจ\" ดูสถานะ (เสร็จสิ้น = อนุมัติครบทุกรายการ)",
               "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
             ]
           }
         </script>
-  </div>
+    </div>
 
-  <!-- 13: เมื่อเกิดข้อผิดพลาด 1/2 -->
-  <div class="slide" data-slide="13">
-    <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 1/2</div>
-    <h2 class="anim-2">สิ่งส่งตรวจเสีย / ต้องยกเลิกใบ</h2>
-    <div class="cb-pair anim-3">
-      <div class="cb-card problem">
-        <div class="cb-card-label problem-label">สิ่งส่งตรวจใช้ไม่ได้</div>
-        <div class="cb-card-text">
-          หน้า "รับสิ่งส่งตรวจ" กดปุ่ม "ปฏิเสธ" → กรอกเหตุผล (บังคับ) →
-          เช็กบ็อกซ์ "ขอเก็บตัวอย่างใหม่ (สร้างภาชนะทดแทน)"
-          ติ๊กอยู่แล้วโดยปริยาย → ระบบสร้างภาชนะทดแทนให้เก็บใหม่
+    <!-- 13: เมื่อเกิดข้อผิดพลาด 1/2 -->
+    <div class="slide" data-slide="13">
+      <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 1/2</div>
+      <h2 class="anim-2">สิ่งส่งตรวจเสีย / ต้องยกเลิกใบ</h2>
+      <div class="cb-pair anim-3">
+        <div class="cb-card problem">
+          <div class="cb-card-label problem-label">สิ่งส่งตรวจใช้ไม่ได้</div>
+          <div class="cb-card-text">
+            หน้า "รับสิ่งส่งตรวจ" กดปุ่ม "ปฏิเสธ" → กรอกเหตุผล (บังคับ) →
+            เช็กบ็อกซ์ "ขอเก็บตัวอย่างใหม่ (สร้างภาชนะทดแทน)"
+            ติ๊กอยู่แล้วโดยปริยาย → ระบบสร้างภาชนะทดแทนให้เก็บใหม่
+          </div>
+        </div>
+        <div class="cb-card fix">
+          <div class="cb-card-label fix-label">ต้องยกเลิกใบสั่งตรวจ</div>
+          <div class="cb-card-text">
+            ปุ่ม "ยกเลิกใบสั่งตรวจ" ขึ้นเฉพาะตอน
+            <span class="cb-accent">รอดำเนินการ</span> · ต้องใส่เหตุผล ·
+            ใบแจ้งหนี้ยกเลิกตาม · กำลังตรวจแล้ว ระบบยกเลิกไม่ได้เลย —
+            แจ้งหัวหน้าห้องปฏิบัติการตัดสินตามระเบียบแล็บ
+          </div>
         </div>
       </div>
-      <div class="cb-card fix">
-        <div class="cb-card-label fix-label">ต้องยกเลิกใบสั่งตรวจ</div>
-        <div class="cb-card-text">
-          ปุ่ม "ยกเลิกใบสั่งตรวจ" ขึ้นเฉพาะตอน
-          <span class="cb-accent">รอดำเนินการ</span> · ต้องใส่เหตุผล ·
-          ใบแจ้งหนี้ยกเลิกตาม · กำลังตรวจแล้ว ระบบยกเลิกไม่ได้เลย —
-          แจ้งหัวหน้าห้องปฏิบัติการตัดสินตามระเบียบแล็บ
-        </div>
+      <div class="step-warning mt-24">
+        โทร/อีเมลแจ้ง รพ. ผู้ส่งทุกครั้ง — ระบบไม่แจ้งให้ · พิมพ์หลักฐาน:
+        รายงาน &gt; ปฏิเสธตัวอย่าง &gt; "พิมพ์ A4"
       </div>
-    </div>
-    <div class="step-warning mt-24">
-      ลงทะเบียนผู้ป่วยซ้ำ/ผิดคน — แจ้ง Lab admin ก่อนสั่งตรวจเพิ่ม
-    </div>
-    <script type="application/json" class="slide-notes">
+      <script type="application/json" class="slide-notes">
           {
             "title": "เมื่อเกิดข้อผิดพลาด 1/2",
-            "script": "สองสถานการณ์ที่พบบ่อย สิ่งส่งตรวจใช้ไม่ได้ ให้กดปฏิเสธในหน้ารับสิ่งส่งตรวจ กรอกเหตุผล ระบบจะสร้างภาชนะใหม่ให้เก็บตัวอย่างซ้ำโดยอัตโนมัติ ส่วนปุ่มยกเลิกใบสั่งตรวจจะขึ้นเฉพาะตอนที่ยังรอดำเนินการเท่านั้น พอกำลังตรวจแล้วระบบยกเลิกไม่ได้เลย ต้องแจ้งหัวหน้าห้องปฏิบัติการตัดสินตามระเบียบแล็บ",
+            "script": "สองสถานการณ์ที่พบบ่อย สิ่งส่งตรวจใช้ไม่ได้ ให้กดปฏิเสธในหน้ารับสิ่งส่งตรวจ กรอกเหตุผล ระบบจะสร้างภาชนะใหม่ให้เก็บตัวอย่างซ้ำโดยอัตโนมัติ แต่ระบบไม่แจ้งโรงพยาบาลผู้ส่งให้ ต้องโทรหรืออีเมลแจ้งเองทุกครั้ง ส่วนปุ่มยกเลิกใบสั่งตรวจจะขึ้นเฉพาะตอนที่ยังรอดำเนินการเท่านั้น พอกำลังตรวจแล้วระบบยกเลิกไม่ได้เลย ต้องแจ้งหัวหน้าห้องปฏิบัติการตัดสินตามระเบียบแล็บ",
             "notes": [
               "เวลา ~2 นาที",
               "สิ่งส่งตรวจใช้ไม่ได้: ปฏิเสธ + กรอกเหตุผล + ขอเก็บตัวอย่างใหม่ (ติ๊กอยู่แล้ว) → สร้างภาชนะทดแทน",
-              "ยกเลิกใบสั่งตรวจ: ปุ่มขึ้นเฉพาะตอนรอดำเนินการ (API ยังอนุญาตตอนเก็บตัวอย่างแล้วด้วย) ต้องกรอกเหตุผล",
+              "คำเตือน: ระบบไม่แจ้ง รพ. ผู้ส่งให้ ต้องโทร/อีเมลแจ้งเองทุกครั้ง",
+              "พิมพ์หลักฐานการปฏิเสธ: เมนู รายงาน > แท็บ \"ปฏิเสธตัวอย่าง\" > \"รายงานการปฏิเสธตัวอย่าง\" > \"พิมพ์ A4\"",
+              "ยกเลิกใบสั่งตรวจ: ปุ่มขึ้นเฉพาะตอนรอดำเนินการ (ระบบยังอนุญาตตอนเก็บตัวอย่างแล้วด้วย) ต้องกรอกเหตุผล",
               "ยกเลิกใบสั่งตรวจ → ใบแจ้งหนี้ยกเลิกตามไปด้วย",
               "กำลังตรวจแล้ว ระบบยกเลิกไม่ได้เลย → แจ้งหัวหน้าห้องปฏิบัติการตัดสินตามระเบียบแล็บ",
               "ลงทะเบียนผู้ป่วยซ้ำ/ผิดคน → แจ้ง Lab admin ก่อนสั่งตรวจเพิ่ม (ใบสั่งตรวจลบไม่ได้ ยกเลิกได้เท่านั้น)"
             ]
           }
         </script>
-  </div>
+    </div>
 
-  <!-- 14: เมื่อเกิดข้อผิดพลาด 2/2 -->
-  <div class="slide" data-slide="14">
-    <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 2/2</div>
-    <h2 class="anim-2">กรอกผลผิด / ค่าวิกฤต</h2>
-    <div class="status-timeline anim-3">
-      <div class="status-item stag-1">
-        <div class="status-dot green"></div>
-        <div class="status-text">
-          <strong>ยังไม่ Verify</strong> — แก้ค่าได้เลยในหน้าบันทึกผล
+    <!-- 14: เมื่อเกิดข้อผิดพลาด 2/2 -->
+    <div class="slide" data-slide="14">
+      <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 2/2</div>
+      <h2 class="anim-2">กรอกผลผิด / ค่าวิกฤต</h2>
+      <div class="status-timeline anim-3">
+        <div class="status-item stag-1">
+          <div class="status-dot green"></div>
+          <div class="status-text">
+            <strong>ยังไม่ Verify</strong> — แก้ค่าได้เลยในหน้าบันทึกผล
+          </div>
+        </div>
+        <div class="status-item stag-2">
+          <div class="status-dot orange"></div>
+          <div class="status-text">
+            <strong>Verify แล้ว</strong> — กด "ยกเลิก Verify" ให้ถอยเป็น
+            บันทึกผลแล้ว ก่อนแล้วค่อยแก้
+          </div>
+        </div>
+        <div class="status-item stag-3">
+          <div class="status-dot red"></div>
+          <div class="status-text">
+            <strong>Approve แล้ว</strong> — ต้องให้ผู้มีสิทธิ์ Approve กด
+            "ยกเลิก Approve" ก่อนแล้วค่อยแก้
+          </div>
+        </div>
+        <div class="status-item stag-4">
+          <div class="status-dot blue"></div>
+          <div class="status-text">
+            ทุกการแก้ไขมี<strong>ประวัติการแก้ไขผล</strong> เก็บไว้เสมอ
+            ไม่มีการเขียนทับเงียบๆ
+          </div>
         </div>
       </div>
-      <div class="status-item stag-2">
-        <div class="status-dot orange"></div>
-        <div class="status-text">
-          <strong>Verify แล้ว</strong> — กด "ยกเลิก Verify" ให้ถอยเป็น
-          บันทึกผลแล้ว ก่อนแล้วค่อยแก้
-        </div>
+      <div class="step-warning mt-16">
+        ค่าวิกฤต: หน้าต่าง "ค่าวิกฤต — Critical Value"
+        เด้งก่อนบันทึก/Verify/Approve — ระบบอีเมลแจ้งผู้ติดต่อของ รพ.
+        อัตโนมัติ (ไม่แสดงค่าผล) ยังต้องโทร/อีเมลแจ้งตามระเบียบแล็บ แล้วกรอก
+        "บันทึกการแจ้ง" (เช่น โทรแจ้ง รพ.X คุณ... เวลา...) แล้วกด
+        "รับทราบและบันทึก"
       </div>
-      <div class="status-item stag-3">
-        <div class="status-dot red"></div>
-        <div class="status-text">
-          <strong>Approve แล้ว</strong> — ต้องให้ผู้มีสิทธิ์ Approve กด
-          "ยกเลิก Approve" ก่อนแล้วค่อยแก้
-        </div>
-      </div>
-      <div class="status-item stag-4">
-        <div class="status-dot blue"></div>
-        <div class="status-text">
-          ทุกการแก้ไขมี<strong>ประวัติการแก้ไขผล</strong> เก็บไว้เสมอ
-          ไม่มีการเขียนทับเงียบๆ
-        </div>
-      </div>
-    </div>
-    <div class="step-warning mt-16">
-      ค่าวิกฤต: หน้าต่าง "ค่าวิกฤต — Critical Value"
-      เด้งก่อนบันทึก/Verify/Approve — กรอก "บันทึกการแจ้ง" (เช่น
-      โทรแจ้งแพทย์ เวลาเท่าไร) แล้วกด "รับทราบและบันทึก"
-    </div>
-    <script type="application/json" class="slide-notes">
+      <script type="application/json" class="slide-notes">
           {
             "title": "เมื่อเกิดข้อผิดพลาด 2/2",
-            "script": "ถ้ากรอกผลผิด วิธีแก้ขึ้นกับว่าผลนั้นไปถึงขั้นไหนแล้ว ถ้ายังไม่ Verify แก้ได้เลย ถ้า Verify แล้วต้องยกเลิก Verify ก่อน ถ้า Approve แล้วต้องให้ผู้มีสิทธิ์ Approve ยกเลิก Approve ก่อน ทุกการแก้ไขระบบเก็บประวัติไว้หมด ไม่มีการเขียนทับเงียบๆ ส่วนค่าวิกฤต ระบบจะบังคับให้กรอกว่าแจ้งใครก่อนเสมอ",
+            "script": "ถ้ากรอกผลผิด วิธีแก้ขึ้นกับว่าผลนั้นไปถึงขั้นไหนแล้ว ถ้ายังไม่ Verify แก้ได้เลย ถ้า Verify แล้วต้องยกเลิก Verify ก่อน ถ้า Approve แล้วต้องให้ผู้มีสิทธิ์ Approve ยกเลิก Approve ก่อน ทุกการแก้ไขระบบเก็บประวัติไว้หมด ไม่มีการเขียนทับเงียบๆ ส่วนค่าวิกฤต ระบบจะอีเมลแจ้งผู้ติดต่อของโรงพยาบาลอัตโนมัติโดยไม่แสดงค่าผล แต่เจ้าหน้าที่ยังต้องโทรหรืออีเมลแจ้งตามระเบียบแล็บแล้วกรอกบันทึกการแจ้งทุกครั้ง",
             "notes": [
               "เวลา ~2 นาที",
               "ยังไม่ Verify → แก้ค่าได้เลย",
               "Verify แล้ว → \"ยกเลิก Verify\" ก่อนแก้",
               "Approve แล้ว → ผู้มีสิทธิ์ Approve กด \"ยกเลิก Approve\" ก่อนแก้",
               "ทุกการแก้มีประวัติการแก้ไขผล ไม่เขียนทับเงียบๆ",
-              "ค่าวิกฤต: กรอก \"บันทึกการแจ้ง\" แล้วกด \"รับทราบและบันทึก\" ก่อนไปต่อ"
+              "ค่าวิกฤต: ระบบอีเมลแจ้งผู้ติดต่อ รพ. อัตโนมัติ (ไม่แสดงค่าผล) — ยังต้องโทร/อีเมลแจ้งตามระเบียบแล็บ",
+              "กรอก \"บันทึกการแจ้ง\" (เช่น โทรแจ้ง รพ.X คุณ... เวลา...) แล้วกด \"รับทราบและบันทึก\" ก่อนไปต่อ"
             ]
           }
         </script>
-  </div>
-
-  <!-- 15: งานของฉันตามบทบาท (cheat sheet) -->
-  <div class="slide" data-slide="15">
-    <div class="slide-tag anim-1">สรุปย่อ</div>
-    <h2 class="anim-2">งานของฉันตามบทบาท</h2>
-    <div class="table-wrap anim-3">
-      <table>
-        <thead>
-          <tr>
-            <th>บทบาท</th>
-            <th>เมนูที่ใช้</th>
-            <th>ปุ่มหลัก</th>
-            <th>ส่งต่อที่สถานะ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="cell-highlight">เจ้าหน้าที่บันทึกข้อมูล</td>
-            <td class="cell-muted">
-              ผู้ป่วย · สั่งตรวจ · รับเข้าจาก สคร./รพ. (ถ้ามี)
-            </td>
-            <td class="cell-muted">
-              "ผู้ป่วยใหม่" · "อ่านบัตรประชาชน" · "สร้างใบสั่งตรวจ" ·
-              "พิมพ์ใบรายงานผล"
-            </td>
-            <td class="cell-muted">รอดำเนินการ</td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">เจ้าหน้าที่รับแล็บ</td>
-            <td class="cell-muted">รับสิ่งส่งตรวจ</td>
-            <td class="cell-muted">"รับ" · "ปฏิเสธ" · "พิมพ์ฉลาก"</td>
-            <td class="cell-muted">กำลังตรวจ</td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">นักเทคนิคการแพทย์</td>
-            <td class="cell-muted">ผลตรวจ</td>
-            <td class="cell-muted">"บันทึก" · "Verify"</td>
-            <td class="cell-muted">บันทึกผลแล้ว / ตรวจสอบแล้ว</td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ / แพทย์</td>
-            <td class="cell-muted">ผลตรวจ · รายงาน</td>
-            <td class="cell-muted">"Approve" · "ยืนยัน Approve"</td>
-            <td class="cell-muted">อนุมัติแล้ว</td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">แคชเชียร์</td>
-            <td class="cell-muted">การเงิน &gt; ใบแจ้งหนี้</td>
-            <td class="cell-muted">"ชำระ" · "พิมพ์ใบเสร็จ"</td>
-            <td class="cell-muted">ไม่เปลี่ยนสถานะใบสั่งตรวจ</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-    <p class="subtitle anim-4" style="font-size: clamp(12px, 1vw, 14px); margin-top: 12px">
-      บทบาทระดับดูแลระบบ (super_admin / company_admin / branch_admin)
-      ดูภาคผนวก
-    </p>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 15: งานของฉันตามบทบาท (cheat sheet) -->
+    <div class="slide" data-slide="15">
+      <div class="slide-tag anim-1">สรุปย่อ</div>
+      <h2 class="anim-2">งานของฉันตามบทบาท</h2>
+      <div class="table-wrap anim-3">
+        <table>
+          <thead>
+            <tr>
+              <th>บทบาท</th>
+              <th>เมนูที่ใช้</th>
+              <th>ปุ่มหลัก</th>
+              <th>ส่งต่อที่สถานะ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-highlight">เจ้าหน้าที่บันทึกข้อมูล</td>
+              <td class="cell-muted">
+                ผู้ป่วย · สั่งตรวจ · รับเข้าจาก สคร./รพ. (ถ้ามี)
+              </td>
+              <td class="cell-muted">
+                "ผู้ป่วยใหม่" · "อ่านบัตรประชาชน" · "สร้างใบสั่งตรวจ" ·
+                "พิมพ์ใบรายงานผล" · พิมพ์/ส่งผลทางอีเมล รพ.
+              </td>
+              <td class="cell-muted">รอดำเนินการ</td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">เจ้าหน้าที่รับแล็บ</td>
+              <td class="cell-muted">รับสิ่งส่งตรวจ</td>
+              <td class="cell-muted">"รับ" · "ปฏิเสธ" · "พิมพ์ฉลาก"</td>
+              <td class="cell-muted">กำลังตรวจ</td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">นักเทคนิคการแพทย์</td>
+              <td class="cell-muted">ผลตรวจ</td>
+              <td class="cell-muted">"บันทึก" · "Verify"</td>
+              <td class="cell-muted">บันทึกผลแล้ว / ตรวจสอบแล้ว</td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ / แพทย์</td>
+              <td class="cell-muted">ผลตรวจ · รายงาน</td>
+              <td class="cell-muted">"Approve" · "ยืนยัน Approve"</td>
+              <td class="cell-muted">อนุมัติแล้ว</td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">เจ้าหน้าที่การเงิน</td>
+              <td class="cell-muted">
+                การเงิน &gt; ใบแจ้งหนี้ · ลูกหนี้คงค้าง
+              </td>
+              <td class="cell-muted">"ชำระ" (โอนเงิน) · "พิมพ์ใบเสร็จ"</td>
+              <td class="cell-muted">วางบิล รพ. นอกระบบ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="subtitle anim-4" style="font-size: clamp(12px, 1vw, 14px); margin-top: 12px">
+        บทบาทระดับดูแลระบบ (super_admin / company_admin / branch_admin)
+        ดูภาคผนวก
+      </p>
+      <script type="application/json" class="slide-notes">
           {
             "title": "งานของฉันตามบทบาท",
             "script": "สรุปรวบยอดว่าแต่ละตำแหน่งงานใช้เมนูไหน กดปุ่มอะไร และส่งไม้ต่อที่สถานะไหน ใช้ตารางนี้เช็กตัวเองได้เลยว่าวันนี้ต้องทำอะไร",
             "notes": [
               "เวลา ~1 นาที",
-              "เจ้าหน้าที่บันทึกข้อมูล: ผู้ป่วย/สั่งตรวจ/พิมพ์ใบรายงานผล → รอดำเนินการ",
+              "เจ้าหน้าที่บันทึกข้อมูล: ผู้ป่วย/สั่งตรวจ/พิมพ์ใบรายงานผล/ส่งผลทางอีเมล รพ. → รอดำเนินการ",
               "เจ้าหน้าที่รับแล็บ: รับสิ่งส่งตรวจ/พิมพ์ฉลาก → กำลังตรวจ",
               "นักเทคนิคการแพทย์: บันทึกผล/Verify → บันทึกผลแล้ว/ตรวจสอบแล้ว",
               "หัวหน้าห้องปฏิบัติการ/แพทย์: Approve → อนุมัติแล้ว",
-              "แคชเชียร์: เก็บเงิน ไม่เปลี่ยนสถานะใบสั่งตรวจ",
+              "เจ้าหน้าที่การเงิน: ใบแจ้งหนี้/ลูกหนี้คงค้าง → วางบิล รพ. นอกระบบ",
               "บทบาทดูแลระบบไม่อยู่ในตารางนี้ ดูภาคผนวก"
             ]
           }
         </script>
-  </div>
-
-  <!-- 16: กับดักตอนใช้งานประจำวัน -->
-  <div class="slide" data-slide="16">
-    <h2 class="anim-1">กับดักตอนใช้งานประจำวัน</h2>
-    <div class="card-grid">
-      <div class="card-editorial tone-red bounce-1">
-        <div class="card-tag">บล็อกในใบรายงาน</div>
-        <div class="card-title">
-          รายการที่ยังไม่ Approve ไม่ขึ้นในใบรายงาน
-        </div>
-        <div class="card-desc">
-          พิมพ์ใบรายงานได้เสมอ แต่รายการที่ยังไม่อนุมัติจะถูกเว้นไว้
-        </div>
-      </div>
-      <div class="card-editorial tone-orange bounce-2">
-        <div class="card-tag">กันข้อมูลซ้ำ</div>
-        <div class="card-title">ค้นหาผู้ป่วยก่อนสร้างใหม่เสมอ</div>
-        <div class="card-desc">
-          ไม่งั้นได้ HN ซ้ำ ประวัติผู้ป่วยแตกเป็นสองชุด
-        </div>
-      </div>
-      <div class="card-editorial tone-red bounce-3">
-        <div class="card-tag">บันทึกผลไม่ได้</div>
-        <div class="card-title">ยังไม่กด "รับ" สิ่งส่งตรวจ</div>
-        <div class="card-desc">
-          ต้องรับสิ่งส่งตรวจก่อน (กำลังตรวจ) ถึงจะบันทึกผลได้
-        </div>
-      </div>
-      <div class="card-editorial tone-orange bounce-4">
-        <div class="card-tag">ต้อง login ใหม่</div>
-        <div class="card-title">เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยน</div>
-        <div class="card-desc">
-          ต้อง logout แล้ว login ใหม่หลังเปลี่ยนบทบาท
-        </div>
-      </div>
-      <div class="card-editorial tone-blue bounce-1">
-        <div class="card-tag">ตามแพ็กเกจ</div>
-        <div class="card-title">เมนูบางอย่างเปิดตามแพ็กเกจ</div>
-        <div class="card-desc">
-          เช่น เครื่องตรวจวิเคราะห์ / รับเข้าจาก รพ. — ถาม IT ก่อน
-          อย่าเพิ่งคิดว่าระบบพัง
-        </div>
-      </div>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 16: ตำแหน่งงาน ↔ บทบาทในระบบ -->
+    <div class="slide" data-slide="16">
+      <div class="slide-tag anim-1">เช็กสิทธิ์ของตัวเอง</div>
+      <h2 class="anim-2">ตำแหน่งงาน ↔ บทบาทในระบบ</h2>
+      <div class="table-wrap anim-3">
+        <table>
+          <thead>
+            <tr>
+              <th>ตำแหน่งงาน</th>
+              <th>งานในระบบ</th>
+              <th>บทบาทในระบบที่แนะนำ</th>
+              <th>บทบาทที่ได้จริง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-highlight">
+                เจ้าพนักงานธุรการ / เจ้าหน้าที่บันทึกข้อมูล
+              </td>
+              <td class="cell-muted">
+                ค้นหา/ลงทะเบียนผู้ป่วย · สั่งตรวจ · พิมพ์/ส่งผล
+              </td>
+              <td class="cell-muted">receptionist (พนักงานต้อนรับ)</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">
+                เจ้าพนักงานวิทยาศาสตร์การแพทย์ / เจ้าหน้าที่รับแล็บ
+              </td>
+              <td class="cell-muted">รับ/ปฏิเสธสิ่งส่งตรวจ · พิมพ์ฉลาก</td>
+              <td class="cell-muted">lab_technician (นักเทคนิคการแพทย์)</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">
+                นักเทคนิคการแพทย์ / นักวิทยาศาสตร์การแพทย์
+              </td>
+              <td class="cell-muted">บันทึกผล · Verify</td>
+              <td class="cell-muted">lab_technician</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">
+                หัวหน้าห้องปฏิบัติการ / หัวหน้ากลุ่มงาน
+              </td>
+              <td class="cell-muted">Approve · ยกเลิก Approve · รายงาน</td>
+              <td class="cell-muted">lab_manager</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">แพทย์ (ถ้ามี)</td>
+              <td class="cell-muted">Approve</td>
+              <td class="cell-muted">doctor</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">เจ้าพนักงานการเงินและบัญชี</td>
+              <td class="cell-muted">ใบแจ้งหนี้ · รับชำระ · ลูกหนี้คงค้าง</td>
+              <td class="cell-muted">cashier</td>
+              <td class="cell-muted" style="color: var(--text-dim)">
+                __________
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="subtitle anim-4" style="font-size: clamp(11px, 0.95vw, 13px); margin-top: 10px">
+        บทบาทที่แนะนำ อ้างอิงสิทธิ์มาตรฐานของระบบ — Lab admin เป็นผู้กำหนดจริง
+        · ถ้าเมนูที่ต้องใช้ไม่ขึ้น แจ้ง Lab admin
+      </p>
+      <script type="application/json" class="slide-notes">
+          {
+            "title": "ตำแหน่งงาน ↔ บทบาทในระบบ",
+            "script": "ตารางนี้จับคู่ตำแหน่งงานจริงในแล็บของกรมกับบทบาทมาตรฐานของระบบ คอลัมน์สุดท้ายเว้นว่างไว้ให้ Lab admin กรอกว่าแต่ละคนได้บทบาทอะไรจริง ถ้าเมนูที่ต้องใช้ไม่ขึ้นให้แจ้ง Lab admin ทันที",
+            "notes": [
+              "เวลา ~2 นาที",
+              "เจ้าพนักงานธุรการ/เจ้าหน้าที่บันทึกข้อมูล → receptionist",
+              "เจ้าพนักงานวิทยาศาสตร์การแพทย์/เจ้าหน้าที่รับแล็บ และ นักเทคนิคการแพทย์ → lab_technician",
+              "หัวหน้าห้องปฏิบัติการ/หัวหน้ากลุ่มงาน → lab_manager, แพทย์ → doctor, เจ้าพนักงานการเงินและบัญชี → cashier",
+              "คอลัมน์ \"บทบาทที่ได้จริง\" ให้ Lab admin กรอกก่อนอบรม หรือกรอกสดในห้อง",
+              "บทบาทที่แนะนำเป็นค่าอ้างอิง Lab admin เป็นผู้กำหนดจริงตามหน้าที่งาน"
+            ]
+          }
+        </script>
+    </div>
+
+    <!-- 17: กับดักตอนใช้งานประจำวัน -->
+    <div class="slide" data-slide="17">
+      <h2 class="anim-1">กับดักตอนใช้งานประจำวัน</h2>
+      <div class="card-grid">
+        <div class="card-editorial tone-red bounce-1">
+          <div class="card-tag">บล็อกในใบรายงาน</div>
+          <div class="card-title">
+            รายการที่ยังไม่ Approve ไม่ขึ้นในใบรายงาน
+          </div>
+          <div class="card-desc">
+            พิมพ์ใบรายงานได้เสมอ แต่รายการที่ยังไม่อนุมัติจะถูกเว้นไว้
+          </div>
+        </div>
+        <div class="card-editorial tone-orange bounce-2">
+          <div class="card-tag">กันข้อมูลซ้ำ</div>
+          <div class="card-title">ค้นหาผู้ป่วยก่อนสร้างใหม่เสมอ</div>
+          <div class="card-desc">
+            ไม่งั้นได้ HN ซ้ำ ประวัติผู้ป่วยแตกเป็นสองชุด
+          </div>
+        </div>
+        <div class="card-editorial tone-red bounce-3">
+          <div class="card-tag">บันทึกผลไม่ได้</div>
+          <div class="card-title">ยังไม่กด "รับ" สิ่งส่งตรวจ</div>
+          <div class="card-desc">
+            ต้องรับสิ่งส่งตรวจก่อน (กำลังตรวจ) ถึงจะบันทึกผลได้
+          </div>
+        </div>
+        <div class="card-editorial tone-orange bounce-4">
+          <div class="card-tag">ต้อง login ใหม่</div>
+          <div class="card-title">เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยน</div>
+          <div class="card-desc">
+            ต้อง logout แล้ว login ใหม่หลังเปลี่ยนบทบาท
+          </div>
+        </div>
+        <div class="card-editorial tone-blue bounce-1">
+          <div class="card-tag">ส่งถึงผู้ป่วยเท่านั้น</div>
+          <div class="card-title">
+            ปุ่ม "ส่งผลทางอีเมล" ส่งถึงผู้ป่วย ไม่ใช่ รพ.
+          </div>
+          <div class="card-desc">
+            ส่งผลให้ รพ. ต้องพิมพ์ PDF แล้วส่งเองจากอีเมลแล็บ
+          </div>
+        </div>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "กับดักตอนใช้งานประจำวัน",
-            "script": "ห้าเรื่องนี้เป็นกับดักที่เจอบ่อยที่สุดในงานใช้จริง จำไว้ให้ขึ้นใจก่อนเริ่มใช้งาน รายการที่ยังไม่ Approve จะพิมพ์ได้แต่ไม่ขึ้นในใบรายงาน เพราะฉะนั้นก่อนสร้างผู้ป่วยใหม่ต้องค้นหาก่อนทุกครั้งไม่งั้นได้ HN ซ้ำ ถ้ายังไม่กดรับสิ่งส่งตรวจจะบันทึกผลไม่ได้ เปลี่ยนบทบาทแล้วต้อง logout แล้ว login ใหม่ถึงจะเห็นสิทธิ์ใหม่ และเมนูบางอย่างเช่นเครื่องตรวจวิเคราะห์หรือรับเข้าจากโรงพยาบาลเปิดตามแพ็กเกจที่สมัคร ให้ถาม IT ก่อนอย่าเพิ่งคิดว่าระบบพัง",
+            "script": "ห้าเรื่องนี้เป็นกับดักที่เจอบ่อยที่สุดในงานใช้จริง จำไว้ให้ขึ้นใจก่อนเริ่มใช้งาน แต่ละเรื่องเป็นเรื่องแยกจากกัน อย่างแรก รายการที่ยังไม่ Approve จะพิมพ์ได้แต่ไม่ขึ้นในใบรายงาน อีกเรื่องคือก่อนสร้างผู้ป่วยใหม่ต้องค้นหาก่อนทุกครั้ง ไม่งั้นได้ HN ซ้ำ ถ้ายังไม่กดรับสิ่งส่งตรวจจะบันทึกผลไม่ได้ เปลี่ยนบทบาทแล้วต้อง logout แล้ว login ใหม่ถึงจะเห็นสิทธิ์ใหม่ และปุ่มส่งผลทางอีเมลในระบบส่งถึงผู้ป่วยเท่านั้น ถ้าจะส่งผลให้โรงพยาบาลต้องพิมพ์เป็น PDF แล้วส่งเองจากอีเมลแล็บ",
             "notes": [
               "เวลา ~2 นาที",
               "รายการที่ยังไม่ Approve พิมพ์ได้ แต่รายการนั้นไม่ขึ้นในใบรายงาน",
               "ค้นหาผู้ป่วยก่อนสร้างใหม่เสมอ ไม่งั้นได้ HN ซ้ำ ประวัติแตกสองชุด",
               "ยังไม่กด \"รับ\" สิ่งส่งตรวจ = บันทึกผลไม่ได้",
               "เปลี่ยนบทบาทแล้วต้อง logout/login ใหม่ถึงจะเห็นสิทธิ์ใหม่",
-              "เมนูหาย เช่น เครื่องตรวจวิเคราะห์/รับเข้าจาก รพ. เพราะเปิดปิดตามแพ็กเกจ ไม่ใช่ระบบพัง ถาม IT ก่อน"
+              "ปุ่ม \"ส่งผลทางอีเมล\" ส่งถึงอีเมลผู้ป่วยเท่านั้น ไม่ใช่ รพ. — ส่งให้ รพ. ต้องพิมพ์ PDF แล้วส่งเองจากอีเมลแล็บ"
             ]
           }
         </script>
-  </div>
+    </div>
 
-  <!-- 17: ลองทำเอง 10 นาที -->
-  <div class="slide" data-slide="17">
-    <div class="slide-tag anim-1">ลงมือพร้อมกัน</div>
-    <h2 class="anim-2">ลองทำเอง 10 นาที</h2>
-    <div class="cb-wrap anim-3">
-      <ul class="cb-list">
-        <li>
-          (1) ค้นหาผู้ป่วยทดสอบ
-          <span class="fill-blank">[26090002]</span>
-        </li>
-        <li>
-          (2) เปิด "ค้นหาสิ่งส่งตรวจ" ด้วยเลขที่ใบสั่ง
-          <span class="fill-blank">[HQ2609140002]</span>
-          ดูสถานะปัจจุบัน
-        </li>
-        <li>
-          (3) เฉพาะเจ้าหน้าที่บันทึกข้อมูล: สร้างใบสั่งตรวจให้ผู้ป่วยทดสอบ
-          แล้วกด "ยกเลิกใบสั่งตรวจ" ทันที เหตุผล "ฝึกอบรม"
-        </li>
-        <li>(4) ดูว่าเมนูของตัวเองครบตามบทบาทไหม</li>
-      </ul>
-      <div class="step-warning mt-16">
-        ระบบจริง ไม่มีโหมดทดสอบ — ห้ามใช้ผู้ป่วยจริง · ใบสั่งตรวจลบไม่ได้
-        ยกเลิกได้เท่านั้น
+    <!-- 18: ลองทำเอง 15 นาที -->
+    <div class="slide" data-slide="18">
+      <div class="slide-tag anim-1">ลงมือพร้อมกัน</div>
+      <h2 class="anim-2">ลองทำเอง 15 นาที</h2>
+      <div class="cb-wrap anim-3">
+        <ul class="cb-list">
+          <li>
+            (1) ทุกคน: ค้นหาผู้ป่วยทดสอบ
+            <span class="fill-blank">[26090002]</span> + เปิด
+            "ค้นหาสิ่งส่งตรวจ" ด้วยเลขที่ใบสั่ง
+            <span class="fill-blank">[HQ2609140002]</span>
+          </li>
+          <li>
+            (2) ตัวแทนแต่ละตำแหน่งกดต่อกันบนใบทดสอบใบเดียวจนครบวงจร:
+            บันทึกข้อมูลสั่งตรวจ → รับแล็บกด "รับ" → นักเทคนิคฯ บันทึกผล +
+            Verify → หัวหน้าฯ Approve → บันทึกข้อมูลพิมพ์ใบรายงานผล
+          </li>
+          <li>(3) ทุกคนเช็กเมนูของตัวเองตามตารางตำแหน่งงาน</li>
+        </ul>
+        <div class="step-warning mt-16">
+          ใช้ระบบจริง — ใช้ผู้ป่วยทดสอบเท่านั้น
+          ห้ามใช้ข้อมูลผู้ป่วยจริงในห้องอบรม
+        </div>
       </div>
-    </div>
-    <script type="application/json" class="slide-notes">
+      <script type="application/json" class="slide-notes">
           {
-            "title": "ลองทำเอง 10 นาที",
-            "script": "ตอนนี้ทุกคนลองลงมือทำเองสิบนาที โดยใช้ user ของตัวเอง เริ่มจากค้นหาผู้ป่วยทดสอบที่เตรียมไว้ แล้วลองค้นหาสิ่งส่งตรวจด้วยเลขที่ใบสั่งทดสอบเพื่อดูสถานะ ถ้าใครเป็นเจ้าหน้าที่บันทึกข้อมูล ให้ลองสร้างใบสั่งตรวจแล้วยกเลิกทันทีโดยใส่เหตุผลว่าฝึกอบรม สุดท้ายลองดูว่าเมนูของตัวเองครบตามบทบาทที่ควรได้รับหรือเปล่า ย้ำว่าระบบนี้เป็นระบบจริง ไม่มีโหมดทดสอบ ห้ามใช้ข้อมูลผู้ป่วยจริงเด็ดขาด",
+            "title": "ลองทำเอง 15 นาที",
+            "script": "ตอนนี้ทุกคนลองลงมือทำเองบนระบบจริง โดยใช้ user ของตัวเอง เริ่มจากค้นหาผู้ป่วยทดสอบที่เตรียมไว้ แล้วค้นหาสิ่งส่งตรวจด้วยเลขที่ใบสั่งทดสอบ จากนั้นให้ตัวแทนแต่ละตำแหน่งกดต่อกันบนใบทดสอบใบเดียวกันจนครบวงจร ตั้งแต่บันทึกข้อมูลสั่งตรวจ รับแล็บกดรับ นักเทคนิคการแพทย์บันทึกผลและ Verify หัวหน้าฯ Approve จนถึงบันทึกข้อมูลพิมพ์ใบรายงานผล สุดท้ายทุกคนเช็กว่าเมนูของตัวเองครบตามตารางตำแหน่งงานไหม ย้ำว่านี่คือระบบจริง ใช้ผู้ป่วยทดสอบเท่านั้น ห้ามใช้ข้อมูลผู้ป่วยจริงในห้องอบรม",
             "notes": [
-              "เวลา ~10 นาที",
-              "ผู้บรรยายสร้างผู้ป่วยทดสอบ + ใบสั่งตรวจทดสอบไว้ก่อนเริ่มอบรม",
-              "หลังอบรมจบ ให้ Lab admin ลบผู้ป่วยทดสอบออก",
+              "เวลา ~15 นาที",
+              "เตรียมผู้ป่วยทดสอบ + ใบสั่งตรวจทดสอบไว้ก่อนเริ่มอบรม",
+              "ใบทดสอบจะค้างอยู่ในระบบหลังฝึก — ช่วง MA ยอมรับได้ ไม่ต้องลบ",
               "มีผู้ช่วยเดินดูในห้องช่วยตอบคำถามระหว่างทำ",
-              "ย้ำ: ระบบจริง ไม่มีโหมดทดสอบ ห้ามใช้ผู้ป่วยจริง · ใบสั่งตรวจลบไม่ได้ ยกเลิกได้เท่านั้น"
+              "ย้ำ: ใช้ระบบจริง ใช้ผู้ป่วยทดสอบเท่านั้น ห้ามใช้ข้อมูลผู้ป่วยจริง"
             ]
           }
         </script>
-  </div>
-
-  <!-- 18: ทบทวน -->
-  <div class="slide" data-slide="18">
-    <div class="slide-tag anim-1">ก่อนจบ</div>
-    <h2 class="anim-2">ทบทวน</h2>
-    <div class="cb-wrap">
-      <ul class="cb-list anim-2">
-        <li>
-          <strong>รายการที่ยังไม่ Approve พิมพ์ใบรายงานได้ไหม?</strong> —
-          พิมพ์ได้ แต่รายการนั้นไม่ขึ้นในใบรายงาน
-        </li>
-        <li>
-          <strong>ผู้ป่วยมาจาก รพ. ต้องสร้างใหม่ไหม?</strong> — ไม่ต้อง
-          ค้นหาก่อนเสมอ ระบบจับคู่ให้อัตโนมัติถ้าเชื่อมระบบ
-          หรือค้นด้วยเลขบัตร/ชื่อก่อนสร้างใหม่
-        </li>
-        <li>
-          <strong>สิ่งส่งตรวจใช้ไม่ได้ทำยังไง?</strong> — กด "ปฏิเสธ" +
-          "ขอเก็บตัวอย่างใหม่" ระบบสร้างภาชนะทดแทนให้
-        </li>
-        <li>
-          <strong>Approve ไปแล้วแต่ค่าผิด ทำยังไง?</strong> —
-          แจ้งผู้มีสิทธิ์ Approve ให้กด "ยกเลิก Approve" แล้วแก้
-          ระบบเก็บประวัติ
-        </li>
-      </ul>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 19: ทบทวน -->
+    <div class="slide" data-slide="19">
+      <div class="slide-tag anim-1">ก่อนจบ</div>
+      <h2 class="anim-2">ทบทวน</h2>
+      <div class="cb-wrap">
+        <ul class="cb-list anim-2">
+          <li>
+            <strong>รายการที่ยังไม่ Approve พิมพ์ใบรายงานได้ไหม?</strong> —
+            พิมพ์ได้ แต่รายการนั้นไม่ขึ้นในใบรายงาน
+          </li>
+          <li>
+            <strong>รพ. ส่งใบกระดาษ ได้ผลทางไหน?</strong> —
+            พิมพ์ใบรายงานผลเป็น PDF ส่งทางอีเมลที่ รพ. แจ้งไว้
+            (ปุ่มส่งผลทางอีเมลในระบบส่งถึงผู้ป่วยเท่านั้น)
+          </li>
+          <li>
+            <strong>สิ่งส่งตรวจใช้ไม่ได้ทำยังไง?</strong> — กด "ปฏิเสธ" +
+            ขอเก็บตัวอย่างใหม่ แล้วโทร/อีเมลแจ้ง รพ.
+          </li>
+          <li>
+            <strong>Approve ไปแล้วแต่ค่าผิด ทำยังไง?</strong> —
+            แจ้งผู้มีสิทธิ์ Approve ให้กด "ยกเลิก Approve" แล้วแก้
+            ระบบเก็บประวัติ
+          </li>
+        </ul>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ทบทวน",
-            "script": "ก่อนจบภาคเนื้อหาหลัก มาทบทวนสี่คำถามสั้นๆ ที่ครอบคลุมเรื่องสำคัญที่สุดของวันนี้ ตั้งแต่การพิมพ์ใบรายงาน การรับผู้ป่วยจากโรงพยาบาลเครือข่าย การจัดการสิ่งส่งตรวจที่ใช้ไม่ได้ ไปจนถึงการแก้ไขผลที่อนุมัติไปแล้ว ลองตอบในใจก่อน แล้วดูเฉลยพร้อมกัน",
+            "script": "ก่อนจบภาคเนื้อหาหลัก มาทบทวนสี่คำถามสั้นๆ ที่ครอบคลุมเรื่องสำคัญที่สุดของวันนี้ ตั้งแต่การพิมพ์ใบรายงาน การส่งผลให้โรงพยาบาลที่ส่งใบกระดาษมา การจัดการสิ่งส่งตรวจที่ใช้ไม่ได้ ไปจนถึงการแก้ไขผลที่อนุมัติไปแล้ว ลองตอบในใจก่อน แล้วดูเฉลยพร้อมกัน",
             "notes": [
               "เวลา ~2 นาที",
               "Q: รายการที่ยังไม่ Approve พิมพ์ได้ไหม → A: พิมพ์ได้ แต่รายการนั้นไม่ขึ้น",
-              "Q: ผู้ป่วยมาจาก รพ. ต้องสร้างใหม่ไหม → A: ไม่ต้อง ค้นหาก่อนเสมอ",
-              "Q: สิ่งส่งตรวจใช้ไม่ได้ → A: ปฏิเสธ + ขอเก็บตัวอย่างใหม่",
+              "Q: รพ. ส่งใบกระดาษ ได้ผลทางไหน → A: พิมพ์ PDF ส่งอีเมลที่ รพ. แจ้งไว้ (ปุ่มในระบบส่งถึงผู้ป่วยเท่านั้น)",
+              "Q: สิ่งส่งตรวจใช้ไม่ได้ → A: ปฏิเสธ + ขอเก็บตัวอย่างใหม่ + โทร/อีเมลแจ้ง รพ.",
               "Q: Approve ไปแล้วแต่ค่าผิด → A: แจ้งผู้มีสิทธิ์ Approve กด ยกเลิก Approve แล้วแก้ ระบบเก็บประวัติ"
             ]
           }
         </script>
-  </div>
-
-  <!-- 19: สิ่งที่คุณต้องทำช่วงเปิดใช้จริง -->
-  <div class="slide" data-slide="19">
-    <div class="cb-wrap">
-      <div class="cb-number anim-1">ทุกคน · ช่วงเปิดใช้จริง</div>
-      <div class="cb-heading anim-2">สิ่งที่คุณต้องทำช่วงเปิดใช้จริง</div>
-      <ul class="cb-list anim-3">
-        <li>
-          ซ้อมเองอย่างน้อยคนละ <span class="cb-accent">3 เคสเต็มวงจร</span>
-          — ไม่ใช่แค่นั่งดูคนอื่นทำ
-        </li>
-        <li>
-          เมื่อพบปัญหา แคปหน้าจอ เขียนอธิบายขั้นตอนที่เกิดขึ้น
-          ให้แจ้งในไลน์กลุ่ม หรือแจ้ง
-          <span class="fill-blank">ไตเติ้ล</span> เพื่อรวบรวมปัญหา
-        </li>
-        <li>Morning Scrum ประชุมสั้น 15 นาทีทุกเช้า 5 วันแรก</li>
-        <li>
-          ห้ามบันทึกซ้ำสองระบบ — ระบบเดิม (ถ้ามี) เป็น
-          <span class="cb-accent">อ่านอย่างเดียว</span>
-        </li>
-      </ul>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 20: สิ่งที่คุณต้องทำช่วงเปิดใช้จริง -->
+    <div class="slide" data-slide="20">
+      <div class="cb-wrap">
+        <div class="cb-number anim-1">ทุกคน · ช่วงเปิดใช้จริง</div>
+        <div class="cb-heading anim-2">สิ่งที่คุณต้องทำช่วงเปิดใช้จริง</div>
+        <div class="cb-body anim-3">
+          ช่วง MA ใช้ระบบจริงเลย — เจอจุดไหนต้องปรับปรุง
+          แจ้งตามช่องทางด้านล่าง
+        </div>
+        <ul class="cb-list anim-3">
+          <li>
+            ซ้อมเองอย่างน้อยคนละ <span class="cb-accent">3 เคสเต็มวงจร</span>
+            — ไม่ใช่แค่นั่งดูคนอื่นทำ
+          </li>
+          <li>
+            เมื่อพบปัญหา แคปหน้าจอ เขียนอธิบายขั้นตอนที่เกิดขึ้น
+            ให้แจ้งในไลน์กลุ่ม หรือแจ้ง
+            <span class="fill-blank">ไตเติ้ล</span> เพื่อรวบรวมปัญหา
+          </li>
+          <li>Morning Scrum ประชุมสั้น 15 นาทีทุกเช้า 5 วันแรก</li>
+          <li>
+            ห้ามบันทึกซ้ำสองระบบ — ระบบเดิม (ถ้ามี) เป็น
+            <span class="cb-accent">อ่านอย่างเดียว</span>
+          </li>
+        </ul>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "สิ่งที่คุณต้องทำช่วงเปิดใช้จริง",
-            "script": "ช่วงเปิดใช้จริง ทุกคนต้องลงมือทำเองอย่างน้อยคนละสามเคสเต็มวงจร ถ้าเจอปัญหาให้แคปหน้าจอ เขียนอธิบายขั้นตอนที่เกิดขึ้น แล้วแจ้งในไลน์กลุ่มหรือแจ้งไตเติ้ลโดยตรงเพื่อรวบรวมปัญหาไว้ที่เดียว มี Morning Scrum ประชุมสั้นสิบห้านาทีทุกเช้าห้าวันแรก และห้ามบันทึกข้อมูลซ้ำสองระบบเด็ดขาด ระบบเดิมถ้ามีให้เป็นอ่านอย่างเดียว",
+            "script": "ช่วง MA เราใช้ระบบจริงเลย ทุกคนต้องลงมือทำเองอย่างน้อยคนละสามเคสเต็มวงจร ถ้าเจอจุดไหนต้องปรับปรุงให้แคปหน้าจอ เขียนอธิบายขั้นตอนที่เกิดขึ้น แล้วแจ้งในไลน์กลุ่มหรือแจ้งไตเติ้ลโดยตรงเพื่อรวบรวมปัญหาไว้ที่เดียว มี Morning Scrum ประชุมสั้นสิบห้านาทีทุกเช้าห้าวันแรก และห้ามบันทึกข้อมูลซ้ำสองระบบเด็ดขาด ระบบเดิมถ้ามีให้เป็นอ่านอย่างเดียว",
             "notes": [
               "เวลา ~1 นาที",
+              "ช่วง MA ใช้ระบบจริงเลย เจอจุดไหนต้องปรับปรุงแจ้งตามช่องทางถัดไป",
               "ซ้อมเองอย่างน้อยคนละ 3 เคสเต็มวงจร",
               "เจอปัญหา แคปหน้าจอ + อธิบายขั้นตอน แจ้งในไลน์กลุ่มหรือแจ้งไตเติ้ล เพื่อรวบรวมปัญหา",
               "Morning Scrum ประชุมสั้น 15 นาทีทุกเช้า 5 วันแรก",
@@ -3232,24 +3345,24 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 20: ช่องทางขอความช่วยเหลือ -->
-  <div class="slide" data-slide="20">
-    <h2 class="anim-1">ติดขัดตรงไหน ถามใครได้บ้าง</h2>
-    <div class="cta-box anim-2">
-      <div class="cta-heading">ช่องทางขอความช่วยเหลือ</div>
-      <div class="cb-body" style="max-width: 680px; margin: 0 auto">
-        การใช้งาน → หัวหน้าห้องปฏิบัติการ/Lab admin
-        <span class="fill-blank">[ใส่ชื่อ]</span>
-        <span class="fill-blank">[ใส่เบอร์โทร]</span><br />
-        ระบบ/บัญชี/ลืมรหัสผ่าน → ฝ่าย IT กรม (ไอที ศูนย์) ไตเติ้ล · กลุ่ม
-        LINE NDC-Lims โปรแกรมแลบ · จ-ศ 8.30-17.30 น.<br />
-        อ้างอิงรายละเอียดเพิ่มเติมได้ที่
-        <span class="cb-accent"><a href="index.html" target="_blank">NDCLIMS Onboarding Bible</a></span>
-      </div>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 21: ช่องทางขอความช่วยเหลือ -->
+    <div class="slide" data-slide="21">
+      <h2 class="anim-1">ติดขัดตรงไหน ถามใครได้บ้าง</h2>
+      <div class="cta-box anim-2">
+        <div class="cta-heading">ช่องทางขอความช่วยเหลือ</div>
+        <div class="cb-body" style="max-width: 680px; margin: 0 auto">
+          การใช้งาน → หัวหน้าห้องปฏิบัติการ/Lab admin
+          <span class="fill-blank">[ใส่ชื่อ]</span>
+          <span class="fill-blank">[ใส่เบอร์โทร]</span><br />
+          ระบบ/บัญชี/ลืมรหัสผ่าน → ฝ่าย IT กรม (ไอที ศูนย์) ไตเติ้ล · กลุ่ม
+          LINE NDC-Lims โปรแกรมแลบ · จ-ศ 8.30-17.30 น.<br />
+          อ้างอิงรายละเอียดเพิ่มเติมได้ที่
+          <span class="cb-accent"><a href="index.html" target="_blank">NDCLIMS Onboarding Bible</a></span>
+        </div>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ช่องทางขอความช่วยเหลือ",
             "script": "ถ้าติดขัดเรื่องการใช้งาน ให้ถามหัวหน้าห้องปฏิบัติการหรือ Lab admin ก่อน ถ้าเป็นปัญหาระบบ บัญชี หรือลืมรหัสผ่าน ให้ติดต่อฝ่าย IT กรม (ไอที ศูนย์) ผ่านไตเติ้ลหรือกลุ่มไลน์ NDC-Lims โปรแกรมแลบ ในเวลาทำการจันทร์ถึงศุกร์ 8.30-17.30 น. และสามารถย้อนกลับไปดูรายละเอียดในคู่มือ Onboarding Bible ได้เสมอ",
@@ -3261,19 +3374,19 @@
             ]
           }
         </script>
-  </div>
+    </div>
 
-  <!-- 21: Q&A ปิดท้าย -->
-  <div class="slide" data-slide="21">
-    <div class="glow-blob glow-green anim-1" style="top: 15%; right: 12%"></div>
-    <div class="slide-tag anim-1">ปิดท้าย</div>
-    <h1 class="anim-2">ถาม — ตอบ</h1>
-    <div class="rainbow-line anim-3"></div>
-    <p class="subtitle anim-3">
-      ขอบคุณครับ/ค่ะ — อ่านรายละเอียดเพิ่มเติมได้ที่ NDCLIMS Onboarding
-      Bible
-    </p>
-    <script type="application/json" class="slide-notes">
+    <!-- 22: Q&A ปิดท้าย -->
+    <div class="slide" data-slide="22">
+      <div class="glow-blob glow-green anim-1" style="top: 15%; right: 12%"></div>
+      <div class="slide-tag anim-1">ปิดท้าย</div>
+      <h1 class="anim-2">ถาม — ตอบ</h1>
+      <div class="rainbow-line anim-3"></div>
+      <p class="subtitle anim-3">
+        ขอบคุณครับ/ค่ะ — อ่านรายละเอียดเพิ่มเติมได้ที่ NDCLIMS Onboarding
+        Bible
+      </p>
+      <script type="application/json" class="slide-notes">
           {
             "title": "Q&A ปิดท้าย",
             "script": "ถึงช่วงถาม-ตอบแล้วครับ/ค่ะ มีคำถามอะไรเกี่ยวกับการใช้งานระบบ ถามได้เลย",
@@ -3284,19 +3397,19 @@
             ]
           }
         </script>
-  </div>
+    </div>
 
-  <!-- 22: ภาคผนวก divider -->
-  <div class="slide" data-slide="22">
-    <div class="glow-blob glow-blue anim-1" style="top: 10%; right: 10%"></div>
-    <div class="section-eyebrow anim-1">ภาคผนวก</div>
-    <h1 class="anim-2">สำหรับ Lab admin</h1>
-    <div class="rainbow-line anim-3"></div>
-    <p class="subtitle anim-3">
-      สรุปสั้นๆ ของงานตั้งค่าที่เจ้าหน้าที่แล็บทั่วไปไม่ต้องทำเอง —
-      ไว้อ้างอิงหรือส่งต่อให้ Lab admin ของแล็บ
-    </p>
-    <script type="application/json" class="slide-notes">
+    <!-- 23: ภาคผนวก divider -->
+    <div class="slide" data-slide="23">
+      <div class="glow-blob glow-blue anim-1" style="top: 10%; right: 10%"></div>
+      <div class="section-eyebrow anim-1">ภาคผนวก</div>
+      <h1 class="anim-2">สำหรับ Lab admin</h1>
+      <div class="rainbow-line anim-3"></div>
+      <p class="subtitle anim-3">
+        สรุปสั้นๆ ของงานตั้งค่าที่เจ้าหน้าที่แล็บทั่วไปไม่ต้องทำเอง —
+        ไว้อ้างอิงหรือส่งต่อให้ Lab admin ของแล็บ
+      </p>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ภาคผนวก — สำหรับ Lab admin",
             "script": "ส่วนที่เหลือเป็นภาคผนวกสรุปงานตั้งค่าระบบสำหรับ Lab admin ของแล็บ ไม่ใช่งานประจำวันของทุกคน แต่มีไว้ให้ทุกคนรู้ภาพรวมและอ้างอิงได้",
@@ -3306,95 +3419,95 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 23: บทบาทมาตรฐาน 8 แบบ -->
-  <div class="slide" data-slide="23">
-    <div class="slide-tag anim-1">ภาคผนวก</div>
-    <h2 class="anim-2">บทบาทมาตรฐาน 8 แบบ</h2>
-    <div class="table-wrap anim-3">
-      <table>
-        <thead>
-          <tr>
-            <th>รหัส</th>
-            <th>ชื่อ</th>
-            <th>ระดับ</th>
-            <th>ทำอะไรได้บ้าง</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="cell-highlight">super_admin</td>
-            <td>ผู้ดูแลระบบสูงสุด</td>
-            <td class="cell-muted">0</td>
-            <td class="cell-muted">ทุกอย่างในระบบ</td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">company_admin</td>
-            <td>ผู้ดูแลบริษัท</td>
-            <td class="cell-muted">1</td>
-            <td class="cell-muted">
-              ทุกสาขา ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน ตั้งค่า
-              ประวัติการใช้งาน
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">branch_admin</td>
-            <td>ผู้ดูแลสาขา</td>
-            <td class="cell-muted">2</td>
-            <td class="cell-muted">
-              ในสาขา — ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">lab_manager</td>
-            <td>หัวหน้าห้องปฏิบัติการ</td>
-            <td class="cell-muted">3</td>
-            <td class="cell-muted">
-              ผู้ป่วยทั้งหมด งานแล็บทั้งหมด (รวม Verify + Approve)
-              รายงานทั้งหมด ดูการเงิน
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">lab_technician</td>
-            <td>นักเทคนิคการแพทย์</td>
-            <td class="cell-muted">3</td>
-            <td class="cell-muted">
-              ดูผู้ป่วย ใบสั่งตรวจทั้งหมด (รับสิ่งส่งตรวจ/ยกเลิก) บันทึกผล
-              Verify ปฏิเสธผล ดูรายงาน
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">receptionist</td>
-            <td>พนักงานต้อนรับ</td>
-            <td class="cell-muted">3</td>
-            <td class="cell-muted">
-              จัดการผู้ป่วย สร้าง/ดูใบสั่งตรวจ การเงินทั้งหมด นัดหมาย คิว
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">doctor</td>
-            <td>แพทย์</td>
-            <td class="cell-muted">3</td>
-            <td class="cell-muted">
-              ดูผู้ป่วย ใบสั่งตรวจทั้งหมด ดูผล + Approve รายงานทั้งหมด
-            </td>
-          </tr>
-          <tr>
-            <td class="cell-highlight">cashier</td>
-            <td>แคชเชียร์</td>
-            <td class="cell-muted">3</td>
-            <td class="cell-muted">
-              ดูผู้ป่วย ดูใบสั่งตรวจ การเงินทั้งหมด เรียกคิว
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-    <p class="subtitle anim-4" style="font-size: clamp(11px, 0.95vw, 13px); margin-top: 10px">
-      ตำแหน่งงานในแล็บ ↔ บทบาทในระบบ กำหนดโดย Lab admin
-    </p>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 24: บทบาทมาตรฐาน 8 แบบ -->
+    <div class="slide" data-slide="24">
+      <div class="slide-tag anim-1">ภาคผนวก</div>
+      <h2 class="anim-2">บทบาทมาตรฐาน 8 แบบ</h2>
+      <div class="table-wrap anim-3">
+        <table>
+          <thead>
+            <tr>
+              <th>รหัส</th>
+              <th>ชื่อ</th>
+              <th>ระดับ</th>
+              <th>ทำอะไรได้บ้าง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-highlight">super_admin</td>
+              <td>ผู้ดูแลระบบสูงสุด</td>
+              <td class="cell-muted">0</td>
+              <td class="cell-muted">ทุกอย่างในระบบ</td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">company_admin</td>
+              <td>ผู้ดูแลบริษัท</td>
+              <td class="cell-muted">1</td>
+              <td class="cell-muted">
+                ทุกสาขา ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน ตั้งค่า
+                ประวัติการใช้งาน
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">branch_admin</td>
+              <td>ผู้ดูแลสาขา</td>
+              <td class="cell-muted">2</td>
+              <td class="cell-muted">
+                ในสาขา — ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">lab_manager</td>
+              <td>หัวหน้าห้องปฏิบัติการ</td>
+              <td class="cell-muted">3</td>
+              <td class="cell-muted">
+                ผู้ป่วยทั้งหมด งานแล็บทั้งหมด (รวม Verify + Approve)
+                รายงานทั้งหมด ดูการเงิน
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">lab_technician</td>
+              <td>นักเทคนิคการแพทย์</td>
+              <td class="cell-muted">3</td>
+              <td class="cell-muted">
+                ดูผู้ป่วย ใบสั่งตรวจทั้งหมด (รับสิ่งส่งตรวจ/ยกเลิก) บันทึกผล
+                Verify ปฏิเสธผล ดูรายงาน
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">receptionist</td>
+              <td>พนักงานต้อนรับ</td>
+              <td class="cell-muted">3</td>
+              <td class="cell-muted">
+                จัดการผู้ป่วย สร้าง/ดูใบสั่งตรวจ การเงินทั้งหมด นัดหมาย คิว
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">doctor</td>
+              <td>แพทย์</td>
+              <td class="cell-muted">3</td>
+              <td class="cell-muted">
+                ดูผู้ป่วย ใบสั่งตรวจทั้งหมด ดูผล + Approve รายงานทั้งหมด
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-highlight">cashier</td>
+              <td>แคชเชียร์</td>
+              <td class="cell-muted">3</td>
+              <td class="cell-muted">
+                ดูผู้ป่วย ดูใบสั่งตรวจ การเงินทั้งหมด เรียกคิว
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="subtitle anim-4" style="font-size: clamp(11px, 0.95vw, 13px); margin-top: 10px">
+        ตำแหน่งงานในแล็บ ↔ บทบาทในระบบ กำหนดโดย Lab admin
+      </p>
+      <script type="application/json" class="slide-notes">
           {
             "title": "บทบาทมาตรฐาน 8 แบบ",
             "script": "นี่คือตารางบทบาทมาตรฐานทั้ง 8 แบบของระบบ ใช้จับคู่กับตำแหน่งงานจริงของเจ้าหน้าที่แต่ละคนในแล็บของเรา",
@@ -3405,33 +3518,33 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 24: Lab admin: เข้าระบบครั้งแรก -->
-  <div class="slide" data-slide="24">
-    <div class="cb-wrap">
-      <div class="cb-number anim-1">Lab admin · 1 ชั่วโมง</div>
-      <div class="cb-heading anim-2">เข้าระบบครั้งแรก</div>
-      <div class="cb-body anim-3">
-        ฝ่าย IT กรมติดตั้งระบบและสร้างบัญชี admin ของแล็บไว้ให้แล้ว —
-        งานของคุณคือเข้าระบบให้ได้จริง เปลี่ยนรหัสผ่าน แล้วตรวจชื่อแล็บ
-      </div>
-      <ul class="cb-list anim-4">
-        <li>
-          รับ URL ระบบ + บัญชี admin จาก ฝ่าย IT กรม แล้วลอง login
-          ให้ได้จริง
-        </li>
-        <li>
-          <span class="cb-accent">เปลี่ยนรหัสผ่านทันที</span>ที่เข้าได้ครั้งแรก (ตั้งค่า &gt; ความปลอดภัย &gt;
-          "เปลี่ยนรหัสผ่าน") — รหัสเริ่มต้นไม่ใช่ความลับถาวร
-        </li>
-        <li>
-          ตรวจว่าชื่อแล็บ / ชื่อสาขา ที่ขึ้นบนหน้าจอสะกดถูก — ผิดแจ้ง IT
-          ทันที
-        </li>
-      </ul>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 25: Lab admin: เข้าระบบครั้งแรก -->
+    <div class="slide" data-slide="25">
+      <div class="cb-wrap">
+        <div class="cb-number anim-1">Lab admin · 1 ชั่วโมง</div>
+        <div class="cb-heading anim-2">เข้าระบบครั้งแรก</div>
+        <div class="cb-body anim-3">
+          ฝ่าย IT กรมติดตั้งระบบและสร้างบัญชี admin ของแล็บไว้ให้แล้ว —
+          งานของคุณคือเข้าระบบให้ได้จริง เปลี่ยนรหัสผ่าน แล้วตรวจชื่อแล็บ
+        </div>
+        <ul class="cb-list anim-4">
+          <li>
+            รับ URL ระบบ + บัญชี admin จาก ฝ่าย IT กรม แล้วลอง login
+            ให้ได้จริง
+          </li>
+          <li>
+            <span class="cb-accent">เปลี่ยนรหัสผ่านทันที</span>ที่เข้าได้ครั้งแรก (ตั้งค่า &gt; ความปลอดภัย &gt;
+            "เปลี่ยนรหัสผ่าน") — รหัสเริ่มต้นไม่ใช่ความลับถาวร
+          </li>
+          <li>
+            ตรวจว่าชื่อแล็บ / ชื่อสาขา ที่ขึ้นบนหน้าจอสะกดถูก — ผิดแจ้ง IT
+            ทันที
+          </li>
+        </ul>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "Lab admin — เข้าระบบครั้งแรก",
             "script": "ขั้นแรกใช้เวลาแค่ชั่วโมงเดียว รับบัญชีจากฝ่าย IT กรมแล้ว login เปลี่ยนรหัสผ่านทันทีเพราะรหัสเริ่มต้นไม่ใช่ความลับถาวร แล้วเช็กว่าชื่อแล็บสะกดถูก",
@@ -3442,161 +3555,161 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 25: ลำดับที่ต้องกรอก -->
-  <div class="slide" data-slide="25">
-    <div class="slide-tag anim-1">ภาคผนวก · ลำดับที่ต้องกรอก</div>
-    <h2 class="anim-2">แต่ละขั้นปลดล็อกขั้นถัดไป</h2>
-    <p class="subtitle anim-2">
-      ข้ามลำดับไม่ได้ — ระบบไม่ให้ทำสลับ
-      เพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
-    </p>
-    <div class="diagram-wrap anim-3">
-      <svg viewBox="0 0 1040 224" role="img" aria-labelledby="s25-title s25-desc" xmlns="http://www.w3.org/2000/svg">
-        <title id="s25-title">ลำดับตั้งค่าเจ็ดขั้นตอนของ Lab admin</title>
-        <desc id="s25-desc">
-          ผังลำดับที่ต้องกรอกข้อมูลเจ็ดขั้นตอน
-          ห้ามสลับลำดับเพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
-          ขั้นที่สามช้าที่สุดและห้ามสลับ ขั้นที่ห้าทำเฉพาะเมื่อมีระบบเดิม
-        </desc>
-        <defs>
-          <marker id="s25-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" style="fill: var(--text-dim)" />
-          </marker>
-        </defs>
-        <line x1="150" y1="84" x2="170" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-        <line x1="294" y1="84" x2="314" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-        <line x1="438" y1="84" x2="458" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-        <line x1="582" y1="84" x2="602" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-        <line x1="726" y1="84" x2="746" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-        <line x1="870" y1="84" x2="890" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
-          marker-end="url(#s25-arrow)" />
-
-        <rect x="26" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
-          stroke-opacity="0.25" stroke-width="1" />
-        <circle cx="45" cy="59" r="11" style="fill: var(--text)" />
-        <text x="45" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--bg-card)">
-          1
-        </text>
-        <text x="88" y="96" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="88" dy="0">เข้าระบบ</tspan>
-          <tspan x="88" dy="15">ครั้งแรก</tspan>
-        </text>
-
-        <rect x="170" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
-          stroke-opacity="0.25" stroke-width="1" />
-        <circle cx="189" cy="59" r="11" style="fill: var(--text)" />
-        <text x="189" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--bg-card)">
-          2
-        </text>
-        <text x="232" y="96" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="232" dy="0">แผนก +</tspan>
-          <tspan x="232" dy="15">ชนิดสิ่งส่งตรวจ</tspan>
-        </text>
-
-        <rect x="314" y="40" width="124" height="88" rx="8" fill="var(--accent-orange)" fill-opacity="0.06"
-          style="stroke: var(--accent-orange)" stroke-width="1.4" />
-        <circle cx="333" cy="59" r="11" style="fill: var(--accent-orange)" />
-        <text x="333" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: #fff">
-          3
-        </text>
-        <text x="376" y="88" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="376" dy="0">หมวดหมู่ →</tspan>
-          <tspan x="376" dy="15">รายการตรวจ →</tspan>
-          <tspan x="376" dy="15">แพ็กเกจ</tspan>
-        </text>
-        <line x1="376" y1="128" x2="376" y2="136" style="stroke: var(--accent-orange)" stroke-width="1.2"
-          stroke-dasharray="4,3" />
-        <rect x="314" y="136" width="124" height="36" rx="6" fill="var(--accent-orange)" fill-opacity="0.05"
-          style="stroke: var(--accent-orange)" stroke-width="1" stroke-dasharray="4,3" />
-        <text x="376" y="151" text-anchor="middle" font-size="12" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--accent-orange)">
-          <tspan x="376" dy="0">ห้ามสลับ</tspan>
-          <tspan x="376" dy="14">ช้าที่สุด</tspan>
-        </text>
-
-        <rect x="458" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
-          stroke-opacity="0.25" stroke-width="1" />
-        <circle cx="477" cy="59" r="11" style="fill: var(--text)" />
-        <text x="477" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--bg-card)">
-          4
-        </text>
-        <text x="520" y="96" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="520" dy="0">ผู้ใช้ +</tspan>
-          <tspan x="520" dy="15">สิทธิ์</tspan>
-        </text>
-
-        <rect x="602" y="40" width="124" height="88" rx="8" fill="var(--text)" fill-opacity="0.02"
-          style="stroke: var(--text)" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4,3" />
-        <circle cx="621" cy="59" r="11" fill="none" style="stroke: var(--text)" stroke-width="1.2" />
-        <text x="621" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--text)">
-          5
-        </text>
-        <text x="664" y="88" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="664" dy="0">(ถ้ามี)</tspan>
-          <tspan x="664" dy="15">ย้ายผู้ป่วย</tspan>
-          <tspan x="664" dy="15">เดิม</tspan>
-        </text>
-
-        <rect x="746" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
-          stroke-opacity="0.25" stroke-width="1" />
-        <circle cx="765" cy="59" r="11" style="fill: var(--text)" />
-        <text x="765" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--bg-card)">
-          6
-        </text>
-        <text x="808" y="96" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="808" dy="0">หน่วยงาน</tspan>
-          <tspan x="808" dy="15">ส่งตรวจ</tspan>
-        </text>
-
-        <rect x="890" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
-          stroke-opacity="0.25" stroke-width="1" />
-        <circle cx="909" cy="59" r="11" style="fill: var(--text)" />
-        <text x="909" y="63" text-anchor="middle" font-size="11" font-weight="700"
-          style="font-family: var(--font-label); fill: var(--bg-card)">
-          7
-        </text>
-        <text x="952" y="88" text-anchor="middle" font-size="13" font-weight="600"
-          style="font-family: var(--font-body); fill: var(--text)">
-          <tspan x="952" dy="0">ซ้อมใช้งาน →</tspan>
-          <tspan x="952" dy="15">เปิดใช้จริง</tspan>
-        </text>
-
-        <line x1="26" y1="190" x2="1014" y2="190" style="stroke: var(--border-hover)" stroke-width="0.8" />
-        <circle cx="33" cy="204" r="7" style="fill: var(--text)" />
-        <text x="46" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
-          ตัวเลข = ลำดับที่ต้องทำ
-        </text>
-        <rect x="355" y="199" width="14" height="10" rx="2" style="fill: var(--accent-orange)" />
-        <text x="375" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
-          สีส้ม = ห้ามสลับ · ขั้นที่ช้าที่สุด
-        </text>
-        <rect x="684" y="199" width="14" height="10" rx="2" fill="none" style="stroke: var(--text)"
-          stroke-opacity="0.35" stroke-width="1" stroke-dasharray="3,2" />
-        <text x="704" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
-          เส้นประ = ทำเฉพาะถ้ามีระบบเดิม
-        </text>
-      </svg>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 26: ลำดับที่ต้องกรอก -->
+    <div class="slide" data-slide="26">
+      <div class="slide-tag anim-1">ภาคผนวก · ลำดับที่ต้องกรอก</div>
+      <h2 class="anim-2">แต่ละขั้นปลดล็อกขั้นถัดไป</h2>
+      <p class="subtitle anim-2">
+        ข้ามลำดับไม่ได้ — ระบบไม่ให้ทำสลับ
+        เพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
+      </p>
+      <div class="diagram-wrap anim-3">
+        <svg viewBox="0 0 1040 224" role="img" aria-labelledby="s25-title s25-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="s25-title">ลำดับตั้งค่าเจ็ดขั้นตอนของ Lab admin</title>
+          <desc id="s25-desc">
+            ผังลำดับที่ต้องกรอกข้อมูลเจ็ดขั้นตอน
+            ห้ามสลับลำดับเพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
+            ขั้นที่สามช้าที่สุดและห้ามสลับ ขั้นที่ห้าทำเฉพาะเมื่อมีระบบเดิม
+          </desc>
+          <defs>
+            <marker id="s25-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" style="fill: var(--text-dim)" />
+            </marker>
+          </defs>
+          <line x1="150" y1="84" x2="170" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+          <line x1="294" y1="84" x2="314" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+          <line x1="438" y1="84" x2="458" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+          <line x1="582" y1="84" x2="602" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+          <line x1="726" y1="84" x2="746" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+          <line x1="870" y1="84" x2="890" y2="84" style="stroke: var(--text-dim)" stroke-width="1.4"
+            marker-end="url(#s25-arrow)" />
+
+          <rect x="26" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
+            stroke-opacity="0.25" stroke-width="1" />
+          <circle cx="45" cy="59" r="11" style="fill: var(--text)" />
+          <text x="45" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--bg-card)">
+            1
+          </text>
+          <text x="88" y="96" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="88" dy="0">เข้าระบบ</tspan>
+            <tspan x="88" dy="15">ครั้งแรก</tspan>
+          </text>
+
+          <rect x="170" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
+            stroke-opacity="0.25" stroke-width="1" />
+          <circle cx="189" cy="59" r="11" style="fill: var(--text)" />
+          <text x="189" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--bg-card)">
+            2
+          </text>
+          <text x="232" y="96" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="232" dy="0">แผนก +</tspan>
+            <tspan x="232" dy="15">ชนิดสิ่งส่งตรวจ</tspan>
+          </text>
+
+          <rect x="314" y="40" width="124" height="88" rx="8" fill="var(--accent-orange)" fill-opacity="0.06"
+            style="stroke: var(--accent-orange)" stroke-width="1.4" />
+          <circle cx="333" cy="59" r="11" style="fill: var(--accent-orange)" />
+          <text x="333" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: #fff">
+            3
+          </text>
+          <text x="376" y="88" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="376" dy="0">หมวดหมู่ →</tspan>
+            <tspan x="376" dy="15">รายการตรวจ →</tspan>
+            <tspan x="376" dy="15">แพ็กเกจ</tspan>
+          </text>
+          <line x1="376" y1="128" x2="376" y2="136" style="stroke: var(--accent-orange)" stroke-width="1.2"
+            stroke-dasharray="4,3" />
+          <rect x="314" y="136" width="124" height="36" rx="6" fill="var(--accent-orange)" fill-opacity="0.05"
+            style="stroke: var(--accent-orange)" stroke-width="1" stroke-dasharray="4,3" />
+          <text x="376" y="151" text-anchor="middle" font-size="12" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--accent-orange)">
+            <tspan x="376" dy="0">ห้ามสลับ</tspan>
+            <tspan x="376" dy="14">ช้าที่สุด</tspan>
+          </text>
+
+          <rect x="458" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
+            stroke-opacity="0.25" stroke-width="1" />
+          <circle cx="477" cy="59" r="11" style="fill: var(--text)" />
+          <text x="477" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--bg-card)">
+            4
+          </text>
+          <text x="520" y="96" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="520" dy="0">ผู้ใช้ +</tspan>
+            <tspan x="520" dy="15">สิทธิ์</tspan>
+          </text>
+
+          <rect x="602" y="40" width="124" height="88" rx="8" fill="var(--text)" fill-opacity="0.02"
+            style="stroke: var(--text)" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4,3" />
+          <circle cx="621" cy="59" r="11" fill="none" style="stroke: var(--text)" stroke-width="1.2" />
+          <text x="621" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--text)">
+            5
+          </text>
+          <text x="664" y="88" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="664" dy="0">(ถ้ามี)</tspan>
+            <tspan x="664" dy="15">ย้ายผู้ป่วย</tspan>
+            <tspan x="664" dy="15">เดิม</tspan>
+          </text>
+
+          <rect x="746" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
+            stroke-opacity="0.25" stroke-width="1" />
+          <circle cx="765" cy="59" r="11" style="fill: var(--text)" />
+          <text x="765" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--bg-card)">
+            6
+          </text>
+          <text x="808" y="96" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="808" dy="0">หน่วยงาน</tspan>
+            <tspan x="808" dy="15">ส่งตรวจ</tspan>
+          </text>
+
+          <rect x="890" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke: var(--text)"
+            stroke-opacity="0.25" stroke-width="1" />
+          <circle cx="909" cy="59" r="11" style="fill: var(--text)" />
+          <text x="909" y="63" text-anchor="middle" font-size="11" font-weight="700"
+            style="font-family: var(--font-label); fill: var(--bg-card)">
+            7
+          </text>
+          <text x="952" y="88" text-anchor="middle" font-size="13" font-weight="600"
+            style="font-family: var(--font-body); fill: var(--text)">
+            <tspan x="952" dy="0">ซ้อมใช้งาน →</tspan>
+            <tspan x="952" dy="15">เปิดใช้จริง</tspan>
+          </text>
+
+          <line x1="26" y1="190" x2="1014" y2="190" style="stroke: var(--border-hover)" stroke-width="0.8" />
+          <circle cx="33" cy="204" r="7" style="fill: var(--text)" />
+          <text x="46" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
+            ตัวเลข = ลำดับที่ต้องทำ
+          </text>
+          <rect x="355" y="199" width="14" height="10" rx="2" style="fill: var(--accent-orange)" />
+          <text x="375" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
+            สีส้ม = ห้ามสลับ · ขั้นที่ช้าที่สุด
+          </text>
+          <rect x="684" y="199" width="14" height="10" rx="2" fill="none" style="stroke: var(--text)"
+            stroke-opacity="0.35" stroke-width="1" stroke-dasharray="3,2" />
+          <text x="704" y="207" font-size="9" style="font-family: var(--font-label); fill: var(--text-dim)">
+            เส้นประ = ทำเฉพาะถ้ามีระบบเดิม
+          </text>
+        </svg>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ภาคผนวก — ลำดับที่ต้องกรอก",
             "script": "สำหรับ Lab admin: ระบบบังคับให้ทำตามลำดับนี้เท่านั้น เพราะแต่ละขั้นอ้างอิงข้อมูลจากขั้นก่อนหน้า",
@@ -3606,32 +3719,32 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 26: ซ้อมใช้งานจริงระดับแล็บ -->
-  <div class="slide" data-slide="26">
-    <div class="cb-wrap">
-      <div class="cb-number anim-1">Lab admin · 5–10 วัน</div>
-      <div class="cb-heading anim-2">ซ้อมใช้งานจริงระดับแล็บ</div>
-      <div class="cb-body anim-3">
-        ขั้นนี้คือสิ่งเดียวที่กันความหายนะวันเปิดใช้จริง
-      </div>
-      <ul class="cb-list anim-4">
-        <li>
-          เลือกงานจริงวันละ 10–20 เคส เดินให้ครบวงจร: ลงทะเบียนผู้ป่วย →
-          สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve →
-          พิมพ์ใบรายงานผล (เก็บเงินทำได้ทุกเวลา)
-        </li>
-        <li>
-          จดทุกอย่างที่ไม่ตรงหรือติดขัดลงรายการเดียว — ห้ามแก้ปากเปล่า
-        </li>
-        <li>
-          เจ้าหน้าที่ทุกคนต้องได้ลงมือทำเองอย่างน้อยคนละ
-          <span class="cb-accent">3 เคส</span> ไม่ใช่แค่นั่งดู
-        </li>
-      </ul>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 27: ซ้อมใช้งานจริงระดับแล็บ -->
+    <div class="slide" data-slide="27">
+      <div class="cb-wrap">
+        <div class="cb-number anim-1">Lab admin · 5–10 วัน</div>
+        <div class="cb-heading anim-2">ซ้อมใช้งานจริงระดับแล็บ</div>
+        <div class="cb-body anim-3">
+          ขั้นนี้คือสิ่งเดียวที่กันความหายนะวันเปิดใช้จริง
+        </div>
+        <ul class="cb-list anim-4">
+          <li>
+            เลือกงานจริงวันละ 10–20 เคส เดินให้ครบวงจร: ลงทะเบียนผู้ป่วย →
+            สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve →
+            พิมพ์ใบรายงานผล (เก็บเงินทำได้ทุกเวลา)
+          </li>
+          <li>
+            จดทุกอย่างที่ไม่ตรงหรือติดขัดลงรายการเดียว — ห้ามแก้ปากเปล่า
+          </li>
+          <li>
+            เจ้าหน้าที่ทุกคนต้องได้ลงมือทำเองอย่างน้อยคนละ
+            <span class="cb-accent">3 เคส</span> ไม่ใช่แค่นั่งดู
+          </li>
+        </ul>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ซ้อมใช้งานจริงระดับแล็บ",
             "script": "ก่อนเปิดใช้จริง ทุกคนต้องซ้อมกับเคสจริงวันละ 10-20 เคส เดินให้ครบวงจร จดทุกจุดที่ไม่ตรงไว้ที่เดียว และทุกคนต้องลงมือทำเองอย่างน้อยคนละ 3 เคส ไม่ใช่แค่นั่งดูคนอื่นทำ",
@@ -3643,52 +3756,52 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 27: กับดักตอนนำเข้าข้อมูล -->
-  <div class="slide" data-slide="27">
-    <div class="slide-tag anim-1">ภาคผนวก · กับดักตอนนำเข้าข้อมูล</div>
-    <h2 class="anim-1">กับดักตอนนำเข้าข้อมูล</h2>
-    <div class="card-grid cols-3">
-      <div class="card-editorial tone-orange bounce-1">
-        <div class="card-tag">รูปแบบไฟล์</div>
-        <div class="card-title">.xlsx เท่านั้น</div>
-        <div class="card-desc">ไม่รับ CSV เลย</div>
-      </div>
-      <div class="card-editorial tone-orange bounce-2">
-        <div class="card-tag">ขีดจำกัดแถว</div>
-        <div class="card-title">สูงสุด 5,000 แถว/ไฟล์</div>
-        <div class="card-desc">เกินแล้วไม่เข้าเลยสักแถว ต้องแบ่งไฟล์</div>
-      </div>
-      <div class="card-editorial tone-red bounce-3">
-        <div class="card-tag">ห้ามย้อนกลับ</div>
-        <div class="card-title">นำเข้าแล้วย้อนกลับไม่ได้</div>
-        <div class="card-desc">
-          500 แถว ผิด 30 → 470 แถวเข้าไปแล้ว แก้เฉพาะแถวผิด
-          ห้ามอัปทั้งไฟล์ซ้ำ
-        </div>
-      </div>
-      <div class="card-editorial tone-orange bounce-4">
-        <div class="card-tag">แก้ยากทีหลัง</div>
-        <div class="card-title">รหัสรายการตรวจเปลี่ยนทีหลังยาก</div>
-        <div class="card-desc">
-          ใบสั่งตรวจและแพ็กเกจอ้างอิงรหัสนี้อยู่ ตัดสินใจให้ดีตั้งแต่ต้น
-        </div>
-      </div>
-      <div class="card-editorial tone-blue bounce-1">
-        <div class="card-tag">พฤติกรรมระบบ</div>
-        <div class="card-title">ข้อมูลเข้าสาขาของคนอัปโหลด</div>
-        <div class="card-desc">
-          ไม่ใช่สาขาที่ระบุในไฟล์ — ให้คนของสาขานั้นอัปเอง
-        </div>
-      </div>
-      <div class="card-editorial tone-blue bounce-2">
-        <div class="card-tag">ขอบเขต</div>
-        <div class="card-title">ไม่มีนำเข้าผลตรวจย้อนหลัง</div>
-        <div class="card-desc">นำเข้าได้แค่ผู้ป่วยกับใบสั่งตรวจ</div>
-      </div>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 28: กับดักตอนนำเข้าข้อมูล -->
+    <div class="slide" data-slide="28">
+      <div class="slide-tag anim-1">ภาคผนวก · กับดักตอนนำเข้าข้อมูล</div>
+      <h2 class="anim-1">กับดักตอนนำเข้าข้อมูล</h2>
+      <div class="card-grid cols-3">
+        <div class="card-editorial tone-orange bounce-1">
+          <div class="card-tag">รูปแบบไฟล์</div>
+          <div class="card-title">.xlsx เท่านั้น</div>
+          <div class="card-desc">ไม่รับ CSV เลย</div>
+        </div>
+        <div class="card-editorial tone-orange bounce-2">
+          <div class="card-tag">ขีดจำกัดแถว</div>
+          <div class="card-title">สูงสุด 5,000 แถว/ไฟล์</div>
+          <div class="card-desc">เกินแล้วไม่เข้าเลยสักแถว ต้องแบ่งไฟล์</div>
+        </div>
+        <div class="card-editorial tone-red bounce-3">
+          <div class="card-tag">ห้ามย้อนกลับ</div>
+          <div class="card-title">นำเข้าแล้วย้อนกลับไม่ได้</div>
+          <div class="card-desc">
+            500 แถว ผิด 30 → 470 แถวเข้าไปแล้ว แก้เฉพาะแถวผิด
+            ห้ามอัปทั้งไฟล์ซ้ำ
+          </div>
+        </div>
+        <div class="card-editorial tone-orange bounce-4">
+          <div class="card-tag">แก้ยากทีหลัง</div>
+          <div class="card-title">รหัสรายการตรวจเปลี่ยนทีหลังยาก</div>
+          <div class="card-desc">
+            ใบสั่งตรวจและแพ็กเกจอ้างอิงรหัสนี้อยู่ ตัดสินใจให้ดีตั้งแต่ต้น
+          </div>
+        </div>
+        <div class="card-editorial tone-blue bounce-1">
+          <div class="card-tag">พฤติกรรมระบบ</div>
+          <div class="card-title">ข้อมูลเข้าสาขาของคนอัปโหลด</div>
+          <div class="card-desc">
+            ไม่ใช่สาขาที่ระบุในไฟล์ — ให้คนของสาขานั้นอัปเอง
+          </div>
+        </div>
+        <div class="card-editorial tone-blue bounce-2">
+          <div class="card-tag">ขอบเขต</div>
+          <div class="card-title">ไม่มีนำเข้าผลตรวจย้อนหลัง</div>
+          <div class="card-desc">นำเข้าได้แค่ผู้ป่วยกับใบสั่งตรวจ</div>
+        </div>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ภาคผนวก — กับดักตอนนำเข้าข้อมูล",
             "script": "สำหรับ Lab admin: หกเรื่องนี้พลาดบ่อยที่สุดตอนนำเข้าข้อมูลด้วยไฟล์ Excel",
@@ -3702,43 +3815,43 @@
             ]
           }
         </script>
-  </div>
-
-  <!-- 28: go / no-go -->
-  <div class="slide" data-slide="28">
-    <div class="slide-tag anim-1">ภาคผนวก · เกณฑ์ตัดสินใจ</div>
-    <h2 class="anim-2">go / no-go</h2>
-    <div class="status-timeline">
-      <div class="status-item stag-1">
-        <div class="status-dot red"></div>
-        <div class="status-text">
-          ปิดข้อผิดพลาดระดับ <strong>"blocker" ครบ 100%</strong> —
-          ไม่มีการยกเว้น
-        </div>
-      </div>
-      <div class="status-item stag-2">
-        <div class="status-dot orange"></div>
-        <div class="status-text">
-          ผลตรวจที่เทียบแล้วตรงกัน
-          <strong>≥ 99%</strong> (ถ้ามีระบบเดิมคู่กัน)
-        </div>
-      </div>
-      <div class="status-item stag-3">
-        <div class="status-dot blue"></div>
-        <div class="status-text">
-          เจ้าหน้าที่ทุกคนเดินครบวงจรได้ด้วยตัวเอง
-          <strong>อย่างน้อย 1 รอบ</strong>
-        </div>
-      </div>
-      <div class="status-item stag-4">
-        <div class="status-dot green"></div>
-        <div class="status-text">
-          มี<strong>แผนสำรอง ย้อนกลับ (Rollback Plan)</strong>
-          ว่าจะกลับไปใช้ระบบเดิมยังไง
-        </div>
-      </div>
     </div>
-    <script type="application/json" class="slide-notes">
+
+    <!-- 29: go / no-go -->
+    <div class="slide" data-slide="29">
+      <div class="slide-tag anim-1">ภาคผนวก · เกณฑ์ตัดสินใจ</div>
+      <h2 class="anim-2">go / no-go</h2>
+      <div class="status-timeline">
+        <div class="status-item stag-1">
+          <div class="status-dot red"></div>
+          <div class="status-text">
+            ปิดข้อผิดพลาดระดับ <strong>"blocker" ครบ 100%</strong> —
+            ไม่มีการยกเว้น
+          </div>
+        </div>
+        <div class="status-item stag-2">
+          <div class="status-dot orange"></div>
+          <div class="status-text">
+            ผลตรวจที่เทียบแล้วตรงกัน
+            <strong>≥ 99%</strong> (ถ้ามีระบบเดิมคู่กัน)
+          </div>
+        </div>
+        <div class="status-item stag-3">
+          <div class="status-dot blue"></div>
+          <div class="status-text">
+            เจ้าหน้าที่ทุกคนเดินครบวงจรได้ด้วยตัวเอง
+            <strong>อย่างน้อย 1 รอบ</strong>
+          </div>
+        </div>
+        <div class="status-item stag-4">
+          <div class="status-dot green"></div>
+          <div class="status-text">
+            มี<strong>แผนสำรอง ย้อนกลับ (Rollback Plan)</strong>
+            ว่าจะกลับไปใช้ระบบเดิมยังไง
+          </div>
+        </div>
+      </div>
+      <script type="application/json" class="slide-notes">
           {
             "title": "ภาคผนวก — เกณฑ์ตัดสินใจ go/no-go",
             "script": "go หรือ no-go คือการตัดสินใจครั้งสุดท้ายก่อนเปิดใช้จริง ตัดสินจากสี่เกณฑ์นี้เท่านั้น ไม่มีการยกเว้นเรื่อง blocker",
@@ -3750,7 +3863,7 @@
             ]
           }
         </script>
-  </div>
+    </div>
   </div>
 
   <!-- Image Modal / Lightbox with Multi-Image Gallery -->
@@ -3786,7 +3899,8 @@
     </div>
 
     <div class="image-modal-hint">
-      <kbd>←</kbd><kbd>→</kbd> หรือ Scroll เพื่อเปลี่ยนรูป · <kbd>Esc</kbd> ปิด
+      <kbd>←</kbd><kbd>→</kbd> หรือ Scroll เพื่อเปลี่ยนรูป ·
+      <kbd>Esc</kbd> ปิด
     </div>
   </div>
 
