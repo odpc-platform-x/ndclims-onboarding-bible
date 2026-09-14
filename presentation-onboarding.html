@@ -1040,15 +1040,47 @@
         text-transform: uppercase;
         color: var(--accent-orange);
         background: rgba(232, 89, 12, 0.08);
-        border: 1px solid rgba(232, 89, 12, 0.25);
+        border: 1px solid rgba(220, 38, 38, 0.25);
         border-radius: 999px;
         padding: 8px 20px;
         margin-bottom: 20px;
+        animation: recPulse 1s ease infinite;
       }
       .demo-badge::before {
         content: "●";
-        color: var(--accent-orange);
-        animation: pulseGlow 1.6s ease infinite;
+        color: #dc2626;
+        animation: recDot 1s steps(1, end) infinite;
+      }
+      @keyframes recDot {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.15;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes recPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45);
+          border-color: rgba(220, 38, 38, 0.25);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+          border-color: rgba(220, 38, 38, 0.6);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+          border-color: rgba(220, 38, 38, 0.25);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .demo-badge,
+        .demo-badge::before {
+          animation: none;
+        }
       }
       .demo-slide h2 {
         color: var(--accent-orange);
@@ -1107,6 +1139,62 @@
         );
         pointer-events: none;
         z-index: 0;
+      }
+
+      /* ====== SCREENSHOT / CONTACT PLACEHOLDERS ====== */
+      .shot-placeholder {
+        border: 2px dashed var(--outline-variant);
+        border-radius: 10px;
+        background: var(--bg-card-hover);
+        aspect-ratio: 16 / 10;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12px;
+        color: var(--text-dim);
+        font-family: var(--font-label);
+        font-size: clamp(12px, 1.05vw, 14px);
+        line-height: 1.4;
+      }
+      .fill-blank {
+        color: var(--accent-orange);
+        font-weight: 700;
+        background: rgba(232, 89, 12, 0.1);
+        border-radius: 4px;
+        padding: 1px 7px;
+      }
+      .step-warning {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: clamp(13px, 1.1vw, 15px);
+        color: var(--accent-red);
+        background: rgba(186, 26, 26, 0.05);
+        border: 1px solid rgba(186, 26, 26, 0.18);
+        border-radius: 8px;
+        padding: 10px 14px;
+        line-height: 1.5;
+      }
+      .daily-row {
+        display: flex;
+        gap: clamp(18px, 2.4vw, 32px);
+        width: 100%;
+        max-width: 1080px;
+        align-items: flex-start;
+        margin-top: clamp(6px, 1.4vh, 14px);
+      }
+      .daily-col-main {
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(8px, 1.2vh, 14px);
+      }
+      .daily-col-shot {
+        flex: 1;
+        display: flex;
+        align-items: center;
       }
 
       /* ====== RESPONSIVE HEIGHT BREAKPOINTS ====== */
@@ -1179,7 +1267,7 @@
     <div class="slide-nav" id="slideNav"></div>
 
     <div class="deck" id="deck">
-      <!-- 0: TITLE -->
+      <!-- 0: ปก -->
       <div class="slide active" data-slide="0">
         <div class="glow-blob glow-blue anim-1" style="top: 8%; left: 8%"></div>
         <div
@@ -1213,29 +1301,59 @@
         </script>
       </div>
 
-      <!-- 1: ระบบพร้อมใช้แล้ว -->
+      <!-- 1: ทำไมต้องใช้ NDCLIMS -->
       <div class="slide" data-slide="1">
-        <div class="cb-wrap">
-          <div class="section-eyebrow anim-1">เปิดงาน</div>
-          <div class="cb-keyquote anim-2">
-            ระบบพร้อมใช้แล้ว<br />เหลือแค่กรอกข้อมูลของแล็บคุณ
+        <div class="slide-tag anim-1">เปิดงาน</div>
+        <h2 class="anim-2">ทำไมต้องใช้ NDCLIMS</h2>
+        <p class="subtitle anim-2">
+          ฝ่าย IT กรมติดตั้งระบบและเปิดบัญชีแล็บไว้ให้แล้ว —
+          <span class="highlight-blue">ไม่ต้องติดตั้งอะไรเพิ่ม</span>
+        </p>
+        <div class="card-grid">
+          <div class="card-editorial tone-blue bounce-1">
+            <div class="card-num">01</div>
+            <div class="card-title">ติดตามใบสั่งตรวจได้ทุกขั้น</div>
+            <div class="card-desc">
+              สถานะบอกทันทีว่าใบไหนค้างอยู่ตรงไหน ไม่ต้องเดินไปถามปากเปล่า
+            </div>
           </div>
-          <div class="cb-detail anim-3">
-            ฝ่าย IT กรมได้ติดตั้ง NDCLIMS และเปิดบัญชีของแล็บไว้เรียบร้อยแล้ว —
-            <span class="cb-accent">ไม่ต้องติดตั้งอะไรเพิ่ม</span>
-            งานตั้งค่าเป็นของ Lab admin (ดูภาคผนวกท้ายเล่ม) —
-            <span class="cb-accent"
-              >วันนี้เราจะเรียนวิธีใช้งานระบบนี้ในงานประจำวัน</span
-            >
+          <div class="card-editorial tone-green bounce-2">
+            <div class="card-num">02</div>
+            <div class="card-title">ผลตรวจต้องผ่านสองคนเสมอ</div>
+            <div class="card-desc">
+              บันทึกผล กับ Verify/Approve แยกคนกัน กันผลหลุดจากคนเดียว
+            </div>
+          </div>
+          <div class="card-editorial tone-blue bounce-3">
+            <div class="card-num">03</div>
+            <div class="card-title">แก้ผลมีประวัติเสมอ</div>
+            <div class="card-desc">
+              แก้ค่าไม่มีการเขียนทับเงียบๆ ย้อนดูประวัติการแก้ไขได้ทุกครั้ง
+            </div>
+          </div>
+          <div class="card-editorial tone-green bounce-4">
+            <div class="card-num">04</div>
+            <div class="card-title">ค่าวิกฤตมีบันทึกการแจ้งเสมอ</div>
+            <div class="card-desc">
+              ระบบหยุดรอจนกรอกว่าแจ้งใคร เวลาไหน ก่อนบันทึกต่อได้
+            </div>
+          </div>
+          <div class="card-editorial tone-blue bounce-1">
+            <div class="card-num">05</div>
+            <div class="card-title">ใบแจ้งหนี้สร้างอัตโนมัติ</div>
+            <div class="card-desc">
+              สั่งตรวจปุ๊บ มีใบแจ้งหนี้รอเก็บเงินทันที ไม่ต้องสร้างเอง
+            </div>
           </div>
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "ระบบพร้อมใช้แล้ว",
-            "script": "ข่าวดีคือฝ่าย IT ติดตั้งระบบและเปิดบัญชีแล็บให้เราแล้ว วันนี้เราจะไม่พูดเรื่องตั้งค่า แต่จะเรียนวิธีใช้งานระบบนี้ในงานประจำวันของแต่ละคน",
+            "title": "ทำไมต้องใช้ NDCLIMS",
+            "script": "ข่าวดีคือฝ่าย IT ติดตั้งระบบและเปิดบัญชีแล็บให้เราแล้ว ไม่ต้องติดตั้งอะไรเพิ่ม และระบบนี้ช่วยงานประจำวันของเราจริงๆ ห้าเรื่องนี้คือประโยชน์ที่จับต้องได้ทันที",
             "notes": [
-              "IT ติดตั้งระบบ + เปิดบัญชีแล็บให้แล้ว",
+              "IT ติดตั้งระบบ + เปิดบัญชีแล็บให้แล้ว ไม่ต้องติดตั้งอะไรเพิ่ม",
               "งานตั้งค่าเป็นหน้าที่ Lab admin แยกไว้ในภาคผนวก",
+              "เน้นย้ำสองคนตรวจสอบ (Verify/Approve) และประวัติการแก้ไขผล",
               "โฟกัสวันนี้คือการใช้งานประจำวัน"
             ]
           }
@@ -1249,30 +1367,30 @@
         <div class="card-grid cols-4">
           <div class="card-editorial tone-blue bounce-1">
             <div class="card-num">01</div>
-            <div class="card-title">เส้นทางใบสั่งตรวจ 1 ใบ</div>
+            <div class="card-title">เข้าระบบ + กฎบัญชี</div>
             <div class="card-desc">
-              ตั้งแต่ลงทะเบียนผู้ป่วยจนเก็บเงิน — ครบวงจร
+              เข้าระบบให้ได้จริง และรู้กฎการใช้บัญชี/ข้อมูลผู้ป่วย
             </div>
           </div>
           <div class="card-editorial tone-blue bounce-2">
             <div class="card-num">02</div>
-            <div class="card-title">งานของบทบาทตัวเอง</div>
+            <div class="card-title">เส้นทางใบสั่งตรวจและสถานะ</div>
             <div class="card-desc">
-              รู้ว่าในเส้นทางนี้ ตัวเองต้องคลิกอะไรตรงไหน
+              รู้ทุกขั้นตอนของใบสั่งตรวจ 1 ใบ และสถานะทั้งสองชุด
             </div>
           </div>
           <div class="card-editorial tone-blue bounce-3">
             <div class="card-num">03</div>
-            <div class="card-title">สถานะของใบสั่งตรวจ</div>
+            <div class="card-title">งานของบทบาทตัวเอง</div>
             <div class="card-desc">
-              รู้จักสถานะทั้งหมด และใครทำให้สถานะเปลี่ยน
+              เดินตาม DEMO ทีละขั้น รู้ว่าตัวเองต้องคลิกอะไรตรงไหน
             </div>
           </div>
           <div class="card-editorial tone-blue bounce-4">
             <div class="card-num">04</div>
-            <div class="card-title">ปัญหาที่พบบ่อยที่สุด</div>
+            <div class="card-title">เมื่อเกิดข้อผิดพลาด</div>
             <div class="card-desc">
-              รู้ก่อนเจอเอง จะได้ไม่เสียเวลาแก้ทีหลัง
+              รู้ว่าต้องทำอะไรเมื่อสิ่งส่งตรวจเสีย ยกเลิกใบ หรือกรอกผลผิด
             </div>
           </div>
         </div>
@@ -1281,667 +1399,2154 @@
             "title": "วันนี้จะได้อะไร",
             "script": "ก่อนเริ่ม อยากให้ทุกคนรู้ว่าจบวันนี้แล้วจะได้อะไรกลับไปสี่เรื่อง",
             "notes": [
-              "รู้เส้นทางใบสั่งตรวจ 1 ใบครบวงจร",
-              "รู้งานของบทบาทตัวเองในเส้นทางนั้น",
-              "รู้จักสถานะทั้งหมดของใบสั่งตรวจ",
-              "รู้ปัญหาที่พบบ่อยที่สุดในงานประจำวัน"
+              "เข้าระบบครั้งแรก + กฎการใช้บัญชี",
+              "เส้นทางใบสั่งตรวจและสถานะทั้งสองชุด",
+              "งานของบทบาทตัวเอง สาธิตทีละขั้นแบบ DEMO",
+              "สิ่งที่ต้องทำเมื่อเกิดข้อผิดพลาดในงานประจำวัน"
             ]
           }
         </script>
       </div>
 
-      <!-- 3: เส้นทางใบสั่งตรวจ 1 ใบ (overview 7 ขั้น) -->
-      <div class="slide" data-slide="3">
+      <!-- 3: เข้าระบบครั้งแรก (สำหรับเจ้าหน้าที่) -->
+      <div class="slide demo-slide" data-slide="3">
+        <div class="demo-badge anim-1">DEMO</div>
+        <h2 class="anim-2">เข้าระบบครั้งแรก</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <ul class="cb-list">
+              <li>รับ URL ระบบ + บัญชีผู้ใช้จาก Lab admin ของแล็บ</li>
+              <li>Login เข้าระบบด้วยบัญชีที่ได้รับ</li>
+              <li>
+                <span class="cb-accent">เปลี่ยนรหัสผ่านทันที</span> — เมนู
+                ตั้งค่า &gt; ความปลอดภัย &gt; "เปลี่ยนรหัสผ่าน"
+              </li>
+              <li>
+                เมนูไม่ครบ = สิทธิ์ของบทบาทคุณ ไม่ใช่ระบบพัง แจ้ง Lab admin
+              </li>
+              <li>
+                ลืมรหัสผ่าน:
+                <span class="cb-accent">ไม่มีปุ่ม "ลืมรหัสผ่าน"</span> ติดต่อ
+                Lab admin หรือฝ่าย IT กรมเท่านั้น
+              </li>
+            </ul>
+          </div>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">
+              ภาพหน้าจอ: หน้า login และหน้าเปลี่ยนรหัสผ่าน
+            </div>
+          </div>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "เข้าระบบครั้งแรก",
+            "script": "ทุกคนจะได้ URL กับบัญชีผู้ใช้จาก Lab admin ของแล็บ ลอง login แล้วเปลี่ยนรหัสผ่านทันทีที่ตั้งค่า ถ้าเมนูไม่ครบอย่าเพิ่งตกใจว่าระบบพัง เป็นเรื่องสิทธิ์ของบทบาท ให้แจ้ง Lab admin และจำไว้ว่าระบบนี้ไม่มีปุ่มลืมรหัสผ่าน ต้องติดต่อคนช่วยเท่านั้น",
+            "notes": [
+              "รับ URL + บัญชีจาก Lab admin แล้ว login",
+              "เปลี่ยนรหัสผ่านทันทีที่ ตั้งค่า > ความปลอดภัย > เปลี่ยนรหัสผ่าน",
+              "เมนูไม่ครบ = สิทธิ์บทบาท ไม่ใช่ระบบพัง",
+              "ไม่มีปุ่มลืมรหัสผ่าน ติดต่อ Lab admin/IT เท่านั้น",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 4: กฎการใช้บัญชีและข้อมูลผู้ป่วย -->
+      <div class="slide" data-slide="4">
+        <div class="cb-wrap">
+          <div class="section-eyebrow anim-1">ก่อนแตะระบบจริง</div>
+          <div class="cb-heading anim-2">กฎการใช้บัญชีและข้อมูลผู้ป่วย</div>
+          <ul class="cb-list anim-3">
+            <li>
+              ห้ามใช้บัญชีร่วมกัน ห้ามบอกรหัสผ่านคนอื่น —
+              <span class="cb-accent">ทุกการกระทำบันทึกชื่อคุณ</span>
+              ไว้ในประวัติการใช้งาน
+            </li>
+            <li>Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกับคนอื่น</li>
+            <li>ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว</li>
+            <li>
+              ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA —
+              เปิดดูเฉพาะที่จำเป็นต่องานเท่านั้น
+            </li>
+          </ul>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "กฎการใช้บัญชีและข้อมูลผู้ป่วย",
+            "script": "ก่อนแตะระบบจริง มีกฎสำคัญสี่ข้อ ห้ามใช้บัญชีร่วมกันเด็ดขาดเพราะทุกการกระทำในระบบบันทึกชื่อผู้ใช้ไว้ ลุกจากเครื่องที่ใช้ร่วมกับคนอื่นต้อง logout ทุกครั้ง ห้ามส่งผลตรวจหรือภาพหน้าจอผู้ป่วยทางแชทส่วนตัว และผลตรวจเป็นข้อมูลส่วนบุคคลตามกฎหมาย PDPA เปิดดูเฉพาะที่จำเป็นต่องาน",
+            "notes": [
+              "ห้ามใช้บัญชีร่วม/บอกรหัส — ทุกการกระทำบันทึกชื่อผู้ใช้ในประวัติการใช้งาน",
+              "Logout ทุกครั้งที่ลุกจากเครื่องที่ใช้ร่วมกัน",
+              "ห้ามส่งผลตรวจ/ภาพหน้าจอผู้ป่วยทางแชทส่วนตัว",
+              "ผลตรวจเป็นข้อมูลส่วนบุคคลตาม PDPA เปิดดูเฉพาะที่จำเป็น"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 5: เส้นทางใบสั่งตรวจ 1 ใบ -->
+      <div class="slide" data-slide="5">
         <div class="section-eyebrow anim-1">กิจวัตรของเจ้าหน้าที่แล็บ</div>
         <h2 class="anim-2">เส้นทางของใบสั่งตรวจ 1 ใบ</h2>
         <div class="diagram-wrap anim-3">
           <svg
-            viewBox="0 0 1040 208"
+            viewBox="0 0 1040 292"
             role="img"
-            aria-labelledby="s3-title s3-desc"
+            aria-labelledby="s5-title s5-desc"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <title id="s3-title">เส้นทางของใบสั่งตรวจ 7 ขั้นตอน</title>
-            <desc id="s3-desc">
-              ผังเจ็ดขั้นตอนของใบสั่งตรวจหนึ่งใบ จากลงทะเบียนผู้ป่วยจนถึงเก็บเงิน
-              พร้อมบทบาทผู้รับผิดชอบและสถานะที่ได้หลังแต่ละขั้น
+            <title id="s5-title">
+              เส้นทางของใบสั่งตรวจ 7 ขั้นตอน พร้อมเลนเก็บเงินแยก
+            </title>
+            <desc id="s5-desc">
+              ผังหลักเจ็ดขั้นตอนจากลงทะเบียนผู้ป่วยถึงพิมพ์ใบรายงานผล
+              และเลนเก็บเงินที่แยกออกจากเส้นทางหลัก ทำได้ทุกเวลาหลังสั่งตรวจ
             </desc>
             <defs>
-              <marker id="s3-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--text-dim)" />
+              <marker
+                id="s5-arrow"
+                markerWidth="8"
+                markerHeight="6"
+                refX="7"
+                refY="3"
+                orient="auto"
+              >
+                <polygon points="0 0, 8 3, 0 6" style="fill: var(--text-dim)" />
+              </marker>
+              <marker
+                id="s5-arrow-dash"
+                markerWidth="8"
+                markerHeight="6"
+                refX="7"
+                refY="3"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 8 3, 0 6"
+                  style="fill: var(--accent-blue)"
+                />
               </marker>
             </defs>
-            <!-- arrows (drawn before nodes) -->
-            <line x1="150" y1="92" x2="170" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
-            <line x1="294" y1="92" x2="314" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
-            <line x1="438" y1="92" x2="458" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
-            <line x1="582" y1="92" x2="602" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
-            <line x1="726" y1="92" x2="746" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
-            <line x1="870" y1="92" x2="890" y2="92" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s3-arrow)" />
+            <!-- arrows -->
+            <line
+              x1="150"
+              y1="96"
+              x2="170"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
+            <line
+              x1="294"
+              y1="96"
+              x2="314"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
+            <line
+              x1="438"
+              y1="96"
+              x2="458"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
+            <line
+              x1="582"
+              y1="96"
+              x2="602"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
+            <line
+              x1="726"
+              y1="96"
+              x2="746"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
+            <line
+              x1="870"
+              y1="96"
+              x2="890"
+              y2="96"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s5-arrow)"
+            />
 
-            <!-- step 1: ลงทะเบียนผู้ป่วย -->
-            <rect x="26" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="34" y="48" width="44" height="16" rx="4" style="fill:var(--accent-blue)" />
-            <text x="56" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">RCP</text>
-            <text x="88" y="81" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <!-- 1: ลงทะเบียนผู้ป่วย -->
+            <rect
+              x="26"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-blue)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="26"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-blue)"
+            />
+            <text
+              x="88"
+              y="76"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="88" dy="0">ลงทะเบียน</tspan>
               <tspan x="88" dy="15">ผู้ป่วย</tspan>
             </text>
-            <line x1="34" y1="110" x2="142" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="34" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-            <text x="88" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-blue)">ได้ HN</text>
-
-            <!-- step 2: สั่งตรวจ -->
-            <rect x="170" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="178" y="48" width="44" height="16" rx="4" style="fill:var(--accent-blue)" />
-            <text x="200" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">RCP</text>
-            <text x="232" y="92" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">สั่งตรวจ</text>
-            <line x1="178" y1="110" x2="286" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="178" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-            <text x="232" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-blue)">รอดำเนินการ</text>
-
-            <!-- step 3: รับตัวอย่าง -->
-            <rect x="314" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-orange)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="322" y="48" width="44" height="16" rx="4" style="fill:var(--accent-orange)" />
-            <text x="344" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">LTC</text>
-            <text x="376" y="92" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">รับตัวอย่าง</text>
-            <line x1="322" y1="110" x2="430" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="322" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-orange)" stroke-width="1" />
-            <text x="376" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-orange)">กำลังดำเนินการ</text>
-
-            <!-- step 4: บันทึกผล -->
-            <rect x="458" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-orange)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="466" y="48" width="44" height="16" rx="4" style="fill:var(--accent-orange)" />
-            <text x="488" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">LTC</text>
-            <text x="520" y="92" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">บันทึกผล</text>
-            <line x1="466" y1="110" x2="574" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="466" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-orange)" stroke-width="1" />
-            <text x="520" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-orange)">รอตรวจสอบ</text>
-
-            <!-- step 5: อนุมัติผล -->
-            <rect x="602" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-green)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="610" y="48" width="44" height="16" rx="4" style="fill:var(--accent-green)" />
-            <text x="632" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">LMG</text>
-            <text x="664" y="92" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">อนุมัติผล</text>
-            <line x1="610" y1="110" x2="718" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="610" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-green)" stroke-width="1" />
-            <text x="664" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-green)">อนุมัติแล้ว</text>
-
-            <!-- step 6: พิมพ์ใบรายงาน -->
-            <rect x="746" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="754" y="48" width="64" height="16" rx="4" style="fill:var(--accent-blue)" />
-            <text x="786" y="59" text-anchor="middle" font-size="6.5" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.02em">RCP·LMG</text>
-            <text x="808" y="81" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="808" dy="0">พิมพ์ใบ</tspan>
-              <tspan x="808" dy="15">รายงาน</tspan>
+            <line
+              x1="34"
+              y1="100"
+              x2="142"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="34"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-blue)"
+              stroke-width="1"
+            />
+            <text
+              x="88"
+              y="122"
+              text-anchor="middle"
+              font-size="11.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-blue)"
+            >
+              ได้ HN
             </text>
-            <line x1="754" y1="110" x2="862" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="754" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-            <text x="808" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-blue)">พิมพ์แล้ว</text>
+            <text
+              x="88"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              พนักงานต้อนรับ
+            </text>
 
-            <!-- step 7: เก็บเงิน -->
-            <rect x="890" y="40" width="124" height="104" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-            <rect x="898" y="48" width="44" height="16" rx="4" style="fill:var(--accent-blue)" />
-            <text x="920" y="59" text-anchor="middle" font-size="8" font-weight="600" style="font-family:var(--font-label);fill:#fff" letter-spacing="0.04em">CSH</text>
-            <text x="952" y="92" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">เก็บเงิน</text>
-            <line x1="898" y1="110" x2="1006" y2="110" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="898" y="116" width="108" height="20" rx="10" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-            <text x="952" y="130" text-anchor="middle" font-size="12.5" font-weight="600" style="font-family:var(--font-label);fill:var(--accent-blue)">ปิดงาน</text>
+            <!-- 2: สั่งตรวจ -->
+            <rect
+              x="170"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-blue)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="170"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-blue)"
+            />
+            <text
+              x="232"
+              y="80"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              สั่งตรวจ
+            </text>
+            <line
+              x1="178"
+              y1="100"
+              x2="286"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="178"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-blue)"
+              stroke-width="1"
+            />
+            <text
+              x="232"
+              y="122"
+              text-anchor="middle"
+              font-size="11.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-blue)"
+            >
+              รอดำเนินการ
+            </text>
+            <text
+              x="232"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              พนักงานต้อนรับ
+            </text>
+
+            <!-- 3: รับสิ่งส่งตรวจ -->
+            <rect
+              x="314"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-orange)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="314"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="376"
+              y="76"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              <tspan x="376" dy="0">รับสิ่งส่ง</tspan>
+              <tspan x="376" dy="15">ตรวจ</tspan>
+            </text>
+            <line
+              x1="322"
+              y1="100"
+              x2="430"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="322"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1"
+            />
+            <text
+              x="376"
+              y="122"
+              text-anchor="middle"
+              font-size="11.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
+              กำลังตรวจ
+            </text>
+            <text
+              x="376"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              นักเทคนิคการแพทย์
+            </text>
+
+            <!-- 4: บันทึกผล -->
+            <rect
+              x="458"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-orange)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="458"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="520"
+              y="80"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              บันทึกผล
+            </text>
+            <line
+              x1="466"
+              y1="100"
+              x2="574"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="466"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1"
+            />
+            <text
+              x="520"
+              y="122"
+              text-anchor="middle"
+              font-size="10.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
+              บันทึกผลแล้ว
+            </text>
+            <text
+              x="520"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              นักเทคนิคการแพทย์
+            </text>
+
+            <!-- 5: Verify -->
+            <rect
+              x="602"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-orange)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="602"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="664"
+              y="80"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              Verify
+            </text>
+            <line
+              x1="610"
+              y1="100"
+              x2="718"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="610"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1"
+            />
+            <text
+              x="664"
+              y="122"
+              text-anchor="middle"
+              font-size="10.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
+              ตรวจสอบแล้ว
+            </text>
+            <text
+              x="664"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              นักเทคนิคการแพทย์
+            </text>
+
+            <!-- 6: Approve -->
+            <rect
+              x="746"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-green)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="746"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-green)"
+            />
+            <text
+              x="808"
+              y="80"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              Approve
+            </text>
+            <line
+              x1="754"
+              y1="100"
+              x2="862"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <rect
+              x="754"
+              y="108"
+              width="108"
+              height="20"
+              rx="10"
+              fill="none"
+              style="stroke: var(--accent-green)"
+              stroke-width="1"
+            />
+            <text
+              x="808"
+              y="122"
+              text-anchor="middle"
+              font-size="10.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-green)"
+            >
+              อนุมัติแล้ว
+            </text>
+            <text
+              x="808"
+              y="144"
+              text-anchor="middle"
+              font-size="8.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              หัวหน้าห้องปฏิบัติการ/แพทย์
+            </text>
+
+            <!-- 7: พิมพ์ใบรายงานผล -->
+            <rect
+              x="890"
+              y="40"
+              width="124"
+              height="112"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-blue)"
+              stroke-opacity="0.4"
+              stroke-width="1"
+            />
+            <rect
+              x="890"
+              y="40"
+              width="124"
+              height="4"
+              rx="2"
+              style="fill: var(--accent-blue)"
+            />
+            <text
+              x="952"
+              y="72"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
+              <tspan x="952" dy="0">พิมพ์ใบ</tspan>
+              <tspan x="952" dy="15">รายงานผล</tspan>
+            </text>
+            <line
+              x1="898"
+              y1="100"
+              x2="1006"
+              y2="100"
+              style="stroke: var(--border-hover)"
+              stroke-width="1"
+            />
+            <text
+              x="952"
+              y="122"
+              text-anchor="middle"
+              font-size="10"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              เฉพาะรายการอนุมัติแล้ว
+            </text>
+            <text
+              x="952"
+              y="144"
+              text-anchor="middle"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              พนักงานต้อนรับ
+            </text>
+
+            <!-- dashed lane: เก็บเงิน -->
+            <line
+              x1="232"
+              y1="152"
+              x2="232"
+              y2="186"
+              style="stroke: var(--accent-blue)"
+              stroke-width="1.3"
+              stroke-dasharray="4,3"
+              marker-end="url(#s5-arrow-dash)"
+            />
+            <rect
+              x="122"
+              y="192"
+              width="220"
+              height="60"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-blue)"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+            />
+            <text
+              x="232"
+              y="216"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="700"
+              style="font-family: var(--font-body); fill: var(--accent-blue)"
+            >
+              เก็บเงิน
+            </text>
+            <text
+              x="232"
+              y="232"
+              text-anchor="middle"
+              font-size="9.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              แคชเชียร์ / พนักงานต้อนรับ
+            </text>
+            <text
+              x="232"
+              y="246"
+              text-anchor="middle"
+              font-size="9.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              ทำได้ทุกเวลาหลังสั่งตรวจ
+            </text>
 
             <!-- legend -->
-            <line x1="26" y1="172" x2="1014" y2="172" style="stroke:var(--border-hover)" stroke-width="0.8" />
-            <rect x="26" y="184" width="14" height="10" rx="2" style="fill:var(--accent-blue)" />
-            <text x="46" y="193" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">RCP = receptionist</text>
-            <rect x="273" y="184" width="14" height="10" rx="2" style="fill:var(--accent-orange)" />
-            <text x="293" y="193" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">LTC = lab_technician</text>
-            <rect x="520" y="184" width="14" height="10" rx="2" style="fill:var(--accent-green)" />
-            <text x="540" y="193" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">LMG = lab_manager / doctor</text>
-            <rect x="767" y="184" width="14" height="10" rx="2" style="fill:var(--accent-blue)" />
-            <text x="787" y="193" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">CSH = cashier</text>
+            <line
+              x1="26"
+              y1="266"
+              x2="1014"
+              y2="266"
+              style="stroke: var(--border-hover)"
+              stroke-width="0.8"
+            />
+            <rect
+              x="26"
+              y="276"
+              width="14"
+              height="10"
+              rx="2"
+              style="fill: var(--accent-blue)"
+            />
+            <text
+              x="46"
+              y="285"
+              font-size="9.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              พนักงานต้อนรับ / แคชเชียร์
+            </text>
+            <rect
+              x="330"
+              y="276"
+              width="14"
+              height="10"
+              rx="2"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="350"
+              y="285"
+              font-size="9.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              นักเทคนิคการแพทย์
+            </text>
+            <rect
+              x="580"
+              y="276"
+              width="14"
+              height="10"
+              rx="2"
+              style="fill: var(--accent-green)"
+            />
+            <text
+              x="600"
+              y="285"
+              font-size="9.5"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              หัวหน้าห้องปฏิบัติการ / แพทย์
+            </text>
           </svg>
         </div>
         <script type="application/json" class="slide-notes">
           {
             "title": "เส้นทางใบสั่งตรวจ — ภาพรวม",
-            "script": "นี่คือภาพรวมทั้งเส้นทางของใบสั่งตรวจหนึ่งใบ ตั้งแต่คนไข้เดินเข้ามาจนจ่ายเงินเสร็จ เจ็ดขั้นตอน ผ่านห้าบทบาท เดี๋ยวเราจะลงรายละเอียดทีละขั้นในสไลด์ถัดไป",
+            "script": "นี่คือภาพรวมทั้งเส้นทางของใบสั่งตรวจหนึ่งใบ ตั้งแต่คนไข้เดินเข้ามาจนพิมพ์ใบรายงานผล ผ่านสามบทบาทหลัก ส่วนการเก็บเงินแยกเป็นอีกเลนหนึ่งที่ทำได้ทุกเวลาหลังสั่งตรวจ ไม่ต้องรอผลตรวจเสร็จ เดี๋ยวเราจะลงรายละเอียดทีละขั้นในสไลด์ถัดไป",
             "notes": [
-              "7 ขั้นตอน จาก receptionist → lab_technician → lab_manager/doctor → cashier",
-              "แต่ละขั้นเปลี่ยนสถานะใบสั่งตรวจหนึ่งค่า",
-              "บทบาทที่เขียนไว้คือค่ามาตรฐาน แล็บเล็กสวมหลายบทบาทได้ถ้าสิทธิ์ครบ"
+              "7 ขั้นหลัก: ลงทะเบียนผู้ป่วย → สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve → พิมพ์ใบรายงานผล",
+              "ใบแจ้งหนี้สร้างอัตโนมัติตอนสั่งตรวจ",
+              "เก็บเงินเป็นเลนแยก ทำได้ทุกเวลาหลังสั่งตรวจ ไม่ผูกกับสถานะผล",
+              "พิมพ์ใบรายงานได้เฉพาะรายการที่ Approve แล้วเท่านั้น"
             ]
           }
         </script>
       </div>
 
-      <!-- 4: สถานะของใบสั่งตรวจ -->
-      <div class="slide" data-slide="4">
+      <!-- 6: สถานะมี 2 ชุด -->
+      <div class="slide" data-slide="6">
         <div class="slide-tag anim-1">รู้จักสถานะ</div>
-        <h2 class="anim-2">สถานะของใบสั่งตรวจ</h2>
+        <h2 class="anim-2">สถานะมี 2 ชุด</h2>
         <p class="subtitle anim-2">
-          ดูสถานะแล้วรู้ทันทีว่าใบไหนค้างอยู่ขั้นไหน — ไม่ต้องถามปากเปล่า
+          สถานะใบสั่งตรวจ ≠ สถานะผลตรวจแต่ละรายการ — ต้องแยกให้ออก
         </p>
         <div class="diagram-wrap anim-3">
           <svg
-            viewBox="0 0 1040 192"
+            viewBox="0 0 1040 300"
             role="img"
-            aria-labelledby="s4-title s4-desc"
+            aria-labelledby="s6-title s6-desc"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <title id="s4-title">สถานะของใบสั่งตรวจแบบ state machine</title>
-            <desc id="s4-desc">
-              ผังสถานะเจ็ดค่าของใบสั่งตรวจเรียงตามลำดับ พร้อมสีลูกศรบอกบทบาทที่ทำให้สถานะขยับไปข้างหน้า
+            <title id="s6-title">สถานะสองชุดของ NDCLIMS</title>
+            <desc id="s6-desc">
+              แถวบนคือสถานะใบสั่งตรวจสี่ค่าพร้อมทางแยกยกเลิก
+              แถวล่างคือสถานะผลตรวจต่อรายการสี่ค่าพร้อมทางแยกปฏิเสธและปุ่มยกเลิก
+              Verify/Approve
+              เชื่อมด้วยเส้นบอกว่าผลครบทุกรายการอนุมัติแล้วทำให้ใบสั่งตรวจเสร็จสิ้นอัตโนมัติ
             </desc>
             <defs>
-              <marker id="s4-arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-blue)" />
+              <marker
+                id="s6-arrow-blue"
+                markerWidth="8"
+                markerHeight="6"
+                refX="7"
+                refY="3"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 8 3, 0 6"
+                  style="fill: var(--accent-blue)"
+                />
               </marker>
-              <marker id="s4-arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-orange)" />
+              <marker
+                id="s6-arrow-orange"
+                markerWidth="8"
+                markerHeight="6"
+                refX="7"
+                refY="3"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 8 3, 0 6"
+                  style="fill: var(--accent-orange)"
+                />
               </marker>
-              <marker id="s4-arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-green)" />
+              <marker
+                id="s6-arrow-red"
+                markerWidth="7"
+                markerHeight="5"
+                refX="6"
+                refY="2.5"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 7 2.5, 0 5"
+                  style="fill: var(--accent-red)"
+                />
               </marker>
             </defs>
 
-            <!-- start / end markers -->
-            <circle cx="14" cy="100" r="6" style="fill:var(--text)" />
-            <line x1="20" y1="100" x2="26" y2="100" style="stroke:var(--text)" stroke-width="1.2" />
-            <line x1="1002" y1="100" x2="1010" y2="100" style="stroke:var(--text)" stroke-width="1.2" />
-            <circle cx="1018" cy="100" r="8" fill="none" style="stroke:var(--text)" stroke-width="1.2" />
-            <circle cx="1018" cy="100" r="5" style="fill:var(--text)" />
+            <!-- row 1: ใบสั่งตรวจ -->
+            <text
+              x="26"
+              y="20"
+              font-size="10.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+              letter-spacing="0.06em"
+            >
+              ใบสั่งตรวจ
+            </text>
+            <line
+              x1="158"
+              y1="52"
+              x2="182"
+              y2="52"
+              style="stroke: var(--accent-blue)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-blue)"
+            />
+            <line
+              x1="378"
+              y1="52"
+              x2="402"
+              y2="52"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-blue)"
+            />
+            <line
+              x1="598"
+              y1="52"
+              x2="622"
+              y2="52"
+              style="stroke: var(--accent-green)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-blue)"
+            />
 
-            <!-- transition arrows (drawn before nodes) -->
-            <line x1="138" y1="100" x2="170" y2="100" style="stroke:var(--accent-blue)" stroke-width="1.6" marker-end="url(#s4-arrow-blue)" />
-            <line x1="282" y1="100" x2="314" y2="100" style="stroke:var(--accent-orange)" stroke-width="1.6" marker-end="url(#s4-arrow-orange)" />
-            <line x1="426" y1="100" x2="458" y2="100" style="stroke:var(--accent-orange)" stroke-width="1.6" marker-end="url(#s4-arrow-orange)" />
-            <line x1="570" y1="100" x2="602" y2="100" style="stroke:var(--accent-green)" stroke-width="1.6" marker-end="url(#s4-arrow-green)" />
-            <line x1="714" y1="100" x2="746" y2="100" style="stroke:var(--accent-blue)" stroke-width="1.6" marker-end="url(#s4-arrow-blue)" />
-            <line x1="858" y1="100" x2="890" y2="100" style="stroke:var(--accent-blue)" stroke-width="1.6" marker-end="url(#s4-arrow-blue)" />
-
-            <!-- transition labels (masked, latin role codes) -->
-            <rect x="140" y="78" width="28" height="13" style="fill:var(--bg)" />
-            <text x="154" y="88" text-anchor="middle" font-size="8" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)" letter-spacing="0.04em">RCP</text>
-            <rect x="284" y="78" width="28" height="13" style="fill:var(--bg)" />
-            <text x="298" y="88" text-anchor="middle" font-size="8" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-orange)" letter-spacing="0.04em">LTC</text>
-            <rect x="428" y="78" width="28" height="13" style="fill:var(--bg)" />
-            <text x="442" y="88" text-anchor="middle" font-size="8" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-orange)" letter-spacing="0.04em">LTC</text>
-            <rect x="572" y="78" width="28" height="13" style="fill:var(--bg)" />
-            <text x="586" y="88" text-anchor="middle" font-size="8" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-green)" letter-spacing="0.04em">LMG</text>
-            <rect x="719" y="74" width="22" height="20" style="fill:var(--bg)" />
-            <text x="730" y="84" text-anchor="middle" font-size="7" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">RCP</text>
-            <text x="730" y="93" text-anchor="middle" font-size="7" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">LMG</text>
-            <rect x="860" y="78" width="28" height="13" style="fill:var(--bg)" />
-            <text x="874" y="88" text-anchor="middle" font-size="8" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)" letter-spacing="0.04em">CSH</text>
-
-            <!-- states -->
-            <rect x="26" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="82" y="92" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">ได้ HN</text>
-
-            <rect x="170" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="226" y="84" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="226" dy="0">รอดำเนิน</tspan>
-              <tspan x="226" dy="15">การ</tspan>
+            <rect
+              x="26"
+              y="28"
+              width="132"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.3"
+              stroke-width="1.2"
+            />
+            <text
+              x="92"
+              y="57"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text)"
+            >
+              รอดำเนินการ
             </text>
 
-            <rect x="314" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="370" y="84" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="370" dy="0">กำลัง</tspan>
-              <tspan x="370" dy="15">ดำเนินการ</tspan>
+            <rect
+              x="182"
+              y="28"
+              width="196"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.3"
+              stroke-width="1.2"
+            />
+            <text
+              x="280"
+              y="57"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text)"
+            >
+              เก็บตัวอย่างแล้ว
             </text>
 
-            <rect x="458" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="514" y="84" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="514" dy="0">รอตรวจ</tspan>
-              <tspan x="514" dy="15">สอบ</tspan>
+            <rect
+              x="402"
+              y="28"
+              width="196"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-orange)"
+              stroke-opacity="0.5"
+              stroke-width="1.2"
+            />
+            <text
+              x="500"
+              y="57"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
+              กำลังตรวจ
             </text>
 
-            <rect x="602" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="658" y="84" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="658" dy="0">อนุมัติ</tspan>
-              <tspan x="658" dy="15">แล้ว</tspan>
+            <rect
+              x="622"
+              y="28"
+              width="150"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-green)"
+              stroke-opacity="0.5"
+              stroke-width="1.2"
+            />
+            <text
+              x="697"
+              y="57"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-green)"
+            >
+              เสร็จสิ้น
             </text>
 
-            <rect x="746" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="802" y="92" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">พิมพ์แล้ว</text>
+            <!-- ยกเลิก branch from first two only -->
+            <line
+              x1="92"
+              y1="76"
+              x2="92"
+              y2="100"
+              style="stroke: var(--accent-red)"
+              stroke-opacity="0.6"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <line
+              x1="280"
+              y1="76"
+              x2="180"
+              y2="100"
+              style="stroke: var(--accent-red)"
+              stroke-opacity="0.6"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <rect
+              x="26"
+              y="104"
+              width="180"
+              height="30"
+              rx="15"
+              fill="none"
+              style="stroke: var(--accent-red)"
+              stroke-width="1.1"
+            />
+            <text
+              x="116"
+              y="123"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-red)"
+            >
+              ยกเลิก
+            </text>
 
-            <rect x="890" y="52" width="112" height="72" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1.2" />
-            <text x="946" y="92" text-anchor="middle" font-size="13" font-weight="700" style="font-family:var(--font-body);fill:var(--text)">ปิดงาน</text>
+            <!-- divider -->
+            <line
+              x1="0"
+              y1="150"
+              x2="1040"
+              y2="150"
+              style="stroke: var(--border-hover)"
+              stroke-width="0.8"
+              stroke-dasharray="2,3"
+            />
 
-            <!-- legend -->
-            <line x1="14" y1="154" x2="1026" y2="154" style="stroke:var(--border-hover)" stroke-width="0.8" />
-            <rect x="14" y="166" width="14" height="10" rx="2" style="fill:var(--accent-blue)" />
-            <text x="34" y="175" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">RCP/CSH = receptionist · cashier</text>
-            <rect x="290" y="166" width="14" height="10" rx="2" style="fill:var(--accent-orange)" />
-            <text x="310" y="175" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">LTC = lab_technician</text>
-            <rect x="516" y="166" width="14" height="10" rx="2" style="fill:var(--accent-green)" />
-            <text x="536" y="175" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">LMG = lab_manager / doctor</text>
-            <circle cx="738" cy="171" r="5" style="fill:var(--text)" />
-            <text x="750" y="175" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">เริ่มวงจร</text>
-            <circle cx="874" cy="171" r="6" fill="none" style="stroke:var(--text)" stroke-width="1.2" />
-            <circle cx="874" cy="171" r="3" style="fill:var(--text)" />
-            <text x="890" y="175" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">จบวงจร</text>
+            <!-- row 2: ผลตรวจ -->
+            <text
+              x="26"
+              y="168"
+              font-size="10.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+              letter-spacing="0.06em"
+            >
+              ผลตรวจ (รายการ)
+            </text>
+            <line
+              x1="130"
+              y1="196"
+              x2="154"
+              y2="196"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-orange)"
+            />
+            <line
+              x1="350"
+              y1="196"
+              x2="374"
+              y2="196"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-orange)"
+            />
+            <line
+              x1="596"
+              y1="196"
+              x2="620"
+              y2="196"
+              style="stroke: var(--accent-green)"
+              stroke-width="1.5"
+              marker-end="url(#s6-arrow-orange)"
+            />
+
+            <rect
+              x="26"
+              y="172"
+              width="104"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.3"
+              stroke-width="1.2"
+            />
+            <text
+              x="78"
+              y="201"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text)"
+            >
+              รอผล
+            </text>
+
+            <rect
+              x="154"
+              y="172"
+              width="196"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.3"
+              stroke-width="1.2"
+            />
+            <text
+              x="252"
+              y="201"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text)"
+            >
+              บันทึกผลแล้ว
+            </text>
+
+            <rect
+              x="374"
+              y="172"
+              width="222"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-orange)"
+              stroke-opacity="0.5"
+              stroke-width="1.2"
+            />
+            <text
+              x="485"
+              y="201"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
+              ตรวจสอบแล้ว
+            </text>
+
+            <rect
+              x="620"
+              y="172"
+              width="180"
+              height="48"
+              rx="20"
+              fill="var(--bg-card)"
+              style="stroke: var(--accent-green)"
+              stroke-opacity="0.5"
+              stroke-width="1.2"
+            />
+            <text
+              x="710"
+              y="201"
+              text-anchor="middle"
+              font-size="12.5"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-green)"
+            >
+              อนุมัติแล้ว
+            </text>
+
+            <!-- undo arrows (arc above the row, clear of labels) -->
+            <path
+              d="M 480 172 Q 415 152 350 172"
+              fill="none"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.1"
+              stroke-dasharray="3,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <text
+              x="415"
+              y="138"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              ยกเลิก Verify
+            </text>
+            <path
+              d="M 705 172 Q 650 152 596 172"
+              fill="none"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.1"
+              stroke-dasharray="3,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <text
+              x="650"
+              y="138"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              ยกเลิก Approve
+            </text>
+
+            <!-- ปฏิเสธ branch: allowed from บันทึกผลแล้ว or ตรวจสอบแล้ว -->
+            <line
+              x1="252"
+              y1="220"
+              x2="272"
+              y2="250"
+              style="stroke: var(--accent-red)"
+              stroke-opacity="0.6"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <line
+              x1="485"
+              y1="220"
+              x2="340"
+              y2="250"
+              style="stroke: var(--accent-red)"
+              stroke-opacity="0.6"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+              marker-end="url(#s6-arrow-red)"
+            />
+            <rect
+              x="210"
+              y="254"
+              width="170"
+              height="30"
+              rx="15"
+              fill="none"
+              style="stroke: var(--accent-red)"
+              stroke-width="1.1"
+            />
+            <text
+              x="295"
+              y="273"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-red)"
+            >
+              ปฏิเสธ
+            </text>
+
+            <!-- link note -->
+            <text
+              x="900"
+              y="55"
+              text-anchor="middle"
+              font-size="9.5"
+              font-weight="600"
+              style="font-family: var(--font-label); fill: var(--accent-green)"
+            >
+              <tspan x="900" dy="0">ผลครบทุกรายการ</tspan>
+              <tspan x="900" dy="13">อนุมัติแล้ว →</tspan>
+              <tspan x="900" dy="13">เสร็จสิ้นอัตโนมัติ</tspan>
+            </text>
+            <path
+              d="M 800 190 C 900 170 900 100 772 58"
+              fill="none"
+              style="stroke: var(--accent-green)"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+              marker-end="url(#s6-arrow-blue)"
+            />
           </svg>
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "สถานะของใบสั่งตรวจ",
-            "script": "ใบสั่งตรวจมีสถานะเสมอ เจ็ดค่า เรียงตามลำดับที่มันจะเปลี่ยนไป แต่ละสถานะขยับไปข้างหน้าเมื่อบทบาทที่รับผิดชอบทำงานของตัวเองเสร็จ",
+            "title": "สถานะมี 2 ชุด",
+            "script": "จำไว้ให้ขึ้นใจว่าระบบมีสถานะสองชุดที่ไม่เหมือนกัน ใบสั่งตรวจมีสถานะของตัวเองสี่ค่า ส่วนผลตรวจแต่ละรายการก็มีสถานะของตัวเองอีกสี่ค่า พอผลทุกรายการในใบนั้นอนุมัติแล้วครบหมด ใบสั่งตรวจจะเสร็จสิ้นเองอัตโนมัติ ไม่ต้องมีใครไปกดปิดงาน",
             "notes": [
-              "7 สถานะเรียงลำดับ: ได้ HN → รอดำเนินการ → กำลังดำเนินการ → รอตรวจสอบ → อนุมัติแล้ว → พิมพ์แล้ว → ปิดงาน",
-              "แต่ละสถานะบอกว่าใบนั้นค้างรอใคร",
-              "ใช้สถานะเช็กงาน ไม่ต้องเดินไปถามปากเปล่า"
+              "ใบสั่งตรวจ: รอดำเนินการ → เก็บตัวอย่างแล้ว → กำลังตรวจ → เสร็จสิ้น (ยกเลิกได้เฉพาะสองสถานะแรก)",
+              "ผลตรวจต่อรายการ: รอผล → บันทึกผลแล้ว → ตรวจสอบแล้ว → อนุมัติแล้ว (หรือปฏิเสธ)",
+              "ยกเลิก Verify / ยกเลิก Approve ถอยสถานะผลกลับไปแก้ได้",
+              "ผลครบทุกรายการอนุมัติแล้ว → ใบสั่งตรวจเสร็จสิ้นอัตโนมัติ ไม่มีสถานะปิดงานแยก"
             ]
           }
         </script>
       </div>
 
-      <!-- 5: DEMO เดินเคสจริง -->
-      <div class="slide demo-slide" data-slide="5">
-        <div class="demo-badge anim-1">🎬 DEMO</div>
-        <h2 class="anim-2">เดินเคสจริง 1 ใบ เต็มวงจร</h2>
-        <div class="diagram-wrap anim-3">
-          <svg
-            viewBox="0 0 1040 80"
-            role="img"
-            aria-labelledby="s5-title s5-desc"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title id="s5-title">เจ็ดขั้นตอนของเคสสาธิต</title>
-            <desc id="s5-desc">แถบสรุปเจ็ดขั้นตอนที่จะสาธิตบนระบบจริง ตั้งแต่ลงทะเบียนผู้ป่วยจนถึงเก็บเงิน</desc>
-            <defs>
-              <marker id="s5-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--text-dim)" />
-              </marker>
-            </defs>
-            <line x1="150" y1="40" x2="170" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-            <line x1="294" y1="40" x2="314" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-            <line x1="438" y1="40" x2="458" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-            <line x1="582" y1="40" x2="602" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-            <line x1="726" y1="40" x2="746" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-            <line x1="870" y1="40" x2="890" y2="40" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s5-arrow)" />
-
-            <rect x="26" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="26" y="8" width="124" height="4" rx="2" style="fill:var(--accent-blue)" />
-            <text x="88" y="38" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="88" dy="0">ลงทะเบียน</tspan>
-              <tspan x="88" dy="15">ผู้ป่วย</tspan>
-            </text>
-
-            <rect x="170" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="170" y="8" width="124" height="4" rx="2" style="fill:var(--accent-blue)" />
-            <text x="232" y="46" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">สั่งตรวจ</text>
-
-            <rect x="314" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="314" y="8" width="124" height="4" rx="2" style="fill:var(--accent-orange)" />
-            <text x="376" y="46" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">รับตัวอย่าง</text>
-
-            <rect x="458" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="458" y="8" width="124" height="4" rx="2" style="fill:var(--accent-orange)" />
-            <text x="520" y="46" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">บันทึกผล</text>
-
-            <rect x="602" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="602" y="8" width="124" height="4" rx="2" style="fill:var(--accent-green)" />
-            <text x="664" y="46" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">อนุมัติผล</text>
-
-            <rect x="746" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="746" y="8" width="124" height="4" rx="2" style="fill:var(--accent-blue)" />
-            <text x="808" y="38" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-              <tspan x="808" dy="0">พิมพ์ใบ</tspan>
-              <tspan x="808" dy="15">รายงาน</tspan>
-            </text>
-
-            <rect x="890" y="8" width="124" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--border-hover)" stroke-width="1" />
-            <rect x="890" y="8" width="124" height="4" rx="2" style="fill:var(--accent-blue)" />
-            <text x="952" y="46" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">เก็บเงิน</text>
-          </svg>
-        </div>
-        <div class="cta-box anim-4">
-          <div class="cta-heading">สลับไปหน้าจอระบบจริง</div>
-          <div class="cb-body" style="max-width: 600px">
-            ให้ผู้เข้าอบรมดูการคลิกจริงทีละขั้น ก่อนไปดูรายละเอียดทีละขั้น
+      <!-- 7: งานประจำวัน 1/5 -->
+      <div class="slide demo-slide" data-slide="7">
+        <div class="demo-badge anim-1">DEMO</div>
+        <div class="cb-number anim-1">งานประจำวัน 1/5 · พนักงานต้อนรับ</div>
+        <h2 class="anim-2">ลงทะเบียนผู้ป่วย + สั่งตรวจ</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <div class="cb-diagram">
+              <svg
+                viewBox="0 0 460 84"
+                role="img"
+                aria-labelledby="s7-title s7-desc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title id="s7-title">ลำดับลงทะเบียนผู้ป่วยและสั่งตรวจ</title>
+                <desc id="s7-desc">
+                  พนักงานต้อนรับลงทะเบียนผู้ป่วยจนได้ HN
+                  แล้วสั่งตรวจจนใบสั่งตรวจเป็นรอดำเนินการ
+                </desc>
+                <defs>
+                  <marker
+                    id="s7-arrow"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-blue)"
+                    />
+                  </marker>
+                </defs>
+                <line
+                  x1="150"
+                  y1="44"
+                  x2="166"
+                  y2="44"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1.4"
+                  marker-end="url(#s7-arrow)"
+                />
+                <line
+                  x1="276"
+                  y1="44"
+                  x2="292"
+                  y2="44"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1.4"
+                  marker-end="url(#s7-arrow)"
+                />
+                <rect
+                  x="20"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-blue)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="85"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="85" dy="0">ลงทะเบียน</tspan>
+                  <tspan x="85" dy="15">ผู้ป่วย</tspan>
+                </text>
+                <rect
+                  x="166"
+                  y="28"
+                  width="110"
+                  height="32"
+                  rx="16"
+                  fill="none"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1"
+                />
+                <text
+                  x="221"
+                  y="48"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="700"
+                  style="
+                    font-family: var(--font-label);
+                    fill: var(--accent-blue);
+                  "
+                >
+                  ได้ HN
+                </text>
+                <rect
+                  x="292"
+                  y="12"
+                  width="118"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-blue)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="351"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  สั่งตรวจ
+                </text>
+              </svg>
+            </div>
+            <ul class="cb-list">
+              <li>คลิก "ผู้ป่วยใหม่" กรอกข้อมูล บันทึก → ได้ HN</li>
+              <li>เปิดผู้ป่วย → เลือกรายการตรวจ/แพ็กเกจ → สร้างใบสั่งตรวจ</li>
+              <li>
+                ใบสั่งตรวจเป็น <span class="cb-accent">รอดำเนินการ</span> และ
+                <span class="cb-accent">ใบแจ้งหนี้สร้างอัตโนมัติ</span> ทันที
+              </li>
+            </ul>
+            <div class="step-warning">
+              สั่งตรวจได้ก็ต่อเมื่อ Lab admin ตั้งค่า "รายการตรวจ"
+              ไว้ในระบบแล้วเท่านั้น
+            </div>
+          </div>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">
+              ภาพหน้าจอ: หน้าลงทะเบียนผู้ป่วย/สั่งตรวจ
+            </div>
           </div>
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "DEMO: เดินเคสจริง",
-            "script": "ตอนนี้ผมจะสลับไปที่ระบบจริง แล้วเดินเคสตัวอย่างให้ดูตั้งแต่ต้นจนจบ",
-            "notes": [
-              "สาธิตครบวงจรบนระบบจริงหรือระบบทดสอบ",
-              "ให้ผู้เข้าอบรมเห็นหน้าจอจริงของแต่ละขั้น"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 6: ลงทะเบียนผู้ป่วย + สั่งตรวจ -->
-      <div class="slide" data-slide="6">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">งานประจำวัน 1/5 · receptionist</div>
-          <div class="cb-heading anim-2">ลงทะเบียนผู้ป่วย + สั่งตรวจ</div>
-          <div class="cb-diagram anim-3">
-            <svg viewBox="0 0 658 84" role="img" aria-labelledby="s6-title s6-desc" xmlns="http://www.w3.org/2000/svg">
-              <title id="s6-title">ลำดับคลิกลงทะเบียนผู้ป่วยและสั่งตรวจ</title>
-              <desc id="s6-desc">receptionist ลงทะเบียนผู้ป่วยจนได้ HN แล้วสั่งตรวจจนสถานะขยับเป็นรอดำเนินการ</desc>
-              <defs>
-                <marker id="s6-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-blue)" />
-                </marker>
-              </defs>
-              <line x1="190" y1="44" x2="206" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s6-arrow)" />
-              <line x1="316" y1="44" x2="332" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s6-arrow)" />
-              <line x1="472" y1="44" x2="488" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s6-arrow)" />
-
-              <rect x="20" y="12" width="170" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="28" y="18" width="36" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="46" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">RCP</text>
-              <text x="105" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="105" dy="0">ลงทะเบียน</tspan>
-                <tspan x="105" dy="15">ผู้ป่วย</tspan>
-              </text>
-
-              <rect x="206" y="28" width="110" height="32" rx="16" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-              <text x="261" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">ได้ HN</text>
-
-              <rect x="332" y="12" width="140" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="340" y="18" width="36" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="358" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">RCP</text>
-              <text x="402" y="57" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">สั่งตรวจ</text>
-
-              <rect x="488" y="28" width="150" height="32" rx="16" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-              <text x="563" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">รอดำเนินการ</text>
-            </svg>
-          </div>
-          <ul class="cb-list anim-3">
-            <li>
-              <strong>ลงทะเบียนผู้ป่วย</strong> — คลิก "ผู้ป่วยใหม่" กรอกข้อมูล
-              แล้วบันทึก → ได้ HN
-            </li>
-            <li>
-              <strong>สั่งตรวจ</strong> — เปิดผู้ป่วย → เลือกรายการตรวจ/แพ็กเกจ
-              → สร้างใบสั่งตรวจ → รอดำเนินการ
-            </li>
-            <li>
-              สั่งตรวจได้ก็ต่อเมื่อมี
-              <span class="cb-accent">"รายการตรวจ"</span> อยู่ในระบบแล้วเท่านั้น
-              — เป็นงานตั้งค่าที่ Lab admin ทำไว้ก่อน
-            </li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "ลงทะเบียนผู้ป่วย + สั่งตรวจ",
-            "script": "จุดเริ่มต้นของทุกใบสั่งตรวจ พนักงานต้อนรับลงทะเบียนผู้ป่วยจนได้ HN แล้วเลือกรายการตรวจหรือแพ็กเกจเพื่อสร้างใบสั่งตรวจ",
+            "title": "งานประจำวัน 1/5 — ลงทะเบียนผู้ป่วย + สั่งตรวจ",
+            "script": "จุดเริ่มต้นของทุกใบสั่งตรวจ พนักงานต้อนรับลงทะเบียนผู้ป่วยจนได้ HN แล้วเลือกรายการตรวจหรือแพ็กเกจเพื่อสร้างใบสั่งตรวจ พอสร้างเสร็จใบสั่งตรวจเป็นรอดำเนินการ และระบบสร้างใบแจ้งหนี้ให้อัตโนมัติทันที",
             "notes": [
               "คลิก \"ผู้ป่วยใหม่\" กรอกข้อมูล บันทึก → ได้ HN",
               "เปิดผู้ป่วย → เลือกรายการตรวจ/แพ็กเกจ → สร้างใบสั่งตรวจ → รอดำเนินการ",
-              "ต้องมีรายการตรวจในระบบก่อนถึงจะสั่งตรวจได้"
+              "ใบแจ้งหนี้สร้างอัตโนมัติทันทีที่สร้างใบสั่งตรวจ",
+              "คำเตือน: ต้องมีรายการตรวจในระบบก่อนถึงจะสั่งตรวจได้",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
             ]
           }
         </script>
       </div>
 
-      <!-- 7: รับตัวอย่าง -->
-      <div class="slide" data-slide="7">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">งานประจำวัน 2/5 · lab_technician</div>
-          <div class="cb-heading anim-2">รับตัวอย่าง</div>
-          <div class="cb-diagram anim-3">
-            <svg viewBox="0 0 592 84" role="img" aria-labelledby="s7-title s7-desc" xmlns="http://www.w3.org/2000/svg">
-              <title id="s7-title">ลำดับคลิกรับตัวอย่าง</title>
-              <desc id="s7-desc">lab_technician เปิดใบสั่งตรวจแล้วบันทึกเวลารับตัวอย่างจริง ทำให้สถานะขยับเป็นกำลังดำเนินการ</desc>
-              <defs>
-                <marker id="s7-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-orange)" />
-                </marker>
-              </defs>
-              <line x1="190" y1="44" x2="206" y2="44" style="stroke:var(--accent-orange)" stroke-width="1.4" marker-end="url(#s7-arrow)" />
-              <line x1="386" y1="44" x2="402" y2="44" style="stroke:var(--accent-orange)" stroke-width="1.4" marker-end="url(#s7-arrow)" />
-
-              <rect x="20" y="12" width="170" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-orange)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="28" y="18" width="36" height="14" rx="3" style="fill:var(--accent-orange)" />
-              <text x="46" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">LTC</text>
-              <text x="105" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="105" dy="0">เปิด/สแกน</tspan>
-                <tspan x="105" dy="15">ใบสั่งตรวจ</tspan>
-              </text>
-
-              <rect x="206" y="12" width="180" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-orange)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="214" y="18" width="36" height="14" rx="3" style="fill:var(--accent-orange)" />
-              <text x="232" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">LTC</text>
-              <text x="296" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="296" dy="0">บันทึกเวลา</tspan>
-                <tspan x="296" dy="15">รับตัวอย่างจริง</tspan>
-              </text>
-
-              <rect x="402" y="28" width="170" height="32" rx="16" fill="none" style="stroke:var(--accent-orange)" stroke-width="1" />
-              <text x="487" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-orange)">กำลังดำเนินการ</text>
-            </svg>
-          </div>
-          <ul class="cb-list anim-3">
-            <li>สแกน หรือเปิดใบสั่งตรวจที่ส่งมา</li>
-            <li>
-              <span class="cb-accent"
-                >บันทึกวันเวลาที่รับตัวอย่างจริง</span
+      <!-- 8: งานประจำวัน 2/5 -->
+      <div class="slide demo-slide" data-slide="8">
+        <div class="demo-badge anim-1">DEMO</div>
+        <div class="cb-number anim-1">งานประจำวัน 2/5 · นักเทคนิคการแพทย์</div>
+        <h2 class="anim-2">รับสิ่งส่งตรวจ</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <div class="cb-diagram">
+              <svg
+                viewBox="0 0 460 84"
+                role="img"
+                aria-labelledby="s8-title s8-desc"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              — ไม่ใช่แค่เปิดดูใบสั่งตรวจเฉยๆ
-            </li>
-            <li>บันทึกแล้ว สถานะขยับเป็น กำลังดำเนินการ</li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "รับตัวอย่าง",
-            "script": "นักเทคนิคการแพทย์เปิดใบสั่งตรวจแล้วบันทึกวันเวลาที่รับตัวอย่างจริง ไม่ใช่แค่เปิดดูเฉยๆ จุดนี้ทำให้สถานะขยับเป็นกำลังดำเนินการ",
-            "notes": [
-              "สแกน/เปิดใบสั่งตรวจ",
-              "บันทึกวันเวลาที่รับตัวอย่างจริง",
-              "สถานะเปลี่ยนเป็นกำลังดำเนินการ"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 8: บันทึกผล -->
-      <div class="slide" data-slide="8">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">งานประจำวัน 3/5 · lab_technician</div>
-          <div class="cb-heading anim-2">บันทึกผล</div>
-          <div class="cb-diagram anim-3">
-            <svg viewBox="0 0 390 148" role="img" aria-labelledby="s8-title s8-desc" xmlns="http://www.w3.org/2000/svg">
-              <title id="s8-title">ลำดับคลิกบันทึกผล</title>
-              <desc id="s8-desc">lab_technician กรอกค่าผลตรวจทำให้สถานะขยับเป็นรอตรวจสอบ แต่พิมพ์ใบรายงานยังไม่ได้จนกว่าจะมีคนอนุมัติ</desc>
-              <defs>
-                <marker id="s8-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-orange)" />
-                </marker>
-                <marker id="s8-arrow-blocked" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-                  <polygon points="0 0, 7 2.5, 0 5" style="fill:var(--text-dim)" />
-                </marker>
-              </defs>
-              <line x1="180" y1="44" x2="196" y2="44" style="stroke:var(--accent-orange)" stroke-width="1.4" marker-end="url(#s8-arrow)" />
-              <line x1="271" y1="60" x2="271" y2="100" style="stroke:var(--text-dim)" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#s8-arrow-blocked)" />
-
-              <rect x="20" y="12" width="160" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-orange)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="28" y="18" width="36" height="14" rx="3" style="fill:var(--accent-orange)" />
-              <text x="46" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">LTC</text>
-              <text x="100" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="100" dy="0">กรอกค่า</tspan>
-                <tspan x="100" dy="15">ผลตรวจ</tspan>
-              </text>
-
-              <rect x="196" y="28" width="150" height="32" rx="16" fill="none" style="stroke:var(--accent-orange)" stroke-width="1" />
-              <text x="271" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-orange)">รอตรวจสอบ</text>
-
-              <rect x="171" y="100" width="200" height="40" rx="8" fill="var(--text)" fill-opacity="0.02" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" stroke-dasharray="4,3" />
-              <text x="271" y="118" text-anchor="middle" font-size="12" font-weight="600" style="font-family:var(--font-body);fill:var(--text-muted)">
-                <tspan x="271" dy="0">พิมพ์ใบรายงาน</tspan>
-                <tspan x="271" dy="15">ยังไม่ได้จนกว่าจะอนุมัติ</tspan>
-              </text>
-            </svg>
+                <title id="s8-title">ลำดับรับสิ่งส่งตรวจ</title>
+                <desc id="s8-desc">
+                  นักเทคนิคการแพทย์เปิดเมนูรับสิ่งส่งตรวจแล้วกดรับ
+                  ทำให้ใบสั่งตรวจเป็นกำลังตรวจ
+                </desc>
+                <defs>
+                  <marker
+                    id="s8-arrow"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-orange)"
+                    />
+                  </marker>
+                </defs>
+                <line
+                  x1="150"
+                  y1="44"
+                  x2="166"
+                  y2="44"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1.4"
+                  marker-end="url(#s8-arrow)"
+                />
+                <line
+                  x1="296"
+                  y1="44"
+                  x2="312"
+                  y2="44"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1.4"
+                  marker-end="url(#s8-arrow)"
+                />
+                <rect
+                  x="20"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-orange)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="85"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="85" dy="0">เมนู "รับสิ่ง</tspan>
+                  <tspan x="85" dy="15">ส่งตรวจ"</tspan>
+                </text>
+                <rect
+                  x="166"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-orange)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="231"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="231" dy="0">กดปุ่ม</tspan>
+                  <tspan x="231" dy="15">"รับ"</tspan>
+                </text>
+                <rect
+                  x="312"
+                  y="28"
+                  width="128"
+                  height="32"
+                  rx="16"
+                  fill="none"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1"
+                />
+                <text
+                  x="376"
+                  y="48"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="700"
+                  style="
+                    font-family: var(--font-label);
+                    fill: var(--accent-orange);
+                  "
+                >
+                  กำลังตรวจ
+                </text>
+              </svg>
+            </div>
+            <ul class="cb-list">
+              <li>เปิดเมนู <span class="cb-accent">รับสิ่งส่งตรวจ</span></li>
+              <li>
+                หาใบสั่งตรวจที่รอ แล้วกดปุ่ม
+                <span class="cb-accent">"รับ"</span>
+              </li>
+              <li>ใบสั่งตรวจขยับเป็น กำลังตรวจ — เริ่มบันทึกผลได้แล้ว</li>
+              <li>
+                สิ่งส่งตรวจใช้ไม่ได้? กดปุ่ม "ปฏิเสธ" แทน (ดูสไลด์ข้อผิดพลาด)
+              </li>
+            </ul>
+            <div class="step-warning">ยังไม่กด "รับ" = บันทึกผลไม่ได้</div>
           </div>
-          <ul class="cb-list anim-3">
-            <li>กรอกค่าผลตรวจทีละรายการในใบสั่งตรวจ</li>
-            <li>บันทึกแล้ว สถานะขยับเป็น รอตรวจสอบ</li>
-            <li>
-              ผลที่บันทึกแล้ว
-              <span class="cb-accent">ยังพิมพ์ใบรายงานไม่ได้</span>
-              จนกว่าจะมีคนอนุมัติ
-            </li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "บันทึกผล",
-            "script": "กรอกค่าผลตรวจทีละรายการในใบสั่งตรวจ พอบันทึกเสร็จสถานะจะขยับเป็นรอตรวจสอบ แต่ยังพิมพ์ใบรายงานไม่ได้จนกว่าจะมีคนอนุมัติ",
-            "notes": [
-              "กรอกค่าผลตรวจทีละรายการ",
-              "สถานะเปลี่ยนเป็นรอตรวจสอบ",
-              "พิมพ์ใบรายงานไม่ได้จนกว่าจะอนุมัติ"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 9: อนุมัติผล + พิมพ์ใบรายงาน -->
-      <div class="slide" data-slide="9">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">งานประจำวัน 4/5</div>
-          <div class="cb-heading anim-2">อนุมัติผล + พิมพ์ใบรายงาน</div>
-          <div class="cb-diagram anim-3">
-            <svg viewBox="0 0 668 84" role="img" aria-labelledby="s9-title s9-desc" xmlns="http://www.w3.org/2000/svg">
-              <title id="s9-title">ลำดับอนุมัติผลและพิมพ์ใบรายงาน</title>
-              <desc id="s9-desc">lab_manager หรือ doctor อนุมัติผล จากนั้น receptionist หรือ lab_manager พิมพ์ใบรายงาน</desc>
-              <defs>
-                <marker id="s9-arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-green)" />
-                </marker>
-                <marker id="s9-arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-blue)" />
-                </marker>
-              </defs>
-              <line x1="160" y1="44" x2="176" y2="44" style="stroke:var(--accent-green)" stroke-width="1.4" marker-end="url(#s9-arrow-green)" />
-              <line x1="316" y1="44" x2="332" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s9-arrow-blue)" />
-              <line x1="492" y1="44" x2="508" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s9-arrow-blue)" />
-
-              <rect x="20" y="12" width="140" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-green)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="28" y="18" width="36" height="14" rx="3" style="fill:var(--accent-green)" />
-              <text x="46" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">LMG</text>
-              <text x="90" y="57" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">อนุมัติผล</text>
-
-              <rect x="176" y="28" width="140" height="32" rx="16" fill="none" style="stroke:var(--accent-green)" stroke-width="1" />
-              <text x="246" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-green)">อนุมัติแล้ว</text>
-
-              <rect x="332" y="12" width="160" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="340" y="18" width="56" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="368" y="28" text-anchor="middle" font-size="6.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">RCP·LMG</text>
-              <text x="412" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="412" dy="0">พิมพ์ใบ</tspan>
-                <tspan x="412" dy="15">รายงาน</tspan>
-              </text>
-
-              <rect x="508" y="28" width="140" height="32" rx="16" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-              <text x="578" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">พิมพ์แล้ว</text>
-            </svg>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">ภาพหน้าจอ: หน้ารับสิ่งส่งตรวจ</div>
           </div>
-          <ul class="cb-list anim-3">
-            <li>
-              <span class="role" style="margin-right: 8px"
-                >lab_manager / doctor</span
-              ><strong>อนุมัติผล</strong> — ตรวจค่าที่บันทึก แล้วกดอนุมัติ →
-              อนุมัติแล้ว
-            </li>
-            <li>
-              <span class="role" style="margin-right: 8px"
-                >receptionist / lab_manager</span
-              ><strong>พิมพ์ใบรายงาน</strong> — เปิดใบที่อนุมัติแล้ว → พิมพ์ /
-              ดาวน์โหลด PDF → พิมพ์แล้ว
-            </li>
-            <li>
-              ผลตรวจที่ยัง<span class="cb-accent">ไม่อนุมัติ</span
-              >จะพิมพ์ใบรายงานไม่ได้ — กันผลหลุดออกไปก่อนมีคนตรวจสอบ
-            </li>
-          </ul>
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "อนุมัติผล + พิมพ์ใบรายงาน",
-            "script": "หัวหน้าแล็บหรือแพทย์ตรวจค่าที่บันทึกแล้วกดอนุมัติ จากนั้นพนักงานต้อนรับหรือหัวหน้าแล็บถึงจะเปิดพิมพ์ใบรายงานได้ ผลที่ยังไม่อนุมัติจะพิมพ์ไม่ได้เด็ดขาด",
+            "title": "งานประจำวัน 2/5 — รับสิ่งส่งตรวจ",
+            "script": "นักเทคนิคการแพทย์เปิดเมนูรับสิ่งส่งตรวจ หาใบที่รออยู่ แล้วกดปุ่มรับ จุดนี้สำคัญมากเพราะทำให้ใบสั่งตรวจขยับเป็นกำลังตรวจ และเป็นเงื่อนไขเดียวที่ทำให้บันทึกผลได้",
             "notes": [
-              "lab_manager/doctor ตรวจค่าแล้วกดอนุมัติ → อนุมัติแล้ว",
-              "receptionist/lab_manager เปิดใบที่อนุมัติแล้วพิมพ์/ดาวน์โหลด PDF → พิมพ์แล้ว",
-              "ผลที่ยังไม่อนุมัติพิมพ์ไม่ได้ กันผลหลุดก่อนตรวจสอบ"
+              "เมนู รับสิ่งส่งตรวจ → หาใบที่รอ → กดปุ่ม \"รับ\"",
+              "สถานะใบสั่งตรวจขยับเป็นกำลังตรวจ",
+              "คำเตือน: ยังไม่กดรับ = บันทึกผลไม่ได้",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
             ]
           }
         </script>
       </div>
 
-      <!-- 10: เก็บเงิน -->
-      <div class="slide" data-slide="10">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">งานประจำวัน 5/5 · cashier</div>
-          <div class="cb-heading anim-2">เก็บเงิน</div>
-          <div class="cb-diagram anim-3">
-            <svg viewBox="0 0 638 84" role="img" aria-labelledby="s10-title s10-desc" xmlns="http://www.w3.org/2000/svg">
-              <title id="s10-title">ลำดับคลิกเก็บเงิน</title>
-              <desc id="s10-desc">cashier เปิดใบสั่งตรวจ รับชำระ และออกใบเสร็จ ทำให้สถานะขยับเป็นปิดงาน</desc>
-              <defs>
-                <marker id="s10-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" style="fill:var(--accent-blue)" />
-                </marker>
-              </defs>
-              <line x1="180" y1="44" x2="196" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s10-arrow)" />
-              <line x1="326" y1="44" x2="342" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s10-arrow)" />
-              <line x1="482" y1="44" x2="498" y2="44" style="stroke:var(--accent-blue)" stroke-width="1.4" marker-end="url(#s10-arrow)" />
-
-              <rect x="20" y="12" width="160" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="28" y="18" width="36" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="46" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">CSH</text>
-              <text x="100" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="100" dy="0">เปิดใบ</tspan>
-                <tspan x="100" dy="15">สั่งตรวจ</tspan>
-              </text>
-
-              <rect x="196" y="12" width="130" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="204" y="18" width="36" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="222" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">CSH</text>
-              <text x="261" y="57" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">รับชำระ</text>
-
-              <rect x="342" y="12" width="140" height="64" rx="8" fill="var(--bg-card)" style="stroke:var(--accent-blue)" stroke-opacity="0.4" stroke-width="1" />
-              <rect x="350" y="18" width="36" height="14" rx="3" style="fill:var(--accent-blue)" />
-              <text x="368" y="28" text-anchor="middle" font-size="7.5" font-weight="700" style="font-family:var(--font-label);fill:#fff">CSH</text>
-              <text x="412" y="49" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
-                <tspan x="412" dy="0">ออกใบ</tspan>
-                <tspan x="412" dy="15">เสร็จ</tspan>
-              </text>
-
-              <rect x="498" y="28" width="120" height="32" rx="16" fill="none" style="stroke:var(--accent-blue)" stroke-width="1" />
-              <text x="558" y="48" text-anchor="middle" font-size="12.5" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-blue)">ปิดงาน</text>
-            </svg>
+      <!-- 9: งานประจำวัน 3/5 -->
+      <div class="slide demo-slide" data-slide="9">
+        <div class="demo-badge anim-1">DEMO</div>
+        <div class="cb-number anim-1">งานประจำวัน 3/5 · นักเทคนิคการแพทย์</div>
+        <h2 class="anim-2">บันทึกผล + Verify</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <div class="cb-diagram">
+              <svg
+                viewBox="0 0 460 84"
+                role="img"
+                aria-labelledby="s9-title s9-desc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title id="s9-title">ลำดับบันทึกผลและ Verify</title>
+                <desc id="s9-desc">
+                  นักเทคนิคการแพทย์บันทึกผลแล้วกด Verify
+                  ทำให้สถานะผลขยับจากบันทึกผลแล้วเป็นตรวจสอบแล้ว
+                </desc>
+                <defs>
+                  <marker
+                    id="s9-arrow"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-orange)"
+                    />
+                  </marker>
+                </defs>
+                <line
+                  x1="150"
+                  y1="44"
+                  x2="166"
+                  y2="44"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1.4"
+                  marker-end="url(#s9-arrow)"
+                />
+                <line
+                  x1="296"
+                  y1="44"
+                  x2="312"
+                  y2="44"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1.4"
+                  marker-end="url(#s9-arrow)"
+                />
+                <rect
+                  x="20"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-orange)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="85"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="85" dy="0">บันทึกค่า</tspan>
+                  <tspan x="85" dy="15">ผลตรวจ</tspan>
+                </text>
+                <rect
+                  x="166"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-orange)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="231"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  กด Verify
+                </text>
+                <rect
+                  x="312"
+                  y="28"
+                  width="128"
+                  height="32"
+                  rx="16"
+                  fill="none"
+                  style="stroke: var(--accent-orange)"
+                  stroke-width="1"
+                />
+                <text
+                  x="376"
+                  y="48"
+                  text-anchor="middle"
+                  font-size="11"
+                  font-weight="700"
+                  style="
+                    font-family: var(--font-label);
+                    fill: var(--accent-orange);
+                  "
+                >
+                  ตรวจสอบแล้ว
+                </text>
+              </svg>
+            </div>
+            <ul class="cb-list">
+              <li>กรอกค่าผลตรวจทีละรายการ → กด "บันทึก" → บันทึกผลแล้ว</li>
+              <li>
+                ผู้ตรวจ (อาจเป็นคนละคนกับคนบันทึก) กด "Verify" → ตรวจสอบแล้ว
+              </li>
+              <li>
+                กรอกผิด? กด "ยกเลิก Verify" ถอยกลับมาแก้ได้ —
+                ระบบเก็บประวัติการแก้ไข
+              </li>
+            </ul>
+            <div class="step-warning">
+              ค่าวิกฤตต้องกรอก "บันทึกการแจ้ง" ในหน้าต่าง Critical Value
+              ก่อนถึงจะบันทึก/Verify ได้
+            </div>
           </div>
-          <ul class="cb-list anim-3">
-            <li>เปิดใบสั่งตรวจ → รับชำระ → ออกใบเสร็จ</li>
-            <li>จบแล้ว สถานะขยับเป็น ปิดงาน — จบเส้นทางของใบสั่งตรวจนี้</li>
-            <li>
-              บทบาทที่เขียนไว้ทั้งเส้นทางคือค่ามาตรฐาน — แล็บเล็กให้คนเดียวสวมหลายบทบาทได้
-              ตราบใดที่บัญชีมีสิทธิ์ครบ
-            </li>
-          </ul>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">ภาพหน้าจอ: หน้าบันทึกผล/Verify</div>
+          </div>
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "เก็บเงิน",
-            "script": "แคชเชียร์เปิดใบสั่งตรวจ รับชำระ แล้วออกใบเสร็จ สถานะขยับเป็นปิดงาน จบเส้นทางของใบสั่งตรวจใบนี้ บทบาทที่เห็นทั้งหมดวันนี้เป็นค่ามาตรฐาน แล็บเล็กให้คนเดียวสวมหลายบทบาทได้ถ้าสิทธิ์ครบ",
+            "title": "งานประจำวัน 3/5 — บันทึกผล + Verify",
+            "script": "นักเทคนิคการแพทย์กรอกค่าผลตรวจทีละรายการแล้วบันทึก จากนั้นกด Verify เพื่อยืนยันความถูกต้อง ถ้าเป็นค่าวิกฤต ระบบจะเด้งหน้าต่าง Critical Value บังคับให้กรอกว่าแจ้งใครก่อนถึงจะไปต่อได้",
             "notes": [
-              "เปิดใบสั่งตรวจ → รับชำระ → ออกใบเสร็จ",
-              "สถานะเปลี่ยนเป็นปิดงาน",
-              "แล็บเล็กให้คนเดียวสวมหลายบทบาทได้ถ้าสิทธิ์ครบ"
+              "กรอกค่าผลตรวจทีละรายการ → บันทึก → บันทึกผลแล้ว",
+              "กด Verify → ตรวจสอบแล้ว",
+              "คำเตือน: ค่าวิกฤตต้องกรอก \"บันทึกการแจ้ง\" ก่อนบันทึก/Verify ได้",
+              "แก้ผิดหลัง Verify แล้ว ใช้ \"ยกเลิก Verify\" ถอยกลับมาแก้",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
             ]
           }
         </script>
       </div>
 
-      <!-- 11: งานของฉันตามบทบาท -->
-      <div class="slide" data-slide="11">
+      <!-- 10: งานประจำวัน 4/5 -->
+      <div class="slide demo-slide" data-slide="10">
+        <div class="demo-badge anim-1">DEMO</div>
+        <div class="cb-number anim-1">
+          งานประจำวัน 4/5 · หัวหน้าห้องปฏิบัติการ / แพทย์
+        </div>
+        <h2 class="anim-2">Approve + พิมพ์ใบรายงานผล</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <div class="cb-diagram">
+              <svg
+                viewBox="0 0 460 84"
+                role="img"
+                aria-labelledby="s10-title s10-desc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title id="s10-title">ลำดับ Approve และพิมพ์ใบรายงานผล</title>
+                <desc id="s10-desc">
+                  หัวหน้าห้องปฏิบัติการหรือแพทย์กด Approve
+                  แล้วพนักงานต้อนรับพิมพ์ใบรายงานผล
+                </desc>
+                <defs>
+                  <marker
+                    id="s10-arrow-g"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-green)"
+                    />
+                  </marker>
+                  <marker
+                    id="s10-arrow-b"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-blue)"
+                    />
+                  </marker>
+                </defs>
+                <line
+                  x1="150"
+                  y1="44"
+                  x2="166"
+                  y2="44"
+                  style="stroke: var(--accent-green)"
+                  stroke-width="1.4"
+                  marker-end="url(#s10-arrow-g)"
+                />
+                <line
+                  x1="296"
+                  y1="44"
+                  x2="312"
+                  y2="44"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1.4"
+                  marker-end="url(#s10-arrow-b)"
+                />
+                <rect
+                  x="20"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-green)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="85"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  กด Approve
+                </text>
+                <rect
+                  x="166"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-blue)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="231"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="231" dy="0">พิมพ์ใบ</tspan>
+                  <tspan x="231" dy="15">รายงานผล</tspan>
+                </text>
+                <rect
+                  x="312"
+                  y="28"
+                  width="128"
+                  height="32"
+                  rx="16"
+                  fill="none"
+                  style="stroke: var(--accent-green)"
+                  stroke-width="1"
+                />
+                <text
+                  x="376"
+                  y="48"
+                  text-anchor="middle"
+                  font-size="11"
+                  font-weight="700"
+                  style="
+                    font-family: var(--font-label);
+                    fill: var(--accent-green);
+                  "
+                >
+                  อนุมัติแล้ว
+                </text>
+              </svg>
+            </div>
+            <ul class="cb-list">
+              <li>
+                ตรวจค่าที่ผ่าน Verify แล้ว → กด "Approve" → ยืนยันด้วย "ยืนยัน
+                Approve"
+              </li>
+              <li>รายการนั้นเป็น อนุมัติแล้ว</li>
+              <li>
+                ผลครบทุกรายการอนุมัติแล้ว → ใบสั่งตรวจเป็น เสร็จสิ้น อัตโนมัติ
+              </li>
+              <li>กด "พิมพ์ใบรายงานผล" ได้ทุกเมื่อ</li>
+            </ul>
+            <div class="step-warning">
+              รายการที่ยังไม่ Approve จะไม่ขึ้นในใบรายงาน · คนบันทึกผลเอง
+              Approve เองต้องรออย่างน้อย 1 นาที
+            </div>
+          </div>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">
+              ภาพหน้าจอ: หน้า Approve/พิมพ์ใบรายงานผล
+            </div>
+          </div>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "งานประจำวัน 4/5 — Approve + พิมพ์ใบรายงานผล",
+            "script": "หัวหน้าห้องปฏิบัติการหรือแพทย์ตรวจค่าที่ผ่าน Verify แล้วกด Approve พร้อมยืนยันอีกครั้ง พอผลครบทุกรายการอนุมัติแล้ว ใบสั่งตรวจจะเสร็จสิ้นเองอัตโนมัติ และพิมพ์ใบรายงานผลได้ทุกเมื่อ แต่รายการที่ยังไม่อนุมัติจะไม่ขึ้นในใบรายงาน",
+            "notes": [
+              "กด Approve → ยืนยัน Approve → อนุมัติแล้ว",
+              "ผลครบทุกรายการอนุมัติแล้ว → ใบสั่งตรวจเสร็จสิ้นอัตโนมัติ",
+              "คำเตือน: รายการที่ยังไม่ Approve จะไม่ขึ้นในใบรายงาน (พิมพ์ได้ แต่รายการนั้นหาย)",
+              "คำเตือน: คนบันทึกผลเอง Approve เองต้องรออย่างน้อย 1 นาที",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 11: งานประจำวัน 5/5 -->
+      <div class="slide demo-slide" data-slide="11">
+        <div class="demo-badge anim-1">DEMO</div>
+        <div class="cb-number anim-1">
+          งานประจำวัน 5/5 · แคชเชียร์ / พนักงานต้อนรับ
+        </div>
+        <h2 class="anim-2">เก็บเงิน</h2>
+        <div class="daily-row anim-3">
+          <div class="daily-col-main">
+            <div class="cb-diagram">
+              <svg
+                viewBox="0 0 460 84"
+                role="img"
+                aria-labelledby="s11-title s11-desc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title id="s11-title">ลำดับเก็บเงิน</title>
+                <desc id="s11-desc">
+                  แคชเชียร์หรือพนักงานต้อนรับเปิดเมนูการเงินใบแจ้งหนี้ ชำระเงิน
+                  แล้วพิมพ์ใบเสร็จ
+                </desc>
+                <defs>
+                  <marker
+                    id="s11-arrow"
+                    markerWidth="8"
+                    markerHeight="6"
+                    refX="7"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 8 3, 0 6"
+                      style="fill: var(--accent-blue)"
+                    />
+                  </marker>
+                </defs>
+                <line
+                  x1="150"
+                  y1="44"
+                  x2="166"
+                  y2="44"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1.4"
+                  marker-end="url(#s11-arrow)"
+                />
+                <line
+                  x1="296"
+                  y1="44"
+                  x2="312"
+                  y2="44"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1.4"
+                  marker-end="url(#s11-arrow)"
+                />
+                <rect
+                  x="20"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-blue)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="85"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  <tspan x="85" dy="0">การเงิน &gt;</tspan>
+                  <tspan x="85" dy="15">ใบแจ้งหนี้</tspan>
+                </text>
+                <rect
+                  x="166"
+                  y="12"
+                  width="130"
+                  height="64"
+                  rx="8"
+                  fill="var(--bg-card)"
+                  style="stroke: var(--accent-blue)"
+                  stroke-opacity="0.4"
+                  stroke-width="1"
+                />
+                <text
+                  x="231"
+                  y="49"
+                  text-anchor="middle"
+                  font-size="12.5"
+                  font-weight="600"
+                  style="font-family: var(--font-body); fill: var(--text)"
+                >
+                  ชำระเงิน
+                </text>
+                <rect
+                  x="312"
+                  y="28"
+                  width="128"
+                  height="32"
+                  rx="16"
+                  fill="none"
+                  style="stroke: var(--accent-blue)"
+                  stroke-width="1"
+                />
+                <text
+                  x="376"
+                  y="48"
+                  text-anchor="middle"
+                  font-size="11"
+                  font-weight="700"
+                  style="
+                    font-family: var(--font-label);
+                    fill: var(--accent-blue);
+                  "
+                >
+                  พิมพ์ใบเสร็จ
+                </text>
+              </svg>
+            </div>
+            <ul class="cb-list">
+              <li>เมนู การเงิน &gt; ใบแจ้งหนี้ → เปิดใบของผู้ป่วย</li>
+              <li>เลือกวิธีชำระ: เงินสด / บัตรเครดิต / พร้อมเพย์ / โอนเงิน</li>
+              <li>กด "พิมพ์ใบเสร็จ"</li>
+            </ul>
+            <div class="step-warning">
+              เก็บเงินได้ทุกเวลา และ<strong>ไม่เปลี่ยนสถานะใบสั่งตรวจ</strong>
+            </div>
+          </div>
+          <div class="daily-col-shot">
+            <div class="shot-placeholder">
+              ภาพหน้าจอ: หน้าใบแจ้งหนี้/ชำระเงิน
+            </div>
+          </div>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "งานประจำวัน 5/5 — เก็บเงิน",
+            "script": "แคชเชียร์หรือพนักงานต้อนรับเปิดเมนูการเงิน ใบแจ้งหนี้ เลือกวิธีชำระแล้วพิมพ์ใบเสร็จ เก็บเงินทำได้ทุกเวลาไม่ว่าผลตรวจจะเสร็จหรือยัง และการชำระเงินไม่ทำให้สถานะใบสั่งตรวจเปลี่ยนแต่อย่างใด",
+            "notes": [
+              "การเงิน > ใบแจ้งหนี้ → ชำระ (เงินสด/บัตรเครดิต/พร้อมเพย์/โอนเงิน) → พิมพ์ใบเสร็จ",
+              "เก็บเงินได้ทุกเวลาหลังสั่งตรวจ ไม่ต้องรอผล",
+              "คำเตือน: การชำระเงินไม่เปลี่ยนสถานะใบสั่งตรวจ ไม่มีสถานะ \"ปิดงาน\" แยก",
+              "DEMO: ใช้ผู้ป่วยทดสอบ · เปิดบัญชีแต่ละบทบาทไว้คนละ tab · ถ้าระบบล่มใช้ภาพหน้าจอบนสไลด์แทน"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 12: เมื่อเกิดข้อผิดพลาด 1/2 -->
+      <div class="slide" data-slide="12">
+        <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 1/2</div>
+        <h2 class="anim-2">สิ่งส่งตรวจเสีย / ต้องยกเลิกใบ</h2>
+        <div class="cb-pair anim-3">
+          <div class="cb-card problem">
+            <div class="cb-card-label problem-label">สิ่งส่งตรวจใช้ไม่ได้</div>
+            <div class="cb-card-text">
+              หน้า "รับสิ่งส่งตรวจ" กดปุ่ม "ปฏิเสธ" → กรอกเหตุผล (บังคับ) →
+              เช็กบ็อกซ์ "ขอเก็บตัวอย่างใหม่ (สร้างภาชนะทดแทน)"
+              ติ๊กอยู่แล้วโดยปริยาย → ระบบสร้างภาชนะทดแทนให้เก็บใหม่
+            </div>
+          </div>
+          <div class="cb-card fix">
+            <div class="cb-card-label fix-label">ต้องยกเลิกใบสั่งตรวจ</div>
+            <div class="cb-card-text">
+              กดปุ่ม "ยกเลิกใบสั่งตรวจ" — ทำได้เฉพาะสถานะ
+              <span class="cb-accent">รอดำเนินการ</span> หรือ
+              <span class="cb-accent">เก็บตัวอย่างแล้ว</span> เท่านั้น
+              ต้องกรอกเหตุผล ("กรุณาระบุเหตุผลในการยกเลิก")
+              ใบแจ้งหนี้ยกเลิกตามไปด้วย
+            </div>
+          </div>
+        </div>
+        <div class="step-warning mt-24">
+          พอใบสั่งตรวจเป็น กำลังตรวจ แล้ว ยกเลิกไม่ได้อีก —
+          ต้องแจ้งหัวหน้าห้องปฏิบัติการ
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "เมื่อเกิดข้อผิดพลาด 1/2",
+            "script": "สองสถานการณ์ที่พบบ่อย สิ่งส่งตรวจใช้ไม่ได้ ให้กดปฏิเสธในหน้ารับสิ่งส่งตรวจ กรอกเหตุผล ระบบจะสร้างภาชนะใหม่ให้เก็บตัวอย่างซ้ำโดยอัตโนมัติ ส่วนถ้าต้องยกเลิกใบสั่งตรวจทั้งใบ ทำได้เฉพาะตอนที่ยังไม่กำลังตรวจเท่านั้น พอกำลังตรวจแล้วยกเลิกเองไม่ได้ ต้องแจ้งหัวหน้าห้องปฏิบัติการ",
+            "notes": [
+              "สิ่งส่งตรวจใช้ไม่ได้: ปฏิเสธ + กรอกเหตุผล + ขอเก็บตัวอย่างใหม่ (ติ๊กอยู่แล้ว) → สร้างภาชนะทดแทน",
+              "ยกเลิกใบสั่งตรวจ: ทำได้เฉพาะรอดำเนินการ/เก็บตัวอย่างแล้ว ต้องกรอกเหตุผล",
+              "ยกเลิกใบสั่งตรวจ → ใบแจ้งหนี้ยกเลิกตามไปด้วย",
+              "กำลังตรวจแล้วยกเลิกไม่ได้ → แจ้งหัวหน้าห้องปฏิบัติการ"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 13: เมื่อเกิดข้อผิดพลาด 2/2 -->
+      <div class="slide" data-slide="13">
+        <div class="slide-tag anim-1">เมื่อเกิดข้อผิดพลาด 2/2</div>
+        <h2 class="anim-2">กรอกผลผิด / ค่าวิกฤต</h2>
+        <div class="status-timeline anim-3">
+          <div class="status-item stag-1">
+            <div class="status-dot green"></div>
+            <div class="status-text">
+              <strong>ยังไม่ Verify</strong> — แก้ค่าได้เลยในหน้าบันทึกผล
+            </div>
+          </div>
+          <div class="status-item stag-2">
+            <div class="status-dot orange"></div>
+            <div class="status-text">
+              <strong>Verify แล้ว</strong> — กด "ยกเลิก Verify" ให้ถอยเป็น
+              บันทึกผลแล้ว ก่อนแล้วค่อยแก้
+            </div>
+          </div>
+          <div class="status-item stag-3">
+            <div class="status-dot red"></div>
+            <div class="status-text">
+              <strong>Approve แล้ว</strong> — ต้องให้ผู้มีสิทธิ์ Approve กด
+              "ยกเลิก Approve" ก่อนแล้วค่อยแก้
+            </div>
+          </div>
+          <div class="status-item stag-4">
+            <div class="status-dot blue"></div>
+            <div class="status-text">
+              ทุกการแก้ไขมี<strong>ประวัติการแก้ไขผล</strong> เก็บไว้เสมอ
+              ไม่มีการเขียนทับเงียบๆ
+            </div>
+          </div>
+        </div>
+        <div class="step-warning mt-16">
+          ค่าวิกฤต: หน้าต่าง "ค่าวิกฤต — Critical Value"
+          เด้งก่อนบันทึก/Verify/Approve — กรอก "บันทึกการแจ้ง" (เช่น
+          โทรแจ้งแพทย์ เวลาเท่าไร) แล้วกด "รับทราบและบันทึก"
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "เมื่อเกิดข้อผิดพลาด 2/2",
+            "script": "ถ้ากรอกผลผิด วิธีแก้ขึ้นกับว่าผลนั้นไปถึงขั้นไหนแล้ว ถ้ายังไม่ Verify แก้ได้เลย ถ้า Verify แล้วต้องยกเลิก Verify ก่อน ถ้า Approve แล้วต้องให้ผู้มีสิทธิ์ Approve ยกเลิก Approve ก่อน ทุกการแก้ไขระบบเก็บประวัติไว้หมด ไม่มีการเขียนทับเงียบๆ ส่วนค่าวิกฤต ระบบจะบังคับให้กรอกว่าแจ้งใครก่อนเสมอ",
+            "notes": [
+              "ยังไม่ Verify → แก้ค่าได้เลย",
+              "Verify แล้ว → \"ยกเลิก Verify\" ก่อนแก้",
+              "Approve แล้ว → ผู้มีสิทธิ์ Approve กด \"ยกเลิก Approve\" ก่อนแก้",
+              "ทุกการแก้มีประวัติการแก้ไขผล ไม่เขียนทับเงียบๆ",
+              "ค่าวิกฤต: กรอก \"บันทึกการแจ้ง\" แล้วกด \"รับทราบและบันทึก\" ก่อนไปต่อ"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 14: งานของฉันตามบทบาท (cheat sheet) -->
+      <div class="slide" data-slide="14">
         <div class="slide-tag anim-1">สรุปย่อ</div>
         <h2 class="anim-2">งานของฉันตามบทบาท</h2>
         <div class="table-wrap anim-3">
@@ -1949,67 +3554,286 @@
             <thead>
               <tr>
                 <th>บทบาท</th>
-                <th>งานประจำวันในเส้นทางใบสั่งตรวจ</th>
+                <th>เมนูที่ใช้</th>
+                <th>ปุ่มหลัก</th>
                 <th>ส่งต่อที่สถานะ</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="cell-highlight">receptionist</td>
+                <td class="cell-highlight">พนักงานต้อนรับ</td>
                 <td class="cell-muted">
-                  ลงทะเบียนผู้ป่วย + สั่งตรวจ · พิมพ์ใบรายงาน
+                  ผู้ป่วย · สั่งตรวจ · การเงิน &gt; ใบแจ้งหนี้
                 </td>
-                <td class="cell-muted">รอดำเนินการ / พิมพ์แล้ว</td>
+                <td class="cell-muted">
+                  "ผู้ป่วยใหม่" · "สร้างใบสั่งตรวจ" · "พิมพ์ใบเสร็จ"
+                </td>
+                <td class="cell-muted">รอดำเนินการ</td>
               </tr>
               <tr>
-                <td class="cell-highlight">lab_technician</td>
-                <td class="cell-muted">รับตัวอย่าง + บันทึกผล</td>
-                <td class="cell-muted">กำลังดำเนินการ / รอตรวจสอบ</td>
+                <td class="cell-highlight">นักเทคนิคการแพทย์</td>
+                <td class="cell-muted">รับสิ่งส่งตรวจ · ผลตรวจ</td>
+                <td class="cell-muted">"รับ" · "บันทึก" · "Verify"</td>
+                <td class="cell-muted">กำลังตรวจ / ตรวจสอบแล้ว</td>
               </tr>
               <tr>
-                <td class="cell-highlight">lab_manager</td>
-                <td class="cell-muted">อนุมัติผล · พิมพ์ใบรายงาน</td>
-                <td class="cell-muted">อนุมัติแล้ว / พิมพ์แล้ว</td>
-              </tr>
-              <tr>
-                <td class="cell-highlight">doctor</td>
-                <td class="cell-muted">อนุมัติผล</td>
+                <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ</td>
+                <td class="cell-muted">
+                  ผลตรวจ · รายงาน · การเงิน (ดูอย่างเดียว)
+                </td>
+                <td class="cell-muted">"Approve" · "ยืนยัน Approve"</td>
                 <td class="cell-muted">อนุมัติแล้ว</td>
               </tr>
               <tr>
-                <td class="cell-highlight">cashier</td>
-                <td class="cell-muted">เก็บเงิน</td>
-                <td class="cell-muted">ปิดงาน</td>
+                <td class="cell-highlight">แพทย์</td>
+                <td class="cell-muted">ผลตรวจ · รายงาน</td>
+                <td class="cell-muted">"Approve" · "ยืนยัน Approve"</td>
+                <td class="cell-muted">อนุมัติแล้ว</td>
               </tr>
               <tr>
-                <td class="cell-highlight">
-                  super_admin / company_admin / branch_admin
-                </td>
-                <td class="cell-muted">
-                  ไม่อยู่ในเส้นทางใบสั่งตรวจประจำวัน — ดูแลระบบ/สาขาแทน
-                </td>
-                <td class="cell-muted">—</td>
+                <td class="cell-highlight">แคชเชียร์</td>
+                <td class="cell-muted">การเงิน &gt; ใบแจ้งหนี้</td>
+                <td class="cell-muted">"ชำระ" · "พิมพ์ใบเสร็จ"</td>
+                <td class="cell-muted">ไม่เปลี่ยนสถานะใบสั่งตรวจ</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p
+          class="subtitle anim-4"
+          style="font-size: clamp(12px, 1vw, 14px); margin-top: 12px"
+        >
+          บทบาทระดับดูแลระบบ (super_admin / company_admin / branch_admin)
+          ดูภาคผนวก
+        </p>
         <script type="application/json" class="slide-notes">
           {
             "title": "งานของฉันตามบทบาท",
-            "script": "สรุปรวบยอดว่าแต่ละบทบาททำอะไรในเส้นทางใบสั่งตรวจ และส่งไม้ต่อที่สถานะไหน ใช้ตารางนี้เช็กตัวเองได้เลยว่าวันนี้ต้องทำอะไร",
+            "script": "สรุปรวบยอดว่าแต่ละบทบาทใช้เมนูไหน กดปุ่มอะไร และส่งไม้ต่อที่สถานะไหน ใช้ตารางนี้เช็กตัวเองได้เลยว่าวันนี้ต้องทำอะไร",
             "notes": [
-              "receptionist: ลงทะเบียน+สั่งตรวจ, พิมพ์ใบรายงาน",
-              "lab_technician: รับตัวอย่าง+บันทึกผล",
-              "lab_manager/doctor: อนุมัติผล",
-              "cashier: เก็บเงิน",
-              "บทบาทระดับดูแลระบบไม่อยู่ในงานประจำวันนี้"
+              "พนักงานต้อนรับ: ผู้ป่วย/สั่งตรวจ/การเงินทั้งหมด → รอดำเนินการ",
+              "นักเทคนิคการแพทย์: รับสิ่งส่งตรวจ/บันทึกผล/Verify → กำลังตรวจ/ตรวจสอบแล้ว",
+              "หัวหน้าห้องปฏิบัติการ/แพทย์: Approve → อนุมัติแล้ว",
+              "แคชเชียร์: เก็บเงิน ไม่เปลี่ยนสถานะใบสั่งตรวจ",
+              "บทบาทดูแลระบบไม่อยู่ในตารางนี้ ดูภาคผนวก"
             ]
           }
         </script>
       </div>
 
-      <!-- 12: บทบาทมาตรฐาน 8 แบบ -->
-      <div class="slide" data-slide="12">
+      <!-- 15: กับดักตอนใช้งานประจำวัน -->
+      <div class="slide" data-slide="15">
+        <h2 class="anim-1">กับดักตอนใช้งานประจำวัน</h2>
+        <div class="card-grid">
+          <div class="card-editorial tone-red bounce-1">
+            <div class="card-tag">บล็อกในใบรายงาน</div>
+            <div class="card-title">
+              รายการที่ยังไม่ Approve ไม่ขึ้นในใบรายงาน
+            </div>
+            <div class="card-desc">
+              พิมพ์ใบรายงานได้เสมอ แต่รายการที่ยังไม่อนุมัติจะถูกเว้นไว้
+            </div>
+          </div>
+          <div class="card-editorial tone-orange bounce-2">
+            <div class="card-tag">ต้อง login ใหม่</div>
+            <div class="card-title">เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยน</div>
+            <div class="card-desc">
+              ต้อง logout แล้ว login ใหม่หลังเปลี่ยนบทบาท
+            </div>
+          </div>
+          <div class="card-editorial tone-orange bounce-3">
+            <div class="card-tag">ตามแพ็กเกจ</div>
+            <div class="card-title">เมนูบางอย่างหายไป</div>
+            <div class="card-desc">
+              เช่น เชื่อมเครื่องวิเคราะห์/HL7 — เปิดปิดตามแพ็กเกจที่สมัคร ถาม IT
+              ก่อน
+            </div>
+          </div>
+          <div class="card-editorial tone-red bounce-4">
+            <div class="card-tag">บันทึกผลไม่ได้</div>
+            <div class="card-title">ยังไม่กด "รับ" สิ่งส่งตรวจ</div>
+            <div class="card-desc">
+              ต้องรับสิ่งส่งตรวจก่อน (กำลังตรวจ) ถึงจะบันทึกผลได้
+            </div>
+          </div>
+          <div class="card-editorial tone-blue bounce-1">
+            <div class="card-tag">ไม่มีปุ่มนี้</div>
+            <div class="card-title">ลืมรหัสผ่าน</div>
+            <div class="card-desc">
+              ไม่มีปุ่ม "ลืมรหัสผ่าน" — ติดต่อ Lab admin เท่านั้น
+            </div>
+          </div>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "กับดักตอนใช้งานประจำวัน",
+            "script": "ห้าเรื่องนี้เป็นกับดักที่เจอบ่อยที่สุดในงานใช้จริง จำไว้ให้ขึ้นใจก่อนเริ่มใช้งาน",
+            "notes": [
+              "รายการที่ยังไม่ Approve พิมพ์ได้ แต่รายการนั้นไม่ขึ้นในใบรายงาน",
+              "เปลี่ยนบทบาทแล้วต้อง logout/login ใหม่ถึงจะเห็นสิทธิ์ใหม่",
+              "เมนูหาย เช่น เชื่อมเครื่องวิเคราะห์/HL7 เพราะเปิดปิดตามแพ็กเกจ ไม่ใช่ระบบพัง ถาม IT ก่อน",
+              "ยังไม่กด \"รับ\" สิ่งส่งตรวจ = บันทึกผลไม่ได้",
+              "ไม่มีปุ่มลืมรหัสผ่าน ติดต่อ Lab admin เท่านั้น"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 16: ทบทวน -->
+      <div class="slide" data-slide="16">
+        <div class="slide-tag anim-1">ก่อนจบ</div>
+        <h2 class="anim-2">ทบทวน</h2>
+        <div class="cb-wrap">
+          <ul class="cb-list anim-2">
+            <li>
+              <strong>รายการที่ยังไม่ Approve พิมพ์ใบรายงานได้ไหม?</strong> —
+              พิมพ์ได้ แต่รายการนั้นไม่ขึ้นในใบรายงาน
+            </li>
+            <li>
+              <strong>ผลสถานะ "ตรวจสอบแล้ว" ใครทำต่อ?</strong> —
+              หัวหน้าห้องปฏิบัติการหรือแพทย์ กด Approve
+            </li>
+            <li>
+              <strong>สิ่งส่งตรวจใช้ไม่ได้ทำยังไง?</strong> — กด "ปฏิเสธ" +
+              "ขอเก็บตัวอย่างใหม่" ระบบสร้างภาชนะทดแทนให้
+            </li>
+            <li>
+              <strong>Approve ไปแล้วแต่ค่าผิด ทำยังไง?</strong> — กด "ยกเลิก
+              Approve" แล้วแก้ ระบบเก็บประวัติการแก้ไขไว้
+            </li>
+          </ul>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "ทบทวน",
+            "script": "ก่อนจบภาคเนื้อหาหลัก มาทบทวนสี่คำถามสั้นๆ ที่ครอบคลุมเรื่องสำคัญที่สุดของวันนี้",
+            "notes": [
+              "Q: รายการที่ยังไม่ Approve พิมพ์ได้ไหม → A: พิมพ์ได้ แต่รายการนั้นไม่ขึ้น",
+              "Q: สถานะตรวจสอบแล้ว ใครทำต่อ → A: หัวหน้าห้องปฏิบัติการ/แพทย์ Approve",
+              "Q: สิ่งส่งตรวจใช้ไม่ได้ → A: ปฏิเสธ + ขอเก็บตัวอย่างใหม่",
+              "Q: Approve ไปแล้วแต่ค่าผิด → A: ยกเลิก Approve แล้วแก้ ระบบเก็บประวัติ"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 17: สิ่งที่คุณต้องทำช่วงเปิดใช้จริง -->
+      <div class="slide" data-slide="17">
+        <div class="cb-wrap">
+          <div class="cb-number anim-1">ทุกคน · ช่วงเปิดใช้จริง</div>
+          <div class="cb-heading anim-2">สิ่งที่คุณต้องทำช่วงเปิดใช้จริง</div>
+          <ul class="cb-list anim-3">
+            <li>
+              ซ้อมเองอย่างน้อยคนละ <span class="cb-accent">3 เคสเต็มวงจร</span>
+              — ไม่ใช่แค่นั่งดูคนอื่นทำ
+            </li>
+            <li>
+              เมื่อพบปัญหา แคปหน้าจอ เขียนอธิบายขั้นตอนที่เกิดขึ้น ให้แจ้งในไลน์กลุ่ม หรือแจ้ง
+              <span class="fill-blank">ไตเติ้ล</span> เพื่อรววบรวมปัญหา 
+            </li>
+            <li>Morning Scrum ประชุมสั้น 15 นาทีทุกเช้า 5 วันแรก</li>
+            <li>
+              ห้ามบันทึกซ้ำสองระบบ — ระบบเดิม (ถ้ามี) เป็น
+              <span class="cb-accent">อ่านอย่างเดียว</span>
+            </li>
+          </ul>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "สิ่งที่คุณต้องทำช่วงเปิดใช้จริง",
+            "script": "ช่วงเปิดใช้จริง ทุกคนต้องลงมือทำเองอย่างน้อยคนละสามเคสเต็มวงจร เจอปัญหาอะไรให้จดแล้วส่งให้คนรับเรื่องคนเดียว ไม่กระจายทางแชท มีประชุมสั้นสิบห้านาทีทุกเช้าห้าวันแรก และห้ามบันทึกข้อมูลซ้ำสองระบบเด็ดขาด ระบบเดิมถ้ามีให้เป็นอ่านอย่างเดียว",
+            "notes": [
+              "ซ้อมเองอย่างน้อยคนละ 3 เคสเต็มวงจร",
+              "เจอปัญหาจดส่งคนรับเรื่องคนเดียว ไม่กระจายแชท",
+              "ประชุมสั้น 15 นาทีทุกเช้า 5 วันแรก",
+              "ห้ามบันทึกซ้ำสองระบบ ระบบเดิมอ่านอย่างเดียว"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 18: ช่องทางขอความช่วยเหลือ -->
+      <div class="slide" data-slide="18">
+        <h2 class="anim-1">ติดขัดตรงไหน ถามใครได้บ้าง</h2>
+        <div class="cta-box anim-2">
+          <div class="cta-heading">ช่องทางขอความช่วยเหลือ</div>
+          <div class="cb-body" style="max-width: 680px; margin: 0 auto">
+            การใช้งาน → หัวหน้าห้องปฏิบัติการ/Lab admin
+            <span class="fill-blank">[ใส่ชื่อ]</span>
+            <span class="fill-blank">[ใส่เบอร์โทร]</span><br />
+            ระบบ/บัญชี/ลืมรหัสผ่าน → ฝ่าย IT กรม (ไอที ศูนย์)
+            <span class="fill-blank">[ไตเติ้ล]</span>
+            <span class="fill-blank">[กลุ่ม LINE NDC-Lims โปรแกรมแลบ]</span>
+            <span class="fill-blank">[จ-ศ 8.30-17.30 น.]</span><br />
+            อ้างอิงรายละเอียดเพิ่มเติมได้ที่
+            <span class="cb-accent"><a href="index.html" target="_blank"></a>NDCLIMS Onboarding Bible</a></span>
+          </div>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "ช่องทางขอความช่วยเหลือ",
+            "script": "ถ้าติดขัดเรื่องการใช้งาน ให้ถามหัวหน้าห้องปฏิบัติการหรือ Lab admin ก่อน ถ้าเป็นปัญหาระบบ บัญชี หรือลืมรหัสผ่าน ให้ติดต่อฝ่าย IT กรมตามเบอร์และช่องทางที่ระบุไว้ และสามารถย้อนกลับไปดูรายละเอียดในคู่มือ Onboarding Bible ได้เสมอ",
+            "notes": [
+              "ปัญหาการใช้งาน → หัวหน้าห้องปฏิบัติการ / Lab admin (กรอกชื่อ+เบอร์ก่อนอบรมจริง)",
+              "ปัญหาระบบ/บัญชี/ลืมรหัสผ่าน → ฝ่าย IT กรม (กรอกเบอร์+กลุ่ม LINE+เวลาทำการก่อนอบรมจริง)",
+              "คู่มืออ้างอิง: NDCLIMS Onboarding Bible"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 19: Q&A ปิดท้าย -->
+      <div class="slide" data-slide="19">
+        <div
+          class="glow-blob glow-green anim-1"
+          style="top: 15%; right: 12%"
+        ></div>
+        <div class="slide-tag anim-1">ปิดท้าย</div>
+        <h1 class="anim-2">ถาม — ตอบ</h1>
+        <div class="rainbow-line anim-3"></div>
+        <p class="subtitle anim-3">
+          ขอบคุณครับ/ค่ะ — อ่านรายละเอียดเพิ่มเติมได้ที่ NDCLIMS Onboarding
+          Bible
+        </p>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "Q&A ปิดท้าย",
+            "script": "ถึงช่วงถาม-ตอบแล้วครับ/ค่ะ มีคำถามอะไรเกี่ยวกับการใช้งานระบบ ถามได้เลย",
+            "notes": [
+              "เปิดให้ถาม-ตอบ",
+              "ย้ำช่องทางอ้างอิงคู่มือ Onboarding Bible"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 20: ภาคผนวก divider -->
+      <div class="slide" data-slide="20">
+        <div
+          class="glow-blob glow-blue anim-1"
+          style="top: 10%; right: 10%"
+        ></div>
+        <div class="section-eyebrow anim-1">ภาคผนวก</div>
+        <h1 class="anim-2">สำหรับ Lab admin</h1>
+        <div class="rainbow-line anim-3"></div>
+        <p class="subtitle anim-3">
+          สรุปสั้นๆ ของงานตั้งค่าที่เจ้าหน้าที่แล็บทั่วไปไม่ต้องทำเอง —
+          ไว้อ้างอิงหรือส่งต่อให้ Lab admin ของแล็บ
+        </p>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "ภาคผนวก — สำหรับ Lab admin",
+            "script": "ส่วนที่เหลือเป็นภาคผนวกสรุปงานตั้งค่าระบบสำหรับ Lab admin ของแล็บ ไม่ใช่งานประจำวันของทุกคน แต่มีไว้ให้ทุกคนรู้ภาพรวมและอ้างอิงได้",
+            "notes": [
+              "ภาคผนวกนี้เป็นข้อมูลสำหรับ Lab admin",
+              "รายละเอียดเต็มอยู่ใน NDCLIMS Onboarding Bible"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 21: บทบาทมาตรฐาน 8 แบบ -->
+      <div class="slide" data-slide="21">
         <div class="slide-tag anim-1">ภาคผนวก C</div>
         <h2 class="anim-2">บทบาทมาตรฐาน 8 แบบ</h2>
         <div class="table-wrap anim-3">
@@ -2034,7 +3858,8 @@
                 <td>ผู้ดูแลบริษัท</td>
                 <td class="cell-muted">1</td>
                 <td class="cell-muted">
-                  จัดการทุกสาขา ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน ตั้งค่า
+                  ทุกสาขา ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน ตั้งค่า
+                  ประวัติการใช้งาน
                 </td>
               </tr>
               <tr>
@@ -2042,7 +3867,7 @@
                 <td>ผู้ดูแลสาขา</td>
                 <td class="cell-muted">2</td>
                 <td class="cell-muted">
-                  ดูสาขา + จัดการผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงินในสาขา
+                  ในสาขา — ผู้ใช้ ผู้ป่วย แล็บ รายงาน การเงิน
                 </td>
               </tr>
               <tr>
@@ -2050,7 +3875,8 @@
                 <td>หัวหน้าห้องปฏิบัติการ</td>
                 <td class="cell-muted">3</td>
                 <td class="cell-muted">
-                  จัดการผู้ป่วย แล็บ รายงานเต็ม + ดูการเงิน
+                  ผู้ป่วยทั้งหมด งานแล็บทั้งหมด (รวม Verify + Approve)
+                  รายงานทั้งหมด ดูการเงิน
                 </td>
               </tr>
               <tr>
@@ -2058,7 +3884,8 @@
                 <td>นักเทคนิคการแพทย์</td>
                 <td class="cell-muted">3</td>
                 <td class="cell-muted">
-                  ดูผู้ป่วย + สั่ง/บันทึกผลตรวจ + ดูรายงาน
+                  ดูผู้ป่วย ใบสั่งตรวจทั้งหมด (รับสิ่งส่งตรวจ/ยกเลิก) บันทึกผล
+                  Verify ปฏิเสธผล ดูรายงาน
                 </td>
               </tr>
               <tr>
@@ -2066,7 +3893,7 @@
                 <td>พนักงานต้อนรับ</td>
                 <td class="cell-muted">3</td>
                 <td class="cell-muted">
-                  จัดการผู้ป่วย + สร้าง/ดูใบสั่งตรวจ + จัดการการเงิน
+                  จัดการผู้ป่วย สร้าง/ดูใบสั่งตรวจ การเงินทั้งหมด นัดหมาย คิว
                 </td>
               </tr>
               <tr>
@@ -2074,7 +3901,7 @@
                 <td>แพทย์</td>
                 <td class="cell-muted">3</td>
                 <td class="cell-muted">
-                  ดูผู้ป่วย + สั่งตรวจ + ดู/อนุมัติผลตรวจ + รายงานเต็ม
+                  ดูผู้ป่วย ใบสั่งตรวจทั้งหมด ดูผล + Approve รายงานทั้งหมด
                 </td>
               </tr>
               <tr>
@@ -2082,7 +3909,7 @@
                 <td>แคชเชียร์</td>
                 <td class="cell-muted">3</td>
                 <td class="cell-muted">
-                  ดูผู้ป่วย + ดูใบสั่งตรวจ + จัดการการเงิน
+                  ดูผู้ป่วย ดูใบสั่งตรวจ การเงินทั้งหมด เรียกคิว
                 </td>
               </tr>
             </tbody>
@@ -2094,27 +3921,30 @@
             "script": "นี่คือตารางบทบาทมาตรฐานทั้ง 8 แบบของระบบ ใช้จับคู่กับเจ้าหน้าที่แต่ละคนในแล็บของเรา",
             "notes": [
               "8 บทบาทมาตรฐาน ตั้งแต่ super_admin ถึง cashier",
-              "ระดับ 3 มีหลายบทบาทตามหน้าที่งาน"
+              "ระดับ 3 มีหลายบทบาทตามหน้าที่งาน — เทียบกับ cheat sheet ในภาคหลัก"
             ]
           }
         </script>
       </div>
 
-      <!-- 13: เข้าระบบครั้งแรก (condensed) -->
-      <div class="slide" data-slide="13">
+      <!-- 22: Lab admin: เข้าระบบครั้งแรก -->
+      <div class="slide" data-slide="22">
         <div class="cb-wrap">
           <div class="cb-number anim-1">Lab admin · 1 ชั่วโมง</div>
           <div class="cb-heading anim-2">เข้าระบบครั้งแรก</div>
           <div class="cb-body anim-3">
-            IT ติดตั้งระบบและสร้างบัญชี admin ของแล็บไว้ให้แล้ว —
+            ฝ่าย IT กรมติดตั้งระบบและสร้างบัญชี admin ของแล็บไว้ให้แล้ว —
             งานของคุณคือเข้าระบบให้ได้จริง เปลี่ยนรหัสผ่าน แล้วตรวจชื่อแล็บ
           </div>
           <ul class="cb-list anim-4">
-            <li>รับ URL ระบบ + บัญชี admin จาก IT แล้วลอง login ให้ได้จริง</li>
+            <li>
+              รับ URL ระบบ + บัญชี admin จาก ฝ่าย IT กรม แล้วลอง login
+              ให้ได้จริง
+            </li>
             <li>
               <span class="cb-accent">เปลี่ยนรหัสผ่านทันที</span
-              >ที่เข้าได้ครั้งแรก — รหัสเริ่มต้นไม่ใช่ความลับถาวร
-              ทุกคนที่รู้ขั้นตอนติดตั้งมักรู้รหัสเดียวกัน
+              >ที่เข้าได้ครั้งแรก (ตั้งค่า &gt; ความปลอดภัย &gt;
+              "เปลี่ยนรหัสผ่าน") — รหัสเริ่มต้นไม่ใช่ความลับถาวร
             </li>
             <li>
               ตรวจว่าชื่อแล็บ / ชื่อสาขา ที่ขึ้นบนหน้าจอสะกดถูก — ผิดแจ้ง IT
@@ -2124,376 +3954,444 @@
         </div>
         <script type="application/json" class="slide-notes">
           {
-            "title": "เข้าระบบครั้งแรก",
-            "script": "ขั้นแรกใช้เวลาแค่ชั่วโมงเดียว รับบัญชีจาก IT แล้ว login เปลี่ยนรหัสผ่านทันทีเพราะรหัสเริ่มต้นทุกคนที่รู้ขั้นตอนติดตั้งมักรู้เหมือนกันหมด แล้วเช็กว่าชื่อแล็บสะกดถูก",
+            "title": "Lab admin — เข้าระบบครั้งแรก",
+            "script": "ขั้นแรกใช้เวลาแค่ชั่วโมงเดียว รับบัญชีจากฝ่าย IT กรมแล้ว login เปลี่ยนรหัสผ่านทันทีเพราะรหัสเริ่มต้นไม่ใช่ความลับถาวร แล้วเช็กว่าชื่อแล็บสะกดถูก",
             "notes": [
-              "รับ URL + บัญชี admin จาก IT",
-              "เปลี่ยนรหัสผ่านทันทีที่เข้าได้ — รหัสเริ่มต้นไม่ใช่ความลับถาวร",
+              "รับ URL + บัญชี admin จากฝ่าย IT กรม",
+              "เปลี่ยนรหัสผ่านทันทีที่เข้าได้ — ตั้งค่า > ความปลอดภัย > เปลี่ยนรหัสผ่าน",
               "ตรวจชื่อแล็บ/สาขาให้สะกดถูก"
             ]
           }
         </script>
       </div>
 
-      <!-- 14: DEMO login -->
-      <div class="slide demo-slide" data-slide="14">
-        <div class="demo-badge anim-1">🎬 DEMO</div>
-        <h2 class="anim-2">Login ระบบจริงครั้งแรก</h2>
-        <p class="subtitle anim-3">
-          รับ URL + บัญชีจาก IT → login → เปลี่ยนรหัสผ่าน → ตรวจชื่อแล็บ/สาขา
-        </p>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "DEMO: Login ครั้งแรก",
-            "script": "มาลอง login เข้าระบบจริงกันเลย แล้วเปลี่ยนรหัสผ่านทันที",
-            "notes": [
-              "สาธิตหน้า login จริง",
-              "สาธิตหน้าเปลี่ยนรหัสผ่าน",
-              "ชี้ตำแหน่งชื่อแล็บ/สาขาบนหน้าจอ"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 15: ปัญหาตอนใช้งานประจำวัน -->
-      <div class="slide" data-slide="15">
-        <h2 class="anim-1">กับดักตอนใช้งานประจำวัน</h2>
-        <div class="card-grid">
-          <div class="card-editorial tone-red bounce-1">
-            <div class="card-tag">บล็อกการพิมพ์</div>
-            <div class="card-title">ผลไม่อนุมัติ พิมพ์ไม่ได้</div>
-            <div class="card-desc">
-              กันผลหลุดออกไปก่อนมีคนตรวจสอบยืนยัน
-            </div>
-          </div>
-          <div class="card-editorial tone-orange bounce-2">
-            <div class="card-tag">ต้อง login ใหม่</div>
-            <div class="card-title">เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยนทันที</div>
-            <div class="card-desc">ต้อง logout แล้ว login ใหม่หลังเปลี่ยนบทบาท</div>
-          </div>
-          <div class="card-editorial tone-orange bounce-3">
-            <div class="card-tag">ตามแพ็กเกจ</div>
-            <div class="card-title">เมนูบางอย่างหายไป</div>
-            <div class="card-desc">
-              เช่น เชื่อมเครื่องวิเคราะห์/HL7 — เปิดปิดตามแพ็กเกจที่สมัคร
-              ถาม IT ก่อน อย่าเพิ่งคิดว่าระบบพัง
-            </div>
-          </div>
-          <div class="card-editorial tone-blue bounce-4">
-            <div class="card-tag">ดูสถานะ</div>
-            <div class="card-title">สถานะบอกว่าค้างอยู่ตรงไหน</div>
-            <div class="card-desc">
-              ดูสถานะแทนการถามปากเปล่าว่าใบไหนถึงไหนแล้ว
-            </div>
-          </div>
-          <div class="card-editorial tone-green bounce-1">
-            <div class="card-tag">ภาคบังคับ</div>
-            <div class="card-title">ต้องลงมือทำเอง ≥3 เคส</div>
-            <div class="card-desc">
-              ตอนซ้อมใช้งานจริง เจ้าหน้าที่ทุกคนต้องลงมือทำเองไม่ใช่แค่ดู
-            </div>
-          </div>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "กับดักตอนใช้งานประจำวัน",
-            "script": "ห้าเรื่องนี้เป็นกับดักที่เจอบ่อยที่สุดในงานใช้จริง จำไว้ให้ขึ้นใจก่อนเริ่มใช้งาน",
-            "notes": [
-              "ผลที่ยังไม่อนุมัติจะพิมพ์ใบรายงานไม่ได้",
-              "เปลี่ยนบทบาทแล้วต้อง logout/login ใหม่ถึงจะเห็นสิทธิ์ใหม่",
-              "เมนูหาย เช่น เชื่อมเครื่องวิเคราะห์/HL7 เพราะเปิดปิดตามแพ็กเกจ ไม่ใช่ระบบพัง ถาม IT ก่อน",
-              "ใช้สถานะเช็กว่าใบไหนค้างอยู่ขั้นไหน ไม่ต้องถามปากเปล่า",
-              "ตอนซ้อมใช้งานจริง แต่ละคนต้องลงมือทำเองอย่างน้อย 3 เคส"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 16: ซ้อมใช้งานจริง -->
-      <div class="slide" data-slide="16">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">ทุกฝ่าย · 5–10 วัน</div>
-          <div class="cb-heading anim-2">ซ้อมใช้งานจริง</div>
-          <div class="cb-body anim-3">
-            ขั้นนี้คือสิ่งเดียวที่กันความหายนะวันเปิดใช้จริง
-          </div>
-          <ul class="cb-list anim-4">
-            <li>
-              เลือกงานจริงวันละ 10–20 เคส เดินให้ครบวงจร: ลงทะเบียนผู้ป่วย →
-              สั่งตรวจ → รับตัวอย่าง → บันทึกผล → อนุมัติผล → พิมพ์ใบรายงาน →
-              เก็บเงิน
-            </li>
-            <li>
-              จดทุกอย่างที่ไม่ตรงหรือติดขัดลงรายการเดียว — ห้ามแก้ปากเปล่า
-            </li>
-            <li>
-              เจ้าหน้าที่ทุกคนต้องได้ลงมือทำเองอย่างน้อยคนละ
-              <span class="cb-accent">3 เคส</span> ไม่ใช่แค่นั่งดู
-            </li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "ซ้อมใช้งานจริง",
-            "script": "ก่อนเปิดใช้จริง ทุกคนต้องซ้อมกับเคสจริงวันละ 10-20 เคส เดินให้ครบวงจร จดทุกจุดที่ไม่ตรงไว้ที่เดียว และทุกคนต้องลงมือทำเองอย่างน้อยคนละ 3 เคส ไม่ใช่แค่นั่งดูคนอื่นทำ",
-            "notes": [
-              "งานจริงวันละ 10-20 เคส เดินให้ครบวงจร",
-              "จดทุกปัญหาไว้ที่เดียว ห้ามแก้ปากเปล่า",
-              "ทุกคนต้องลงมือทำเองอย่างน้อย 3 เคส"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 17: สองสัปดาห์แรก -->
-      <div class="slide" data-slide="17">
-        <div class="cb-wrap">
-          <div class="cb-number anim-1">ทุกฝ่าย · หลังเปิดใช้จริง</div>
-          <div class="cb-heading anim-2">สองสัปดาห์แรก</div>
-          <ul class="cb-list anim-3">
-            <li>
-              มีคนรับเรื่องปัญหาประจำวัน 1 คน รวมทุกเรื่องไว้ที่เดียว —
-              ไม่กระจายทางแชท
-            </li>
-            <li>ประชุมสั้น 15 นาทีทุกเช้าใน 5 วันแรก</li>
-            <li>
-              ระบบเดิม (ถ้ามี) เป็น<span class="cb-accent">อ่านอย่างเดียว</span
-              >เท่านั้น — ห้ามบันทึกเพิ่ม
-            </li>
-            <li>
-              ห้ามบันทึกซ้ำสองระบบพร้อมกัน — ข้อมูลจะแตกเป็นสองชุดภายในวันเดียว
-              รวมกลับแทบไม่ได้
-            </li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "สองสัปดาห์แรก",
-            "script": "สองสัปดาห์แรกหลังเปิดใช้จริง จะมีคนรับเรื่องปัญหาประจำวันคนเดียว รวมทุกเรื่องไว้ที่เดียว มีประชุมสั้น 15 นาทีทุกเช้าใน 5 วันแรก และห้ามบันทึกข้อมูลซ้ำสองระบบเด็ดขาด",
-            "notes": [
-              "มีคนรับเรื่องปัญหา 1 คน ไม่กระจายทางแชท",
-              "ประชุม 15 นาทีทุกเช้า 5 วันแรก",
-              "ระบบเดิมอ่านอย่างเดียว ห้ามบันทึกเพิ่ม",
-              "ห้ามบันทึกสองระบบพร้อมกัน ข้อมูลจะแตกเป็นสองชุด"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 18: ทบทวน -->
-      <div class="slide" data-slide="18">
-        <div class="slide-tag anim-1">ก่อนจบ</div>
-        <h2 class="anim-2">ทบทวน</h2>
-        <div class="cb-wrap">
-          <ul class="cb-list anim-2">
-            <li>
-              <strong>ผลที่ยังไม่อนุมัติ พิมพ์ได้ไหม?</strong> —
-              ไม่ได้ กันผลหลุดออกไปก่อนมีคนตรวจสอบ
-            </li>
-            <li>
-              <strong>เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยน ต้องทำอะไร?</strong> —
-              ให้ผู้ใช้ logout แล้ว login ใหม่
-            </li>
-            <li>
-              <strong>ใบสั่งตรวจสถานะ "รอตรวจสอบ" ใครต้องทำต่อ?</strong> —
-              lab_manager หรือ doctor ต้องตรวจค่าที่บันทึกแล้วกดอนุมัติ
-            </li>
-          </ul>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "ทบทวน",
-            "script": "ก่อนจบภาคเนื้อหาหลัก มาทบทวนสามคำถามสั้นๆ ที่ครอบคลุมเรื่องสำคัญที่สุดของวันนี้",
-            "notes": [
-              "Q: ผลที่ยังไม่อนุมัติพิมพ์ได้ไหม → A: ไม่ได้",
-              "Q: เปลี่ยนบทบาทแล้วเมนูไม่เปลี่ยนต้องทำอะไร → A: logout แล้ว login ใหม่",
-              "Q: สถานะรอตรวจสอบ ใครทำต่อ → A: lab_manager/doctor อนุมัติ"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 19: ช่องทางขอความช่วยเหลือ -->
-      <div class="slide" data-slide="19">
-        <h2 class="anim-1">ติดขัดตรงไหน ถามใครได้บ้าง</h2>
-        <div class="cta-box anim-2">
-          <div class="cta-heading">ช่องทางขอความช่วยเหลือ</div>
-          <div class="cb-body" style="max-width: 600px; margin: 0 auto">
-            ปัญหาการใช้งาน/ตั้งค่า → หัวหน้าแล็บ หรือ Lab admin ของแล็บก่อน<br />ปัญหาระบบ/การเชื่อมต่อ/สิทธิ์ขั้นสูง
-            → ฝ่าย IT กรม<br />อ้างอิงรายละเอียดเพิ่มเติมได้ที่
-            <span class="cb-accent">NDCLIMS Onboarding Bible</span>
-          </div>
-        </div>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "ช่องทางขอความช่วยเหลือ",
-            "script": "ถ้าติดขัดเรื่องการใช้งาน ให้ถามหัวหน้าแล็บหรือ Lab admin ก่อน ถ้าเป็นปัญหาระบบหรือการเชื่อมต่อให้ติดต่อฝ่าย IT กรม และสามารถย้อนกลับไปดูรายละเอียดในคู่มือ Onboarding Bible ได้เสมอ",
-            "notes": [
-              "ปัญหาการใช้งาน → หัวหน้าแล็บ / Lab admin",
-              "ปัญหาระบบ/เชื่อมต่อ → ฝ่าย IT กรม",
-              "คู่มืออ้างอิง: NDCLIMS Onboarding Bible"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 20: Q&A closing -->
-      <div class="slide" data-slide="20">
-        <div
-          class="glow-blob glow-green anim-1"
-          style="top: 15%; right: 12%"
-        ></div>
-        <div class="slide-tag anim-1">ปิดท้าย</div>
-        <h1 class="anim-2">ถาม — ตอบ</h1>
-        <div class="rainbow-line anim-3"></div>
-        <p class="subtitle anim-3">
-          ขอบคุณครับ/ค่ะ — อ่านรายละเอียดเพิ่มเติมได้ที่ NDCLIMS Onboarding
-          Bible
-        </p>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "Q&A ปิดท้าย",
-            "script": "ถึงช่วงถาม-ตอบแล้วครับ/ค่ะ มีคำถามอะไรเกี่ยวกับการใช้งานระบบ ถามได้เลย",
-            "notes": [
-              "เปิดให้ถาม-ตอบ",
-              "ย้ำช่องทางอ้างอิงคู่มือ Onboarding Bible"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 21: ภาคผนวก divider -->
-      <div class="slide" data-slide="21">
-        <div class="glow-blob glow-blue anim-1" style="top: 10%; right: 10%"></div>
-        <div class="section-eyebrow anim-1">ภาคผนวก</div>
-        <h1 class="anim-2">สำหรับ Lab admin</h1>
-        <div class="rainbow-line anim-3"></div>
-        <p class="subtitle anim-3">
-          สรุปสั้นๆ ของงานตั้งค่าที่เจ้าหน้าที่แล็บทั่วไปไม่ต้องทำเอง —
-          ไว้อ้างอิงหรือส่งต่อให้ Lab admin ของแล็บ
-        </p>
-        <script type="application/json" class="slide-notes">
-          {
-            "title": "ภาคผนวก — สำหรับ Lab admin",
-            "script": "ส่วนที่เหลือเป็นภาคผนวกสรุปงานตั้งค่าระบบสำหรับ Lab admin ของแล็บ ไม่ใช่งานประจำวันของทุกคน แต่มีไว้ให้ทุกคนรู้ภาพรวมและอ้างอิงได้",
-            "notes": [
-              "ภาคผนวกนี้เป็นข้อมูลสำหรับ Lab admin",
-              "รายละเอียดเต็มอยู่ใน NDCLIMS Onboarding Bible"
-            ]
-          }
-        </script>
-      </div>
-
-      <!-- 22: ลำดับการตั้งค่า -->
-      <div class="slide" data-slide="22">
+      <!-- 23: ลำดับที่ต้องกรอก -->
+      <div class="slide" data-slide="23">
         <div class="slide-tag anim-1">ภาคผนวก · ลำดับที่ต้องกรอก</div>
         <h2 class="anim-2">แต่ละขั้นปลดล็อกขั้นถัดไป</h2>
         <p class="subtitle anim-2">
-          ข้ามลำดับไม่ได้ — ระบบไม่ให้ทำสลับ เพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
+          ข้ามลำดับไม่ได้ — ระบบไม่ให้ทำสลับ
+          เพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
         </p>
         <div class="diagram-wrap anim-3">
           <svg
             viewBox="0 0 1040 224"
             role="img"
-            aria-labelledby="s22-title s22-desc"
+            aria-labelledby="s23-title s23-desc"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <title id="s22-title">ลำดับตั้งค่าเจ็ดขั้นตอนของ Lab admin</title>
-            <desc id="s22-desc">
-              ผังลำดับที่ต้องกรอกข้อมูลเจ็ดขั้นตอน ห้ามสลับลำดับเพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
+            <title id="s23-title">ลำดับตั้งค่าเจ็ดขั้นตอนของ Lab admin</title>
+            <desc id="s23-desc">
+              ผังลำดับที่ต้องกรอกข้อมูลเจ็ดขั้นตอน
+              ห้ามสลับลำดับเพราะขั้นหลังอ้างอิงข้อมูลจากขั้นก่อน
               ขั้นที่สามช้าที่สุดและห้ามสลับ ขั้นที่ห้าทำเฉพาะเมื่อมีระบบเดิม
             </desc>
             <defs>
-              <marker id="s22-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" style="fill:var(--text-dim)" />
+              <marker
+                id="s23-arrow"
+                markerWidth="8"
+                markerHeight="6"
+                refX="7"
+                refY="3"
+                orient="auto"
+              >
+                <polygon points="0 0, 8 3, 0 6" style="fill: var(--text-dim)" />
               </marker>
             </defs>
-            <line x1="150" y1="84" x2="170" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
-            <line x1="294" y1="84" x2="314" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
-            <line x1="438" y1="84" x2="458" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
-            <line x1="582" y1="84" x2="602" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
-            <line x1="726" y1="84" x2="746" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
-            <line x1="870" y1="84" x2="890" y2="84" style="stroke:var(--text-dim)" stroke-width="1.4" marker-end="url(#s22-arrow)" />
+            <line
+              x1="150"
+              y1="84"
+              x2="170"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
+            <line
+              x1="294"
+              y1="84"
+              x2="314"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
+            <line
+              x1="438"
+              y1="84"
+              x2="458"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
+            <line
+              x1="582"
+              y1="84"
+              x2="602"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
+            <line
+              x1="726"
+              y1="84"
+              x2="746"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
+            <line
+              x1="870"
+              y1="84"
+              x2="890"
+              y2="84"
+              style="stroke: var(--text-dim)"
+              stroke-width="1.4"
+              marker-end="url(#s23-arrow)"
+            />
 
-            <!-- step 1 -->
-            <rect x="26" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" />
-            <circle cx="45" cy="59" r="11" style="fill:var(--text)" />
-            <text x="45" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--bg-card)">1</text>
-            <text x="88" y="96" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="26"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.25"
+              stroke-width="1"
+            />
+            <circle cx="45" cy="59" r="11" style="fill: var(--text)" />
+            <text
+              x="45"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--bg-card)"
+            >
+              1
+            </text>
+            <text
+              x="88"
+              y="96"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="88" dy="0">เข้าระบบ</tspan>
               <tspan x="88" dy="15">ครั้งแรก</tspan>
             </text>
 
-            <!-- step 2 -->
-            <rect x="170" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" />
-            <circle cx="189" cy="59" r="11" style="fill:var(--text)" />
-            <text x="189" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--bg-card)">2</text>
-            <text x="232" y="96" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="170"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.25"
+              stroke-width="1"
+            />
+            <circle cx="189" cy="59" r="11" style="fill: var(--text)" />
+            <text
+              x="189"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--bg-card)"
+            >
+              2
+            </text>
+            <text
+              x="232"
+              y="96"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="232" dy="0">แผนก +</tspan>
               <tspan x="232" dy="15">ชนิดสิ่งส่งตรวจ</tspan>
             </text>
 
-            <!-- step 3: ห้ามสลับ · ช้าที่สุด -->
-            <rect x="314" y="40" width="124" height="88" rx="8" fill="var(--accent-orange)" fill-opacity="0.06" style="stroke:var(--accent-orange)" stroke-width="1.4" />
-            <circle cx="333" cy="59" r="11" style="fill:var(--accent-orange)" />
-            <text x="333" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:#fff">3</text>
-            <text x="376" y="88" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="314"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--accent-orange)"
+              fill-opacity="0.06"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1.4"
+            />
+            <circle
+              cx="333"
+              cy="59"
+              r="11"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="333"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: #fff"
+            >
+              3
+            </text>
+            <text
+              x="376"
+              y="88"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="376" dy="0">หมวดหมู่ →</tspan>
               <tspan x="376" dy="15">รายการตรวจ →</tspan>
               <tspan x="376" dy="15">แพ็กเกจ</tspan>
             </text>
-            <line x1="376" y1="128" x2="376" y2="136" style="stroke:var(--accent-orange)" stroke-width="1.2" stroke-dasharray="4,3" />
-            <rect x="314" y="136" width="124" height="36" rx="6" fill="var(--accent-orange)" fill-opacity="0.05" style="stroke:var(--accent-orange)" stroke-width="1" stroke-dasharray="4,3" />
-            <text x="376" y="151" text-anchor="middle" font-size="12" font-weight="700" style="font-family:var(--font-label);fill:var(--accent-orange)">
+            <line
+              x1="376"
+              y1="128"
+              x2="376"
+              y2="136"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1.2"
+              stroke-dasharray="4,3"
+            />
+            <rect
+              x="314"
+              y="136"
+              width="124"
+              height="36"
+              rx="6"
+              fill="var(--accent-orange)"
+              fill-opacity="0.05"
+              style="stroke: var(--accent-orange)"
+              stroke-width="1"
+              stroke-dasharray="4,3"
+            />
+            <text
+              x="376"
+              y="151"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--accent-orange)"
+            >
               <tspan x="376" dy="0">ห้ามสลับ</tspan>
               <tspan x="376" dy="14">ช้าที่สุด</tspan>
             </text>
 
-            <!-- step 4 -->
-            <rect x="458" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" />
-            <circle cx="477" cy="59" r="11" style="fill:var(--text)" />
-            <text x="477" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--bg-card)">4</text>
-            <text x="520" y="96" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="458"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.25"
+              stroke-width="1"
+            />
+            <circle cx="477" cy="59" r="11" style="fill: var(--text)" />
+            <text
+              x="477"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--bg-card)"
+            >
+              4
+            </text>
+            <text
+              x="520"
+              y="96"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="520" dy="0">ผู้ใช้ +</tspan>
               <tspan x="520" dy="15">สิทธิ์</tspan>
             </text>
 
-            <!-- step 5: เฉพาะถ้ามีระบบเดิม -->
-            <rect x="602" y="40" width="124" height="88" rx="8" fill="var(--text)" fill-opacity="0.02" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4,3" />
-            <circle cx="621" cy="59" r="11" fill="none" style="stroke:var(--text)" stroke-width="1.2" />
-            <text x="621" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--text)">5</text>
-            <text x="664" y="88" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="602"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--text)"
+              fill-opacity="0.02"
+              style="stroke: var(--text)"
+              stroke-opacity="0.35"
+              stroke-width="1"
+              stroke-dasharray="4,3"
+            />
+            <circle
+              cx="621"
+              cy="59"
+              r="11"
+              fill="none"
+              style="stroke: var(--text)"
+              stroke-width="1.2"
+            />
+            <text
+              x="621"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--text)"
+            >
+              5
+            </text>
+            <text
+              x="664"
+              y="88"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="664" dy="0">(ถ้ามี)</tspan>
               <tspan x="664" dy="15">ย้ายผู้ป่วย</tspan>
               <tspan x="664" dy="15">เดิม</tspan>
             </text>
 
-            <!-- step 6 -->
-            <rect x="746" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" />
-            <circle cx="765" cy="59" r="11" style="fill:var(--text)" />
-            <text x="765" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--bg-card)">6</text>
-            <text x="808" y="96" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="746"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.25"
+              stroke-width="1"
+            />
+            <circle cx="765" cy="59" r="11" style="fill: var(--text)" />
+            <text
+              x="765"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--bg-card)"
+            >
+              6
+            </text>
+            <text
+              x="808"
+              y="96"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="808" dy="0">หน่วยงาน</tspan>
               <tspan x="808" dy="15">ส่งตรวจ</tspan>
             </text>
 
-            <!-- step 7 -->
-            <rect x="890" y="40" width="124" height="88" rx="8" fill="var(--bg-card)" style="stroke:var(--text)" stroke-opacity="0.25" stroke-width="1" />
-            <circle cx="909" cy="59" r="11" style="fill:var(--text)" />
-            <text x="909" y="63" text-anchor="middle" font-size="11" font-weight="700" style="font-family:var(--font-label);fill:var(--bg-card)">7</text>
-            <text x="952" y="88" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-body);fill:var(--text)">
+            <rect
+              x="890"
+              y="40"
+              width="124"
+              height="88"
+              rx="8"
+              fill="var(--bg-card)"
+              style="stroke: var(--text)"
+              stroke-opacity="0.25"
+              stroke-width="1"
+            />
+            <circle cx="909" cy="59" r="11" style="fill: var(--text)" />
+            <text
+              x="909"
+              y="63"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="700"
+              style="font-family: var(--font-label); fill: var(--bg-card)"
+            >
+              7
+            </text>
+            <text
+              x="952"
+              y="88"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="600"
+              style="font-family: var(--font-body); fill: var(--text)"
+            >
               <tspan x="952" dy="0">ซ้อมใช้งาน →</tspan>
               <tspan x="952" dy="15">เปิดใช้จริง</tspan>
             </text>
 
-            <!-- legend -->
-            <line x1="26" y1="190" x2="1014" y2="190" style="stroke:var(--border-hover)" stroke-width="0.8" />
-            <circle cx="33" cy="204" r="7" style="fill:var(--text)" />
-            <text x="46" y="207" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">ตัวเลข = ลำดับที่ต้องทำ</text>
-            <rect x="355" y="199" width="14" height="10" rx="2" style="fill:var(--accent-orange)" />
-            <text x="375" y="207" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">สีส้ม = ห้ามสลับ · ขั้นที่ช้าที่สุด</text>
-            <rect x="684" y="199" width="14" height="10" rx="2" fill="none" style="stroke:var(--text)" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="3,2" />
-            <text x="704" y="207" font-size="9" style="font-family:var(--font-label);fill:var(--text-dim)">เส้นประ = ทำเฉพาะถ้ามีระบบเดิม</text>
+            <line
+              x1="26"
+              y1="190"
+              x2="1014"
+              y2="190"
+              style="stroke: var(--border-hover)"
+              stroke-width="0.8"
+            />
+            <circle cx="33" cy="204" r="7" style="fill: var(--text)" />
+            <text
+              x="46"
+              y="207"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              ตัวเลข = ลำดับที่ต้องทำ
+            </text>
+            <rect
+              x="355"
+              y="199"
+              width="14"
+              height="10"
+              rx="2"
+              style="fill: var(--accent-orange)"
+            />
+            <text
+              x="375"
+              y="207"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              สีส้ม = ห้ามสลับ · ขั้นที่ช้าที่สุด
+            </text>
+            <rect
+              x="684"
+              y="199"
+              width="14"
+              height="10"
+              rx="2"
+              fill="none"
+              style="stroke: var(--text)"
+              stroke-opacity="0.35"
+              stroke-width="1"
+              stroke-dasharray="3,2"
+            />
+            <text
+              x="704"
+              y="207"
+              font-size="9"
+              style="font-family: var(--font-label); fill: var(--text-dim)"
+            >
+              เส้นประ = ทำเฉพาะถ้ามีระบบเดิม
+            </text>
           </svg>
         </div>
         <script type="application/json" class="slide-notes">
@@ -2508,8 +4406,44 @@
         </script>
       </div>
 
-      <!-- 23: ปัญหาตอนนำเข้าข้อมูล -->
-      <div class="slide" data-slide="23">
+      <!-- 24: ซ้อมใช้งานจริงระดับแล็บ -->
+      <div class="slide" data-slide="24">
+        <div class="cb-wrap">
+          <div class="cb-number anim-1">Lab admin · 5–10 วัน</div>
+          <div class="cb-heading anim-2">ซ้อมใช้งานจริงระดับแล็บ</div>
+          <div class="cb-body anim-3">
+            ขั้นนี้คือสิ่งเดียวที่กันความหายนะวันเปิดใช้จริง
+          </div>
+          <ul class="cb-list anim-4">
+            <li>
+              เลือกงานจริงวันละ 10–20 เคส เดินให้ครบวงจร: ลงทะเบียนผู้ป่วย →
+              สั่งตรวจ → รับสิ่งส่งตรวจ → บันทึกผล → Verify → Approve →
+              พิมพ์ใบรายงานผล → เก็บเงิน
+            </li>
+            <li>
+              จดทุกอย่างที่ไม่ตรงหรือติดขัดลงรายการเดียว — ห้ามแก้ปากเปล่า
+            </li>
+            <li>
+              เจ้าหน้าที่ทุกคนต้องได้ลงมือทำเองอย่างน้อยคนละ
+              <span class="cb-accent">3 เคส</span> ไม่ใช่แค่นั่งดู
+            </li>
+          </ul>
+        </div>
+        <script type="application/json" class="slide-notes">
+          {
+            "title": "ซ้อมใช้งานจริงระดับแล็บ",
+            "script": "ก่อนเปิดใช้จริง ทุกคนต้องซ้อมกับเคสจริงวันละ 10-20 เคส เดินให้ครบวงจร จดทุกจุดที่ไม่ตรงไว้ที่เดียว และทุกคนต้องลงมือทำเองอย่างน้อยคนละ 3 เคส ไม่ใช่แค่นั่งดูคนอื่นทำ",
+            "notes": [
+              "งานจริงวันละ 10-20 เคส เดินให้ครบวงจร",
+              "จดทุกปัญหาไว้ที่เดียว ห้ามแก้ปากเปล่า",
+              "ทุกคนต้องลงมือทำเองอย่างน้อย 3 เคส"
+            ]
+          }
+        </script>
+      </div>
+
+      <!-- 25: กับดักตอนนำเข้าข้อมูล -->
+      <div class="slide" data-slide="25">
         <div class="slide-tag anim-1">ภาคผนวก · กับดักตอนนำเข้าข้อมูล</div>
         <h2 class="anim-1">กับดักตอนนำเข้าข้อมูล</h2>
         <div class="card-grid cols-3">
@@ -2567,8 +4501,8 @@
         </script>
       </div>
 
-      <!-- 24: go/no-go -->
-      <div class="slide" data-slide="24">
+      <!-- 26: go / no-go -->
+      <div class="slide" data-slide="26">
         <div class="slide-tag anim-1">ภาคผนวก · เกณฑ์ตัดสินใจ</div>
         <h2 class="anim-2">go / no-go</h2>
         <div class="status-timeline">
@@ -2614,8 +4548,6 @@
           }
         </script>
       </div>
-    </div>
-
     </div>
 
     <script>
