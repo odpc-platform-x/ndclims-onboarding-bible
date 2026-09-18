@@ -103,7 +103,7 @@
       width: 2px;
       height: 2px;
       border-radius: 50%;
-      background: rgba(0, 96, 170, 0.1);
+      background: rgba(0, 96, 170, 0.2);
       animation: floatP linear infinite;
     }
 
@@ -118,7 +118,7 @@
       }
 
       90% {
-        opacity: 0.8;
+        opacity: 0.9;
       }
 
       100% {
@@ -2756,7 +2756,7 @@
     <div class="slide demo-slide" data-slide="11">
       <div class="demo-badge anim-1">DEMO</div>
       <div class="cb-number anim-1">
-        งานประจำวัน 5/6 · หัวหน้าห้องปฏิบัติการ / แพทย์
+        งานประจำวัน 5/6 · หัวหน้าห้องปฏิบัติการ
       </div>
       <h2 class="anim-2">Approve</h2>
       <div class="daily-row anim-3">
@@ -3032,7 +3032,7 @@
               <td class="cell-muted">บันทึกผลแล้ว / ตรวจสอบแล้ว</td>
             </tr>
             <tr>
-              <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ / แพทย์</td>
+              <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ</td>
               <td class="cell-muted">ผลตรวจ · รายงาน</td>
               <td class="cell-muted">"Approve" · "ยืนยัน Approve"</td>
               <td class="cell-muted">อนุมัติแล้ว</td>
@@ -3127,7 +3127,7 @@
               </td>
             </tr>
             <tr>
-              <td class="cell-highlight">แพทย์ (ถ้ามี)</td>
+              <td class="cell-highlight">หัวหน้าห้องปฏิบัติการ / หัวหน้ากลุ่มงาน</td>
               <td class="cell-muted">Approve</td>
               <td class="cell-muted">doctor</td>
               <td class="cell-muted" style="color: var(--text-dim)">
@@ -3354,8 +3354,9 @@
         <div class="cta-heading">ช่องทางขอความช่วยเหลือ</div>
         <div class="cb-body" style="max-width: 680px; margin: 0 auto">
           การใช้งาน → หัวหน้าห้องปฏิบัติการ/Lab admin
-          <span class="fill-blank">[ใส่ชื่อ]</span>
-          <span class="fill-blank">[ใส่เบอร์โทร]</span><br />
+          <span class="fill-blank">พี่ปิกกี้</span>
+          <!-- <span class="fill-blank">[ใส่เบอร์โทร]</span> -->
+          <br />
           ระบบ/บัญชี/ลืมรหัสผ่าน → ฝ่าย IT กรม (ไอที ศูนย์) ไตเติ้ล · กลุ่ม
           LINE NDC-Lims โปรแกรมแลบ · จ-ศ 8.30-17.30 น.<br />
           อ้างอิงรายละเอียดเพิ่มเติมได้ที่
@@ -3907,7 +3908,7 @@
   <script>
     // Particles
     const pc = document.getElementById("particles");
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 50; i++) {
       const p = document.createElement("div");
       p.className = "particle";
       p.style.left = Math.random() * 100 + "%";
